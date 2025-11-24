@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
+import { Hero } from './components/Hero'; // ATIVADO!
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
@@ -7,20 +8,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
-    <div className="bg-slate-50 min-h-screen relative">
-      {/* Aqui chamamos o Menu consertado */}
+    <div className="bg-slate-50 min-h-screen relative selection:bg-blue-200 selection:text-blue-900">
+      
       <Navbar />
       
-      <main className="pt-32 px-6 container mx-auto text-center">
-        <h1 className="text-4xl font-bold text-slate-900 mb-4">Sucesso! O Menu voltou! 🚀</h1>
-        <p className="text-lg text-slate-600 mb-8">
-          Se você está vendo o menu no topo com o seu logo, vencemos essa etapa.
-        </p>
+      <main>
+        {/* Mostrando a Capa */}
+        <Hero />
         
-        <div className="p-10 border-2 border-dashed border-slate-300 rounded-xl bg-white/50">
-           <p className="text-slate-400">Próximo passo: Criar o Hero (Capa do site).</p>
+        {/* Aviso de construção */}
+        <div className="py-32 text-center">
+          <p className="text-slate-400 text-sm">Próximos passos: Copywriting, Vantagens e Preços.</p>
         </div>
       </main>
+
     </div>
   );
 }
