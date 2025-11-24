@@ -1,195 +1,111 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
-import { ArrowRight, Star, ShieldCheck } from 'lucide-react';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const Hero: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const bgImageRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    
-    // Animação de Parallax do Mouse
-    const handleMouseMove = (e: MouseEvent) => {
-      const xNorm = (e.clientX / window.innerWidth - 0.5);
-      const yNorm = (e.clientY / window.innerHeight - 0.5);
-      
-      if (bgRef.current) {
-        gsap.to(bgRef.current, {
-          x: xNorm * 10, 
-          y: yNorm * 10,
-          duration: 1.5, 
-          ease: "power2.out",
-          overwrite: "auto"
-        });
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-
-      // Animação Principal de Entrada
-      tl.from(".hero-text-element", {
-        y: 40,
+      
+      // 1. Configuração Inicial
+      // Deixamos a imagem um pouco menor para ela crescer depois
+      gsap.set(bgImageRef.current, { scale: 1.0 }); 
+      
+      // 2. Animação de Entrada (O texto sobe suave quando abre o site)
+      gsap.from(contentRef.current, {
+        y: 100,
         opacity: 0,
-        duration: 1,
-        stagger: 0.15, 
-        ease: "power3.out"
-      })
-      .from(".hero-cta", {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        clearProps: "opacity,transform"
-      }, "-=0.4") 
-      .from(".hero-social", {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out"
-      }, "-=0.6")
-      .from(".hero-visual-col", {
-        y: 50, 
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out"
-      }, "<0.2") 
-      .from(".hero-badge", {
-        scale: 0,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.2,
-        ease: "back.out(1.7)"
-      }, "-=0.5");
-
-      // Animação Flutuante dos Selos
-      gsap.to(".float-y", {
-        y: -15,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "power1.inOut"
+        duration: 1.5,
+        ease: "power4.out",
+        delay: 0.2
       });
 
-    }, containerRef);
+      // 3. A MÁGICA DO SCROLL (O efeito que você quer)
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top", // Começa no topo
+          end: "+=150%",    // Dura 1.5x a altura da tela (rola devagar)
+          pin: true,        // TRAVA a tela
+          scrub: 1,         // Animação segue o dedo suavemente
+        }
+      });
 
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      ctx.revert();
-    };
+      tl
+        // Passo A: O Texto e o Overlay escuro somem
+        .to([contentRef.current, overlayRef.current], {
+          opacity: 0,
+          y: -50,
+          duration: 1,
+          ease: "power1.inOut"
+        })
+        // Passo B: A Imagem de fundo cresce (Zoom In) e ganha destaque
+        .to(bgImageRef.current, {
+          scale: 1.3,      // Aumenta 30%
+          filter: "brightness(1.1)", // Fica um pouco mais brilhante
+          duration: 2,     // Dura mais tempo que o texto sumindo
+          ease: "none"
+        }, 0); // O zero faz acontecer ao mesmo tempo que o texto some
+
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
-    // CORREÇÃO AQUI: Usei overflow-x-clip para permitir que os selos verticais apareçam
-    <section ref={containerRef} className="relative min-h-screen flex flex-col justify-center pt-28 md:pt-32 pb-12 md:pb-20 overflow-x-clip bg-transparent">
+    <section ref={sectionRef} className="relative h-screen w-full overflow-hidden bg-slate-900">
       
-      {/* Elementos de Fundo Parallax */}
-      <div ref={bgRef} className="parallax-bg absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-indigo-300/10 rounded-full blur-3xl"></div>
+      {/* --- CAMADA 1: A IMAGEM DE FUNDO (O "Hero" que vai crescer) --- */}
+      <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
+        <div 
+          ref={bgImageRef}
+          className="w-full h-full bg-cover bg-center bg-no-repeat"
+          style={{ 
+            // COLOQUE AQUI O LINK DA SUA IMAGEM PRINCIPAL (FOTO DO CONSULTÓRIO OU SURFISTA)
+            backgroundImage: "url('https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=2000&auto=format&fit=crop')" 
+          }}
+        />
       </div>
 
-      <div className="container mx-auto px-6 z-10">
-        <div className="flex flex-col items-center gap-2 md:gap-16">
+      {/* --- CAMADA 2: OVERLAY ESCURO (Para ler o texto antes de rolar) --- */}
+      <div ref={overlayRef} className="absolute inset-0 bg-slate-900/60 z-10"></div>
+
+      {/* --- CAMADA 3: TEXTO E HEADLINE (Que vão sumir ao rolar) --- */}
+      <div ref={contentRef} className="relative z-20 container mx-auto px-6 h-full flex flex-col items-center justify-center text-center">
           
-          {/* BLOCO DE TEXTO SUPERIOR */}
-          <div className="w-full max-w-4xl text-center relative z-20 mx-auto">
-            {/* Borrão mobile */}
-            <div className="absolute inset-0 bg-white/30 blur-2xl -z-10 rounded-full lg:hidden transform scale-150 opacity-50"></div>
-
-            <div className="hero-text-element inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-blue-200 backdrop-blur-md mb-4 md:mb-6 mx-auto shadow-sm ring-1 ring-blue-50">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-              </span>
-              <span className="text-xs font-bold text-blue-700 tracking-wide uppercase">Neurociência Aplicada</span>
-            </div>
-
-            <h1 className="hero-text-element text-3xl md:text-5xl lg:text-7xl font-bold tracking-tighter text-slate-900 mb-4 md:mb-6 leading-[1.1] font-serif drop-shadow-sm">
-              O Silêncio que você implora <br/>
-              <span className="text-blue-600">não virá de mais um remédio.</span>
-            </h1>
-
-            <p className="hero-text-element text-base md:text-xl text-slate-700 mb-6 md:mb-6 leading-relaxed font-normal max-w-2xl mx-auto text-shadow-sm">
-              Você já tentou "respirar fundo", terapias infinitas e comprimidos, mas o aperto no peito continua? <strong>Sua mente não está quebrada, ela está em loop.</strong> Aprenda a desligar o alerta de perigo em 21 dias.
-            </p>
-
-            <div className="hero-cta flex flex-col sm:flex-row items-center gap-4 justify-center mb-6 md:mb-6 opacity-0 translate-y-4">
-              <a 
-                href="#pricing"
-                className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg hover:bg-blue-500 transition-all flex items-center justify-center gap-2 group shadow-[0_10px_30px_rgba(59,130,246,0.3)] hover:scale-105 active:scale-95 hover:shadow-blue-500/40 ring-4 ring-blue-500/10 font-serif tracking-wide"
-              >
-                Quero Desligar o Barulho Mental
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <span className="text-xs text-slate-400 font-medium uppercase tracking-wider hidden sm:block">Método Validado</span>
-            </div>
-
-            {/* Prova Social */}
-            <div className="hero-social flex items-center justify-center gap-6 border-t border-slate-200/60 pt-4 opacity-0 max-w-lg mx-auto">
-                <div className="flex items-center gap-2">
-                   <div className="flex -space-x-3">
-                      {[1,2,3,4].map((i) => (
-                        <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200 overflow-hidden shadow-sm">
-                           <img src={`https://i.pravatar.cc/100?img=${i + 10}`} alt="Aluno" className="w-full h-full object-cover" />
-                        </div>
-                      ))}
-                   </div>
-                   <div className="flex flex-col items-start ml-2 text-left">
-                      <div className="flex text-amber-400 text-xs">
-                         <Star className="w-3 h-3 fill-current" />
-                         <Star className="w-3 h-3 fill-current" />
-                         <Star className="w-3 h-3 fill-current" />
-                         <Star className="w-3 h-3 fill-current" />
-                         <Star className="w-3 h-3 fill-current" />
-                      </div>
-                      <span className="text-xs text-slate-600 font-semibold">5.000+ vidas recuperadas</span>
-                   </div>
-                </div>
-            </div>
+          {/* Badge Neurociência */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8 shadow-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            </span>
+            <span className="text-xs font-bold text-white tracking-wide uppercase">Neurociência Aplicada</span>
           </div>
 
-          {/* BLOCO VISUAL (PLAYER + SELOS) */}
-          <div className="hero-visual-col w-[85%] md:w-full max-w-5xl relative perspective-1000 mx-auto mt-0 md:mt-4">
-             
-             {/* Player de Vídeo */}
-             <div className="relative z-10 rounded-2xl overflow-hidden border-[4px] md:border-[8px] border-white/60 shadow-[0_15px_40px_rgba(59,130,246,0.15)] md:shadow-[0_30px_60px_rgba(59,130,246,0.15)] bg-slate-900 aspect-video group mx-auto">
-                <iframe 
-                  className="w-full h-full relative z-10"
-                  src="https://www.youtube-nocookie.com/embed/NOH-u8bwVS0?rel=0&modestbranding=1&playsinline=1" 
-                  title="YouTube video player" 
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                  allowFullScreen
-                ></iframe>
-             </div>
+          {/* Headline Principal */}
+          <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold tracking-tighter text-white mb-6 leading-[1.1] drop-shadow-2xl">
+            O Silêncio que <br/>
+            você implora.
+          </h1>
 
-             {/* Selo Flutuante: DRA QUITÉRIA (Topo) */}
-             <div className="hero-badge float-y absolute -top-8 left-1/2 -translate-x-[60%] md:translate-x-0 md:-top-10 md:-right-8 p-3 md:p-4 bg-white/90 backdrop-blur-xl border border-white/60 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] flex items-center gap-3 z-20 max-w-[160px] md:max-w-[240px]">
-                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-slate-200 overflow-hidden shrink-0 border-2 border-white">
-                   <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop" alt="Dra Quiteria" className="w-full h-full object-cover" />
-                </div>
-                <div>
-                   <p className="text-slate-900 font-bold text-xs md:text-sm leading-tight">Dra. Quitéria</p>
-                   <p className="text-blue-600 text-[10px] md:text-xs font-medium">Neurociência</p>
-                </div>
-             </div>
+          {/* Subtítulo */}
+          <p className="text-lg md:text-2xl text-slate-200 mb-10 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-md">
+            Desligue o ruído mental e retome o controle em 21 dias.<br/>
+            <span className="text-blue-300 font-semibold">Role para descobrir como.</span>
+          </p>
 
-             {/* Selo Flutuante: RESULTADO (Embaixo) */}
-             <div className="hero-badge float-y absolute -bottom-8 left-1/2 -translate-x-[40%] md:translate-x-0 md:-bottom-10 md:-left-8 p-3 md:p-4 bg-white/90 backdrop-blur-xl border border-white/60 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] flex items-center gap-3 z-20" style={{ animationDelay: '1.5s' }}>
-                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
-                   <ShieldCheck className="w-4 h-4 md:w-5 md:h-5" />
-                </div>
-                <div>
-                   <p className="text-slate-400 text-sm uppercase tracking-wider text-[10px]">Protocolo CMS</p>
-                   <p className="text-slate-900 font-bold text-xs md:text-sm">Alívio em 5 min</p>
-                </div>
-             </div>
+          {/* Seta indicando rolagem */}
+          <div className="animate-bounce mt-10">
+            <ArrowRight className="w-6 h-6 text-white/50 rotate-90" />
           </div>
 
-        </div>
       </div>
     </section>
   );
