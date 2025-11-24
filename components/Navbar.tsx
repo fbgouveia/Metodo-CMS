@@ -42,9 +42,13 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <img 
             src="https://metodocms.com/wp-content/uploads/2025/08/logo.png" 
-            alt="Método CMS - Cérebro em Modo Silencioso" 
-            className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+            alt="Método CMS" 
+            className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
           />
+          <div className="flex flex-col items-start leading-none">
+             <span className="font-serif font-bold text-blue-600 text-base md:text-lg tracking-tight group-hover:text-blue-700 transition-colors">Cérebro em Modo Silencioso</span>
+             <span className="text-[10px] md:text-xs text-slate-500 font-medium tracking-widest uppercase mt-0.5">Método CMS</span>
+          </div>
         </div>
 
         {/* Desktop Menu */}

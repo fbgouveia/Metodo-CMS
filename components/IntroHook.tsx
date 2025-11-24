@@ -82,12 +82,12 @@ export const IntroHook: React.FC = () => {
       <div className="relative w-[90vw] h-[80vh] z-10 flex items-center justify-center">
         <div ref={imageRef} className="w-full h-full overflow-hidden shadow-2xl shadow-blue-900/20 bg-slate-200 origin-center">
           <img 
-            src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2500&auto=format&fit=crop" 
-            alt="Calm Mind Concept" 
+            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2500&auto=format&fit=crop" 
+            alt="Abstract Neural Flow - Calming Blue Liquid" 
             className="w-full h-full object-cover opacity-90"
           />
           {/* Overlay sutil na imagem final */}
-          <div className="absolute inset-0 bg-blue-900/10"></div>
+          <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay"></div>
         </div>
       </div>
 
