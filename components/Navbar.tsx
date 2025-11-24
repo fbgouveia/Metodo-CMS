@@ -31,10 +31,15 @@ export const Navbar: React.FC = () => {
         
         {/* LOGO E NOME */}
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          {/* Imagem do Logo */}
-          <img src="/logo.png" alt="Logo" className="h-12 w-auto object-contain" onError={(e) => {e.currentTarget.style.display = 'none'}} /> 
           
-          {/* Texto */}
+          {/* IMAGEM COM LINK ABSOLUTO DO WORDPRESS */}
+          <img 
+            src="https://metodocms.com/wp-content/uploads/2025/08/logo.png" 
+            alt="Logo Método CMS" 
+            className="h-12 w-auto object-contain" 
+          /> 
+          
+          {/* Texto ao lado */}
           <div className="flex flex-col">
             <span className="text-lg font-bold tracking-tight text-slate-800 leading-none">Cérebro em Modo Silencioso</span>
             <span className="text-lg text-slate-500 tracking-[0.2em] uppercase" style={{ fontSize: '10px' }}>Método CMS</span>
