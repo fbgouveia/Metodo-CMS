@@ -43,21 +43,25 @@ export const About: React.FC = () => {
           
           {/* Coluna da Imagem */}
           <div className="about-image flex-1 relative w-full max-w-lg mx-auto lg:mx-0">
-            <div className="absolute inset-0 bg-blue-200 rounded-[3rem] rotate-3 scale-105 opacity-50 blur-sm"></div>
-            <div className="relative rounded-[3rem] overflow-hidden border-4 border-white shadow-2xl aspect-[4/5]">
+            {/* Elemento decorativo de fundo ajustado para não bloquear a transparência total */}
+            <div className="absolute inset-0 bg-blue-200/20 rounded-[3rem] rotate-3 scale-105 opacity-50 blur-sm pointer-events-none"></div>
+            
+            {/* Moldura com fundo transparente/vidro */}
+            <div className="relative rounded-[3rem] overflow-hidden border-4 border-white/50 shadow-2xl aspect-[4/5] bg-white/5 backdrop-blur-sm">
               <img 
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop" 
+                src="https://metodocms.com/wp-content/uploads/2025/07/hero-bottom.webp" 
                 alt="Dra. Quitéria Gouveia" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain relative z-10"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/90 to-transparent p-8 text-white">
+              {/* Gradiente inferior para legibilidade do texto */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/80 to-transparent p-8 text-white z-20">
                 <p className="font-serif text-2xl">Dra. Quitéria Gouveia</p>
                 <p className="text-blue-300 text-sm font-medium uppercase tracking-wider">Psicóloga CRP 06/XXXXX</p>
               </div>
             </div>
             
             {/* Badge Flutuante */}
-            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce duration-[3000ms]">
+            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce duration-[3000ms] z-30">
               <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
                 <Brain className="w-5 h-5" />
               </div>

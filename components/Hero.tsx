@@ -173,7 +173,7 @@ export const Hero: React.FC = () => {
              {/* Floating Badge: Doctor - Adjusted positions for centered layout */}
              <div className="hero-badge float-y absolute -top-8 left-1/2 -translate-x-[60%] md:translate-x-0 md:-top-10 md:-right-8 p-3 md:p-4 bg-white/90 backdrop-blur-xl border border-white/60 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] flex items-center gap-3 z-20 max-w-[160px] md:max-w-[240px]">
                 <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-slate-200 overflow-hidden shrink-0 border-2 border-white">
-                   <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=200&auto=format&fit=crop" alt="Dra Quiteria" className="w-full h-full object-cover" />
+                   <img src="https://metodocms.com/wp-content/uploads/2025/07/hero-bottom.webp" alt="Dra Quiteria" className="w-full h-full object-cover" />
                 </div>
                 <div>
                    <p className="text-slate-900 font-bold text-xs md:text-sm leading-tight">Dra. Quitéria Gouveia</p>

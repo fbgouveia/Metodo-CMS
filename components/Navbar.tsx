@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Menu, X, BrainCircuit, MessageCircle } from 'lucide-react';
+import { Menu, X, MessageCircle } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -40,16 +40,11 @@ export const Navbar: React.FC = () => {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <div className="relative w-10 h-10 flex items-center justify-center">
-            <div className="absolute inset-0 bg-blue-500/20 rounded-xl blur-md group-hover:bg-blue-500/30 transition-all duration-500"></div>
-            <div className="relative bg-gradient-to-br from-blue-50 to-white border border-blue-200 rounded-xl w-full h-full flex items-center justify-center shadow-sm">
-               <BrainCircuit className="w-5 h-5 text-blue-600" />
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-tight text-slate-800 leading-none">Modo Silencioso</span>
-            <span className="text-lg text-slate-500 tracking-[0.2em] uppercase" style={{ fontSize: '10px' }}>Método CMS</span>
-          </div>
+          <img 
+            src="https://metodocms.com/wp-content/uploads/2025/08/logo.png" 
+            alt="Método CMS - Cérebro em Modo Silencioso" 
+            className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+          />
         </div>
 
         {/* Desktop Menu */}
