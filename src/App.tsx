@@ -4,7 +4,7 @@ import { IntroHook } from './components/IntroHook';
 import { Hero } from './components/Hero';
 import { HorizontalScroll } from './components/HorizontalScroll';
 import { ProgramDetails } from './components/ProgramDetails';
-import { Features } from './components/Features'; // Seus benefícios
+import { Features } from './components/Features';
 import { About } from './components/About';
 import { Testimonials } from './components/Testimonials';
 import { Pricing } from './components/Pricing';
@@ -19,34 +19,67 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
-    <div className="bg-slate-50 min-h-screen w-full overflow-x-hidden relative font-sans text-slate-900">
+    <div className="bg-slate-50 min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
       
-      {/* FUNDO ANIMADO (Blobs) - Fica fixo no fundo */}
+      {/* Background Blobs (Fixo no fundo) */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-200/40 rounded-full blur-[100px] animate-blob mix-blend-multiply"></div>
-          <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-200/40 rounded-full blur-[100px] animate-blob animation-delay-2000 mix-blend-multiply"></div>
-          <div className="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-indigo-200/40 rounded-full blur-[100px] animate-blob animation-delay-4000 mix-blend-multiply"></div>
+          <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-200/30 rounded-full blur-[120px] mix-blend-multiply opacity-70"></div>
+          <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-200/30 rounded-full blur-[120px] mix-blend-multiply opacity-70"></div>
       </div>
 
       <Navbar />
       
       <main className="relative z-10 w-full flex flex-col">
-        <IntroHook />
         
-        {/* HERO (Vídeo) - Z-Index menor para ser coberto */}
-        <div className="relative z-10 bg-white/50 backdrop-blur-sm">
-           <Hero />
+        {/* 1. INTRO: Ocupa a primeira tela */}
+        <div className="relative z-30 bg-transparent">
+           <IntroHook />
         </div>
         
-        {/* Horizontal Scroll - Z-Index MAIOR e Background Sólido para cobrir o vídeo ao subir */}
-        <div className="relative z-20 bg-[#f5f5f7]">
+        {/* 2. HORIZONTAL SCROLL (A JORNADA): Vem logo após a Intro */}
+        {/* Adicionei um fundo sólido suave para separar visualmente */}
+        <div className="relative z-20 bg-[#f5f5f7] pt-10 border-t border-white/50">
             <HorizontalScroll />
         </div>
 
-        {/* Resto do Conteúdo - Fundo Branco para leitura */}
-        <div className="relative z-20 bg-white">
+        {/* 3. HERO (VÍDEO) + OFERTA RÁPIDA: Agora vem ABAIXO da Jornada */}
+        <div className="relative z-20 bg-white py-20"> 
+           
+           {/* Oferta Rápida antes do vídeo */}
+           <div className="max-w-2xl mx-auto px-4 mb-12">
+              <div className="bg-slate-50 p-4 rounded-full shadow-md border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xl">⚡</div>
+                      <div className="text-center md:text-left">
+                          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wide">Oferta Relâmpago</p>
+                          <p class="text-sm font-bold text-slate-900">Curso Completo: <span class="text-blue-600">12x R$ 49,90</span></p>
+                      </div>
+                  </div>
+                  <a href="#pricing" className="bg-black text-white px-8 py-2 rounded-full text-sm font-bold hover:bg-gray-800 transition w-full md:w-auto text-center">
+                      Quero me curar agora
+                  </a>
+              </div>
+           </div>
+
+           {/* O Vídeo */}
+           <Hero />
+        </div>
+
+        {/* 4. CONTEÚDO RESTANTE */}
+        <div className="relative z-20 bg-white/80 backdrop-blur-md">
            <ProgramDetails />
            <Features />
+           
+           <div className="py-12 px-4">
+             <Pricing 
+               isPreview={true} 
+               id="pricing-middle" 
+               customTitle="Transforme esses 10 Pilares em Realidade"
+               customSubtitle="Escolha agora como quer aplicar o método."
+               customBadge="Próximo Passo"
+             />
+           </div>
+           
            <About />
            <Testimonials />
            <Pricing />
