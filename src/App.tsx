@@ -28,19 +28,18 @@ function App() {
       <main className="relative z-10 w-full flex flex-col">
         
         {/* 1. INTRO */}
-        <div className="relative z-10">
-           <IntroHook />
-        </div>
+        <IntroHook />
         
-        {/* 2. HERO + OFERTA (Fundo Branco, sem margem negativa para não invadir a intro) */}
+        {/* 2. HERO + OFERTA */}
         <div className="relative z-20 bg-white/80 backdrop-blur-sm py-20 shadow-xl border-t border-white/50"> 
            
+           {/* Oferta Rápida */}
            <div className="max-w-3xl mx-auto px-4 mb-12">
-              <div className="bg-white/90 backdrop-blur p-4 rounded-full shadow-lg border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="bg-white/90 backdrop-blur p-4 rounded-full shadow-lg border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4 transform hover:scale-[1.01] transition-transform duration-300">
                   <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md">⚡</div>
+                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md animate-pulse">⚡</div>
                       <div className="text-center md:text-left">
-                          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wide">Oferta Relâmpago</p>
+                          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wide mb-0.5">Oferta Relâmpago</p>
                           <p class="text-sm font-bold text-slate-900">Curso Completo: <span class="text-blue-600 text-base">12x R$ 49,90</span></p>
                       </div>
                   </div>
@@ -53,17 +52,16 @@ function App() {
            <Hero />
         </div>
         
-        {/* 3. SCROLL HORIZONTAL */}
-        <div className="relative z-30 bg-[#f5f5f7]">
-            <HorizontalScroll />
-        </div>
+        {/* 3. HORIZONTAL SCROLL (JORNADA) - Sem wrappers extras */}
+        <HorizontalScroll />
 
-        {/* 4. RESTO DO SITE */}
-        <div className="relative z-40 bg-white shadow-[0_-20px_60px_rgba(0,0,0,0.05)] rounded-t-[3rem] -mt-10 pt-16 pb-20">
+        {/* 4. CONTEÚDO RESTANTE */}
+        <div className="relative z-30 bg-white shadow-[0_-20px_60px_rgba(0,0,0,0.05)] pt-20 pb-20">
+           
            <ProgramDetails />
            <Features />
            
-           <div className="py-16 px-4 my-10 bg-white/50 backdrop-blur-sm rounded-3xl border border-white/60 mx-4 md:mx-auto max-w-6xl">
+           <div className="py-16 px-4 my-10 bg-slate-50 rounded-3xl border border-white/60 mx-4 md:mx-auto max-w-6xl">
              <Pricing 
                isPreview={true} 
                id="pricing-middle" 
@@ -77,6 +75,7 @@ function App() {
            <Testimonials />
            <Pricing />
            <FAQ />
+           
         </div>
       </main>
 
