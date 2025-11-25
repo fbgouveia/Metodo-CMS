@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 export const IntroHook: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const imageWrapperRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -15,43 +15,32 @@ export const IntroHook: React.FC = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=150%", // Duração estendida para dar tempo do efeito acontecer
+          end: "+=150%", // Aumenta a duração da rolagem para o efeito ficar suave
           scrub: 1,
-          pin: true,     // Essencial: Trava a tela
-          pinSpacing: true, // Essencial: Empurra o conteúdo de baixo
-          anticipatePin: 1,
+          pin: true,     // Trava a tela
+          pinSpacing: true, // Empurra o conteúdo seguinte para baixo
+          anticipatePin: 1
         }
       });
 
       // 1. Texto sobe e desaparece
       tl.to(textRef.current, {
-        y: -150,
-        autoAlpha: 0,
-        scale: 0.8,
+        y: -100,
+        opacity: 0,
+        scale: 0.9,
         duration: 0.5,
         ease: "power2.inOut"
       }, 0);
 
-      // 2. Imagem cresce do centro (Efeito "Grow")
-      tl.fromTo(imageRef.current, 
-        {
-          scale: 0.4,
-          borderRadius: "100px",
-          autoAlpha: 0, // Começa invisível para não atrapalhar o texto
-          filter: "blur(20px)",
-          y: 100
-        },
-        {
-          scale: 1,
-          borderRadius: "24px",
-          autoAlpha: 1,
-          filter: "blur(0px)",
-          y: 0,
-          duration: 1,
-          ease: "power2.out"
-        }, 
-        0.1 // Leve delay para o texto começar a sair antes da imagem explodir
-      );
+      // 2. A Imagem CRESCE para ocupar a tela inteira
+      tl.to(imageWrapperRef.current, {
+        width: "100vw",
+        height: "100vh",
+        borderRadius: "0px", // Remove o arredondamento ao encostar nas bordas
+        y: 0,
+        duration: 1,
+        ease: "power2.inOut"
+      }, 0);
 
     }, containerRef);
 
@@ -59,39 +48,33 @@ export const IntroHook: React.FC = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-transparent">
+    <section ref={containerRef} className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white">
       
-      {/* Camada de Conteúdo */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
-        
-        {/* HEADLINE (Texto que vai sumir) */}
-        <div ref={textRef} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center z-20">
-          <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-600 text-xs font-bold tracking-widest uppercase mb-6 border border-blue-200">
-            Você não está louca
-          </span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-slate-900 tracking-tight mb-6 leading-[1.1]">
-            A exaustão de lutar<br/>
-            contra a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Própria Mente</span>.
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-500 font-light max-w-2xl leading-relaxed">
-            Você sente que seu emocional está desregulado? Como se o botão de perigo estivesse travado na posição LIGADO?
-          </p>
-          <div className="mt-10 animate-bounce text-slate-400 text-sm font-medium tracking-widest uppercase">
-            Existe um jeito de desligar ↓
-          </div>
-        </div>
+      {/* TEXTO (Fica na frente da imagem inicialmente) */}
+      <div ref={textRef} className="absolute z-20 text-center px-4 mix-blend-multiply">
+        <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-blue-600 text-[10px] md:text-xs font-bold tracking-widest uppercase mb-6 border border-blue-100 shadow-sm">
+          Você não está louca
+        </span>
+        <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif text-slate-900 leading-[0.9] tracking-tighter mb-6">
+          Sua Mente,<br/><span className="text-blue-600 italic">Seu Lar.</span>
+        </h1>
+        <div className="mt-8 animate-bounce text-slate-400 text-sm font-medium">Role para entrar ↓</div>
+      </div>
 
-        {/* IMAGEM (Que vai crescer) */}
-        <div className="relative w-[90vw] h-[80vh] z-10 flex items-center justify-center pointer-events-none">
-          <div ref={imageRef} className="w-full h-full overflow-hidden shadow-2xl shadow-blue-900/20 bg-slate-200 origin-center">
-            <img 
-              src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg" 
-              alt="Abstract Neural Flow" 
-              className="w-full h-full object-cover opacity-90"
-            />
-            <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay"></div>
-          </div>
-        </div>
+      {/* IMAGEM (Container que vai crescer) */}
+      <div 
+        ref={imageWrapperRef} 
+        className="relative z-10 w-[40vw] h-[50vh] rounded-[3rem] overflow-hidden shadow-2xl origin-center bg-slate-100"
+      >
+        {/* Overlay azulado suave */}
+        <div className="absolute inset-0 bg-blue-900/10 z-10 pointer-events-none mix-blend-overlay"></div>
+        
+        {/* FOTO ORIGINAL RESTAURADA */}
+        <img 
+          src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg" 
+          alt="Arte Neural Abstrata" 
+          className="w-full h-full object-cover object-center"
+        />
       </div>
 
     </section>
