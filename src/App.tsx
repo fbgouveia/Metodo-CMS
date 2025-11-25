@@ -1,8 +1,8 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { IntroHook } from './components/IntroHook';
-import { Hero } from './components/Hero';
-import { HorizontalScroll } from './components/HorizontalScroll';
+import { Hero } from './components/Hero'; // O Vídeo (Agora em 3º lugar)
+import { HorizontalScroll } from './components/HorizontalScroll'; // A Jornada (Agora em 2º lugar)
 import { ProgramDetails } from './components/ProgramDetails';
 import { Features } from './components/Features';
 import { About } from './components/About';
@@ -15,46 +15,38 @@ import { WhatsAppFloat } from './components/WhatsAppFloat';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-// Registra GSAP
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
-    <div className="bg-[#f5f5f7] min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
+    <div className="bg-slate-50 min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
       
-      {/* Background Animado (Fica no Z-0 absoluto) */}
+      {/* Background Estático Suave */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-200/30 rounded-full blur-[120px] mix-blend-multiply opacity-70"></div>
           <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-200/30 rounded-full blur-[120px] mix-blend-multiply opacity-70"></div>
       </div>
 
-      {/* Navbar (Z-50 para ficar acima de tudo) */}
       <Navbar />
       
       <main className="relative w-full flex flex-col">
         
-        {/* 1. INTRO (Z-INDEX 10) */}
-        {/* Definimos uma altura fixa ou padding para garantir o espaço */}
-        <div className="relative z-10 bg-transparent pb-20">
-           <IntroHook />
-        </div>
+        {/* 1. INTRO (GSAP PINNED) */}
+        {/* Ela vai travar a tela até terminar a animação da imagem */}
+        <IntroHook />
         
-        {/* 2. HORIZONTAL SCROLL (Z-INDEX 20) */}
-        {/* Ele tem z-index maior, então vai cobrir a Intro ao rolar */}
-        {/* bg-white sólido impede transparência indesejada */}
-        <div className="relative z-20 bg-white shadow-[0_-20px_60px_rgba(0,0,0,0.05)] rounded-t-[3rem] -mt-10 pt-10">
+        {/* 2. A JORNADA (HORIZONTAL SCROLL) */}
+        {/* Aparece naturalmente DEPOIS que a Intro destrava */}
+        <div className="relative z-20 bg-[#f5f5f7]">
             <HorizontalScroll />
         </div>
 
-        {/* 3. HERO / VÍDEO (Z-INDEX 30) */}
-        {/* Vem depois do scroll. Margem negativa pequena para 'encaixar' visualmente */}
-        <div className="relative z-30 bg-[#f5f5f7] py-20 rounded-t-[3rem] -mt-10 border-t border-white/50 shadow-xl">
+        {/* 3. HERO (VÍDEO) */}
+        <div className="relative z-20 bg-white py-20">
            
            {/* Oferta Rápida */}
            <div className="max-w-2xl mx-auto px-4 mb-12">
-              <div className="bg-white p-4 rounded-full shadow-sm border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="bg-slate-50 p-4 rounded-full shadow-md border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xl">⚡</div>
                       <div className="text-center md:text-left">
@@ -71,8 +63,8 @@ function App() {
            <Hero />
         </div>
 
-        {/* 4. CONTEÚDO RESTANTE (Z-INDEX 40) */}
-        <div className="relative z-40 bg-white pt-20 rounded-t-[3rem] -mt-10 shadow-2xl">
+        {/* 4. Resto do Site */}
+        <div className="relative z-20 bg-white/80 backdrop-blur-md">
            <ProgramDetails />
            <Features />
            
