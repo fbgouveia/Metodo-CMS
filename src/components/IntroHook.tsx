@@ -1,56 +1,47 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const IntroHook: React.FC = () => {
+export function IntroHook() {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=150%", 
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
+          end: "+=1500", // Duração da animação (quanto o usuário tem que rolar)
+          scrub: 1,      // Suavidade
+          pin: true,     // TRAVA a tela
+          pinSpacing: true, // Empurra o próximo conteúdo para baixo
+          anticipatePin: 1
         }
       });
 
-      // 1. Texto sobe
+      // 1. Texto some e sobe
       tl.to(textRef.current, {
-        y: -100,
-        autoAlpha: 0,
-        scale: 0.9,
-        duration: 0.4,
-        ease: "power2.inOut"
-      }, 0);
+        y: -150,
+        opacity: 0,
+        scale: 0.8,
+        duration: 1,
+        ease: "power2.out"
+      });
 
-      // 2. Imagem cresce
-      tl.fromTo(imageRef.current, 
-        {
-          scale: 0.4,
-          borderRadius: "100px",
-          autoAlpha: 0.5,
-          filter: "blur(10px)",
-          y: 100
-        },
-        {
-          scale: 1,
-          borderRadius: "24px",
-          autoAlpha: 1,
-          filter: "blur(0px)",
-          y: 0,
-          duration: 1,
-          ease: "power2.out"
-        }, 
-        0
-      );
+      // 2. Imagem Cresce e toma a tela
+      tl.to(imageRef.current, {
+        width: "100vw",     // Ocupa largura total
+        height: "100vh",    // Ocupa altura total
+        borderRadius: "0",  // Remove bordas arredondadas
+        y: 0,               // Centraliza
+        scale: 1.1,         // Zoom in leve
+        duration: 1.5,
+        ease: "power2.inOut"
+      }, "<"); // Começa junto com a animação do texto
 
     }, containerRef);
 
@@ -58,40 +49,30 @@ export const IntroHook: React.FC = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-transparent">
+    <section ref={containerRef} className="relative h-screen flex flex-col items-center justify-center overflow-hidden bg-white z-50">
       
-      {/* Content Layer (Z-10) */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
-        {/* Camada de Texto (Headline) */}
-        <div ref={textRef} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none z-20">
-          <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-600 text-xs font-bold tracking-widest uppercase mb-6 border border-blue-200">
-            Você não está louca
-          </span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-slate-900 tracking-tight mb-6 leading-[1.1]">
-            A exaustão de lutar<br/>
-            contra a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Própria Mente</span>.
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-500 font-light max-w-2xl leading-relaxed">
-            Você sente que seu emocional está desregulado? Como se o botão de perigo estivesse travado na posição LIGADO?
-          </p>
-          <div className="mt-10 animate-bounce text-slate-400 text-sm font-medium tracking-widest uppercase">
-            Existe um jeito de desligar
-          </div>
-        </div>
+      {/* Texto Inicial */}
+      <div ref={textRef} className="text-center z-20 relative px-4 mb-8 origin-center">
+        <p className="text-blue-600 font-mono text-xs tracking-[0.2em] uppercase mb-4 font-bold">Psicologia Clínica</p>
+        <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif text-slate-900 leading-[0.9] tracking-tighter mb-6">
+          Sua Mente,<br/><span className="text-blue-600 italic">Seu Lar.</span>
+        </h1>
+        <div className="mt-6 animate-bounce text-slate-400 text-sm">Role para iniciar a jornada ↓</div>
+      </div>
 
-        {/* Camada de Imagem (Grow Effect) */}
-        <div className="relative w-[90vw] h-[80vh] z-10 flex items-center justify-center">
-          <div ref={imageRef} className="w-full h-full overflow-hidden shadow-2xl shadow-blue-900/20 bg-slate-200 origin-center">
-            <img 
-              src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg" 
-              alt="Abstract Neural Flow" 
-              className="w-full h-full object-cover opacity-90"
-            />
-            <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay"></div>
-          </div>
-        </div>
+      {/* Imagem Inicial (Começa menor e cresce) */}
+      <div 
+        ref={imageRef} 
+        className="relative z-10 w-[40vw] h-[50vh] rounded-[3rem] overflow-hidden shadow-2xl origin-center will-change-transform"
+      >
+        <div className="absolute inset-0 bg-black/10 z-10"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1515023115689-589c33041d3c?q=80&w=2400&auto=format&fit=crop" 
+          alt="Paz Mental" 
+          className="w-full h-full object-cover"
+        />
       </div>
 
     </section>
   );
-};
+}
