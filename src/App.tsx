@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="bg-slate-50 min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
       
-      {/* Background Blobs (Fixo no fundo) */}
+      {/* Background Blobs (Fundo) */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-200/30 rounded-full blur-[120px] mix-blend-multiply opacity-70"></div>
           <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-200/30 rounded-full blur-[120px] mix-blend-multiply opacity-70"></div>
@@ -31,22 +31,24 @@ function App() {
       
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* 1. INTRO: Ocupa a primeira tela */}
-        <div className="relative z-30 bg-transparent">
+        {/* 1. INTRO (Z-INDEX 50 - FICA NO TOPO) */}
+        {/* bg-white para garantir que nada apareça atrás do texto */}
+        <div className="relative z-50 bg-transparent">
            <IntroHook />
         </div>
         
-        {/* 2. HORIZONTAL SCROLL (A JORNADA): Vem logo após a Intro */}
-        {/* Adicionei um fundo sólido suave para separar visualmente */}
-        <div className="relative z-20 bg-[#f5f5f7] pt-10 border-t border-white/50">
+        {/* 2. HORIZONTAL SCROLL (Z-INDEX 40) */}
+        {/* Vem logo após a Intro. Fundo Sólido impede ver o que está embaixo. */}
+        <div className="relative z-40 bg-[#f5f5f7] shadow-2xl">
             <HorizontalScroll />
         </div>
 
-        {/* 3. HERO (VÍDEO) + OFERTA RÁPIDA: Agora vem ABAIXO da Jornada */}
-        <div className="relative z-20 bg-white py-20"> 
+        {/* 3. HERO/VÍDEO (Z-INDEX 30) */}
+        {/* Agora está ABAIXO do scroll na ordem de empilhamento, mas visualmente aparece DEPOIS */}
+        <div className="relative z-30 bg-white py-20 rounded-t-[3rem] -mt-10 border-t border-white/50 shadow-[0_-20px_60px_rgba(0,0,0,0.1)]">
            
-           {/* Oferta Rápida antes do vídeo */}
-           <div className="max-w-2xl mx-auto px-4 mb-12">
+           {/* Oferta Rápida */}
+           <div className="max-w-2xl mx-auto px-4 mb-12 relative z-20">
               <div className="bg-slate-50 p-4 rounded-full shadow-md border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xl">⚡</div>
@@ -61,12 +63,11 @@ function App() {
               </div>
            </div>
 
-           {/* O Vídeo */}
            <Hero />
         </div>
 
-        {/* 4. CONTEÚDO RESTANTE */}
-        <div className="relative z-20 bg-white/80 backdrop-blur-md">
+        {/* 4. CONTEÚDO RESTANTE (Z-INDEX 20) */}
+        <div className="relative z-20 bg-white/90 backdrop-blur-md">
            <ProgramDetails />
            <Features />
            
