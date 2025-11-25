@@ -5,91 +5,95 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export const IntroHook: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const imageWrapperRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: containerRef.current,
           start: "top top",
-          end: "+=2000", // Mais espaço de scroll para a animação ser mais suave
-          scrub: 1,      // O movimento segue o mouse
-          pin: true,     // Trava a seção na tela
-          pinSpacing: true, // Empurra o próximo componente para baixo (EVITA O CONFLITO)
-          anticipatePin: 1
+          end: "+=150%", 
+          scrub: 1,
+          pin: true,
+          pinSpacing: true, // ISSO É O QUE IMPEDE A PRÓXIMA SEÇÃO DE SUBIR ANTES DA HORA
+          anticipatePin: 1,
         }
       });
 
-      // 1. O Texto sobe e desaparece rápido
+      // 1. Texto sobe e some
       tl.to(textRef.current, {
-        y: -150,
-        opacity: 0,
-        scale: 0.8,
-        duration: 1, 
+        y: -100,
+        autoAlpha: 0,
+        scale: 0.9,
+        duration: 0.4,
         ease: "power2.inOut"
       }, 0);
 
-      // 2. O Container da Imagem expande para ocupar a tela inteira
-      tl.to(imageWrapperRef.current, {
-        width: "100%",
-        height: "100%",
-        borderRadius: "0px",
-        top: 0,
-        left: 0,
-        margin: 0,
-        duration: 2, // Dura mais que o texto para dar sensação de imersão
-        ease: "power2.out"
-      }, 0);
-
-      // 3. A Imagem dentro (Zoom Out sutil para efeito cinematográfico)
+      // 2. Imagem cresce (Efeito Original Restaurado)
       tl.fromTo(imageRef.current, 
-        { scale: 1.2 }, 
-        { scale: 1.0, duration: 2, ease: "power2.out" }, 
+        {
+          scale: 0.4,
+          borderRadius: "100px",
+          autoAlpha: 0.5,
+          filter: "blur(10px)",
+          y: 100
+        },
+        {
+          scale: 1,
+          borderRadius: "0px", // Vai para 0px para cobrir a tela toda no final
+          width: "100vw",
+          height: "100vh",
+          autoAlpha: 1,
+          filter: "blur(0px)",
+          y: 0,
+          duration: 1,
+          ease: "power2.out"
+        }, 
         0
       );
 
-    }, sectionRef);
+    }, containerRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    // Container Principal que será "Pinado"
-    <section ref={sectionRef} className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white z-40">
+    <section ref={containerRef} className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white">
       
-      {/* TEXTO (Camada Superior) */}
-      <div ref={textRef} className="absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center pointer-events-none">
-        <p className="text-blue-600 font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-4 bg-white/50 backdrop-blur-sm px-4 py-1 rounded-full">
-          Psicologia Clínica
-        </p>
-        <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif text-slate-900 leading-[0.9] tracking-tighter mb-6 drop-shadow-sm">
-          Sua Mente,<br/><span className="text-blue-600 italic">Seu Lar.</span>
-        </h1>
-        <div className="mt-8 animate-bounce text-slate-500 text-sm font-medium">
-          Role para entrar ↓
-        </div>
-      </div>
-
-      {/* CONTAINER DA IMAGEM (Começa pequeno no centro) */}
-      <div 
-        ref={imageWrapperRef} 
-        className="absolute z-10 w-[40vw] h-[50vh] rounded-[3rem] overflow-hidden shadow-2xl origin-center"
-        style={{ willChange: 'width, height, border-radius' }} // Otimização de performance
-      >
-        {/* Overlay para escurecer levemente */}
-        <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
+      {/* Content Layer (Z-10) */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
         
-        {/* Imagem Real */}
-        <img 
-          ref={imageRef}
-          src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg" 
-          alt="Paz Mental" 
-          className="w-full h-full object-cover object-center"
-        />
+        {/* Camada de Texto (Headline) */}
+        <div ref={textRef} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none z-20 mix-blend-multiply">
+          <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-600 text-xs font-bold tracking-widest uppercase mb-6 border border-blue-200">
+            Você não está louca
+          </span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-slate-900 tracking-tight mb-6 leading-[1.1]">
+            A exaustão de lutar<br/>
+            contra a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Própria Mente</span>.
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-500 font-light max-w-2xl leading-relaxed">
+            Você sente que seu emocional está desregulado?
+          </p>
+          <div className="mt-10 animate-bounce text-slate-400 text-sm font-medium tracking-widest uppercase">
+            Existe um jeito de desligar
+          </div>
+        </div>
+
+        {/* Camada de Imagem (Grow Effect) */}
+        <div className="relative w-[90vw] h-[80vh] z-10 flex items-center justify-center pointer-events-none">
+          <div ref={imageRef} className="w-full h-full overflow-hidden shadow-2xl shadow-blue-900/20 bg-slate-200 origin-center">
+            <img 
+              src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg" 
+              alt="Abstract Neural Flow" 
+              className="w-full h-full object-cover opacity-90"
+            />
+            <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay"></div>
+          </div>
+        </div>
       </div>
 
     </section>
