@@ -1,9 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ... seus imports do tailwind ... */
 
-body {
-  background-color: #f5f5f7;
-  color: #1d1d1f;
-  overflow-x: hidden;
+/* Utilitário para esconder barra de rolagem */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
