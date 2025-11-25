@@ -44,14 +44,12 @@ export const HorizontalScroll: React.FC = () => {
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-      // Apenas roda a animação em telas grandes (Desktop)
       if (window.innerWidth >= 768) {
         const slider = sliderRef.current;
         const container = componentRef.current;
         
         if (!slider || !container) return;
 
-        // Cálculo exato da largura para rolar
         const totalWidth = slider.scrollWidth - window.innerWidth;
 
         gsap.to(slider, {
@@ -60,10 +58,10 @@ export const HorizontalScroll: React.FC = () => {
           scrollTrigger: {
             trigger: container,
             start: "top top",
-            end: () => `+=${totalWidth}`, // Duração exata do scroll
-            pin: true, // Prende a seção
-            scrub: 1, // Suavidade
-            invalidateOnRefresh: true, // Recalcula se redimensionar
+            end: () => `+=${totalWidth}`,
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
             anticipatePin: 1,
           }
         });
@@ -74,13 +72,15 @@ export const HorizontalScroll: React.FC = () => {
   }, []);
 
   return (
-    <section ref={componentRef} id="method" className="relative bg-[#f5f5f7] overflow-hidden">
+    // Z-50: Garante que fique POR CIMA do vídeo ao rolar
+    // bg-[#f5f5f7]: Fundo sólido para o vídeo não aparecer "atrás"
+    <section ref={componentRef} id="method" className="relative z-50 bg-[#f5f5f7] overflow-hidden py-10 md:py-0">
       
-      {/* --- VERSÃO DESKTOP (ANIMAÇÃO GSAP) --- */}
+      {/* DESKTOP VIEW */}
       <div className="hidden md:flex h-screen items-center overflow-hidden">
         <div ref={sliderRef} className="flex gap-8 px-12 w-max h-full items-center">
           
-          {/* Card Introdutório */}
+          {/* Intro Card */}
           <div className="min-w-[35vw] px-10 flex flex-col justify-center">
             <span className="text-blue-600 font-bold tracking-widest uppercase mb-4 block text-sm">A Jornada</span>
             <h2 className="text-5xl xl:text-6xl font-serif text-slate-900 mb-6 leading-tight">
@@ -94,9 +94,9 @@ export const HorizontalScroll: React.FC = () => {
             </div>
           </div>
 
-          {/* Cards dos Passos */}
+          {/* Steps */}
           {steps.map((step) => (
-            <div key={step.id} className="relative min-w-[450px] h-[65vh] rounded-[2rem] overflow-hidden shadow-2xl group border border-white">
+            <div key={step.id} className="relative min-w-[450px] h-[65vh] rounded-[2rem] overflow-hidden shadow-2xl group border border-white bg-white">
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
               <img 
                 src={step.image} 
@@ -113,7 +113,7 @@ export const HorizontalScroll: React.FC = () => {
             </div>
           ))}
 
-          {/* Card Final CTA */}
+          {/* CTA Card */}
           <div className="min-w-[450px] h-[65vh] rounded-[2rem] bg-slate-900 text-white flex flex-col justify-center items-center text-center p-10 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-purple-500"></div>
             <h3 className="text-3xl font-serif mb-6">Assuma o Controle.</h3>
@@ -123,22 +123,20 @@ export const HorizontalScroll: React.FC = () => {
             </a>
           </div>
           
-          {/* Espaçador final para garantir scroll suave */}
           <div className="w-20"></div>
         </div>
       </div>
 
-      {/* --- VERSÃO MOBILE (NATIVE SNAP SCROLL - SEM BUGS) --- */}
+      {/* MOBILE VIEW */}
       <div className="md:hidden py-16 px-4">
         <div className="mb-8 px-2 text-center">
             <span className="text-blue-600 font-bold text-xs uppercase tracking-widest">O Protocolo</span>
             <h2 className="text-3xl font-serif text-slate-900 mt-2">5 Passos para a Liberdade</h2>
         </div>
         
-        {/* Carrossel Nativo (Swipe) */}
         <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 no-scrollbar">
             {steps.map((step) => (
-            <div key={step.id} className="snap-center shrink-0 w-[85vw] h-[55vh] rounded-3xl relative overflow-hidden shadow-lg">
+            <div key={step.id} className="snap-center shrink-0 w-[85vw] h-[55vh] rounded-3xl relative overflow-hidden shadow-lg bg-white">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-10"></div>
                 <img src={step.image} alt={step.title} className="absolute inset-0 w-full h-full object-cover" />
                 <div className="relative z-20 h-full flex flex-col justify-end p-6">
@@ -149,7 +147,6 @@ export const HorizontalScroll: React.FC = () => {
             </div>
             ))}
             
-            {/* CTA Mobile */}
             <div className="snap-center shrink-0 w-[85vw] h-[55vh] rounded-3xl bg-slate-900 flex flex-col justify-center items-center text-center p-8 text-white">
                 <h3 className="text-2xl font-serif mb-4">Sua vez.</h3>
                 <a href="#pricing" className="px-8 py-3 bg-white text-slate-900 rounded-full font-bold text-sm shadow-lg">Ver Valores</a>
