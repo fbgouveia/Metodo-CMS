@@ -12,45 +12,35 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { StickyCTA } from './components/StickyCTA';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
-    // Fundo base transparente para deixar o fixed aparecer
-    <div className="min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
+    <div className="bg-slate-50 min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
       
-      {/* --- CAMADA 0: BACKGROUND ANIMADO (BLOBS) --- */}
-      {/* Eles ficam fixos no fundo da tela */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#f0f4f8]">
-          <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-300/30 rounded-full blur-[120px] mix-blend-multiply opacity-80 animate-blob"></div>
-          <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-300/30 rounded-full blur-[120px] mix-blend-multiply opacity-80 animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-indigo-300/30 rounded-full blur-[120px] mix-blend-multiply opacity-80 animate-blob animation-delay-4000"></div>
+      {/* Background Blobs */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-200/30 rounded-full blur-[120px] mix-blend-multiply opacity-70"></div>
+          <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-200/30 rounded-full blur-[120px] mix-blend-multiply opacity-70"></div>
       </div>
 
-      {/* Navbar */}
       <Navbar />
       
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* 1. INTRO (Fundo Transparente para ver os blobs logo de cara) */}
+        {/* 1. INTRO */}
         <div className="relative z-10">
            <IntroHook />
         </div>
         
-        {/* 2. HERO + OFERTA (Vidro Fosco) */}
-        {/* bg-white/60 permite ver as cores passando por trás */}
-        <div className="relative z-20 bg-white/60 backdrop-blur-xl py-20 shadow-xl rounded-t-[3rem] -mt-12 border-t border-white/40"> 
+        {/* 2. HERO + OFERTA (Fundo Branco, sem margem negativa para não invadir a intro) */}
+        <div className="relative z-20 bg-white/80 backdrop-blur-sm py-20 shadow-xl border-t border-white/50"> 
            
-           {/* Oferta Rápida */}
            <div className="max-w-3xl mx-auto px-4 mb-12">
-              <div className="bg-white/80 backdrop-blur-md p-4 rounded-full shadow-lg border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4 transform hover:scale-[1.01] transition-transform duration-300">
+              <div className="bg-white/90 backdrop-blur p-4 rounded-full shadow-lg border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md animate-pulse">⚡</div>
+                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md">⚡</div>
                       <div className="text-center md:text-left">
-                          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wide mb-0.5">Oferta Relâmpago</p>
+                          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wide">Oferta Relâmpago</p>
                           <p class="text-sm font-bold text-slate-900">Curso Completo: <span class="text-blue-600 text-base">12x R$ 49,90</span></p>
                       </div>
                   </div>
@@ -63,45 +53,36 @@ function App() {
            <Hero />
         </div>
         
-        {/* 3. HORIZONTAL SCROLL (Vidro Fosco um pouco mais denso para contraste) */}
-        <div className="relative z-30 bg-slate-50/80 backdrop-blur-xl border-t border-white/50">
+        {/* 3. SCROLL HORIZONTAL */}
+        <div className="relative z-30 bg-[#f5f5f7]">
             <HorizontalScroll />
         </div>
 
-        {/* 4. CONTEÚDO RESTANTE (Vidro Fosco Limpo) */}
-        <div className="relative z-40 bg-white/70 backdrop-blur-xl shadow-[0_-20px_60px_rgba(0,0,0,0.05)] rounded-t-[3rem] -mt-10 pt-16 pb-20">
-           
+        {/* 4. RESTO DO SITE */}
+        <div className="relative z-40 bg-white shadow-[0_-20px_60px_rgba(0,0,0,0.05)] rounded-t-[3rem] -mt-10 pt-16 pb-20">
            <ProgramDetails />
-           
            <Features />
            
-           {/* Oferta Intermediária */}
            <div className="py-16 px-4 my-10 bg-white/50 backdrop-blur-sm rounded-3xl border border-white/60 mx-4 md:mx-auto max-w-6xl">
              <Pricing 
                isPreview={true} 
                id="pricing-middle" 
                customTitle="Transforme esses 10 Pilares em Realidade"
-               customSubtitle="Você já entendeu o que precisa ser feito. Escolha agora como quer aplicar o método."
+               customSubtitle="Escolha agora como quer aplicar o método."
                customBadge="Próximo Passo"
              />
            </div>
            
            <About />
-           
            <Testimonials />
-           
            <Pricing />
-           
            <FAQ />
-           
         </div>
       </main>
 
       <Footer />
-      
       <StickyCTA />
       <WhatsAppFloat />
-      
     </div>
   );
 }
