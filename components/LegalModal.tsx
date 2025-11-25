@@ -44,7 +44,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
             <div className="space-y-4 text-slate-600 leading-relaxed font-light">
               <p><strong>Acreditamos que a ansiedade não é uma falha de caráter.</strong></p>
               <p>Durante décadas, disseram às mulheres que seus sentimentos eram "exagero", "drama" ou "fraqueza". A medicina tradicional tratou a mente como algo separado do corpo. Nós discordamos.</p>
-              <p>O Método Cérebro em Modo Silencioso (CMS) nasceu de uma revolta silenciosa contra a cultura do remédio imediato. Acreditamos na <strong>Engenharia Biológica</strong>. Acreditamos que, se você consertar o hardware (seu sistema nervoso), o software (seus pensamentos) volta a funcionar.</p>
+              <p>O Método Cérebro em Modo Silencioso (CMS) nasceu de uma revolta silenciosa contra a cultura do remédio imediato. Acreditamos na <strong>Psicologia Baseada em Evidências</strong>. Acreditamos que, se você tratar a causa real (seus padrões emocionais), o comportamento volta a ser saudável.</p>
               <p>Nossa missão não é apenas "acalmar" você. É devolver sua soberania. É permitir que você confie no seu próprio corpo novamente. <strong>Uma mulher sem medo é imparável.</strong></p>
             </div>
           </>

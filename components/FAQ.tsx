@@ -8,11 +8,11 @@ gsap.registerPlugin(ScrollTrigger);
 const faqs = [
   {
     question: "Isso realmente funciona pra mim?",
-    answer: "Se você tem um sistema nervoso humano, sim. O Método CMS não é baseado em crença, é baseado em fisiologia. Nós regulamos mecanicamente seu Nervo Vago. Assim como um remédio age quimicamente, o CMS age neurologicamente. Não tem como não funcionar se você aplicar."
+    answer: "Se você tem um sistema nervoso humano, sim. O Método CMS não é baseado em crença, é baseado em psicologia comportamental. Nós regulamos na prática seu estado de alerta. O CMS age na reestruturação cognitiva e no comportamento. Não tem como não funcionar se você aplicar."
   },
   {
     question: "Eu já tentei de tudo e nada adiantou.",
-    answer: "Você tentou controlar a ansiedade pensando, ou seja, usando a própria mente que está doente. É impossível. O CMS te ensina a controlar a ansiedade pelo CORPO (via bottom-up). É uma abordagem que você nunca viu, por isso você falhou antes. A culpa não é sua."
+    answer: "Você tentou controlar a ansiedade pensando, ou seja, usando a própria mente que está ansiosa. É impossível. O CMS te ensina a regular a ansiedade pelo COMPORTAMENTO e pelo CORPO (via bottom-up). É uma abordagem prática que você nunca viu, por isso você falhou antes."
   },
   {
     question: "E se eu tiver uma crise durante o curso?",
@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     question: "Preciso parar meus remédios?",
-    answer: "Absolutamente não. O CMS é o melhor amigo do seu tratamento psiquiátrico. Enquanto o remédio segura a química, o CMS te ensina a viver. Com o tempo, é muito comum que o médico reduza sua medicação porque você aprendeu a se regular sozinha."
+    answer: "Absolutamente não. O CMS é o melhor amigo do seu tratamento psiquiátrico. Enquanto o remédio regula a química, o CMS te ensina a lidar com as emoções. Com o tempo, é muito comum que o médico reduza sua medicação porque você aprendeu a se regular sozinha."
   },
   {
     question: "Não tenho tempo para assistir aulas longas.",
@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     question: "Sou muito velha (ou nova) para isso?",
-    answer: "A neuroplasticidade (capacidade do cérebro mudar) existe até o último dia de vida. Tenho alunas de 80 anos que se libertaram do Rivotril. Nunca é tarde para ter paz."
+    answer: "A neuroplasticidade (capacidade do cérebro mudar) existe até o último dia de vida. Tenho alunas de 80 anos que se libertaram do medo. Nunca é tarde para ter paz."
   },
   {
     question: "Tenho medo de comprar e me arrepender.",

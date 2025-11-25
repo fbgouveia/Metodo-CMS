@@ -93,8 +93,17 @@ export const About: React.FC = () => {
                 Vou te dizer a verdade que ninguém te contou: <strong>Você não tem culpa.</strong> Seu corpo está reagindo a um alarme falso. E terapia tradicional, sozinha, demora muito para desligar esse alarme.
               </p>
               <p>
-                Criei o <strong>Método CMS</strong> porque cansei de ver mulheres incríveis presas em corpos amedrontados. Uni a Neurociência (para acalmar seu corpo agora) com a Psicologia (para curar sua mente depois). É rápido, é biológico e é libertador.
+                Criei o <strong>Método CMS</strong> porque cansei de ver mulheres incríveis presas em corpos amedrontados. Uni a Terapia Cognitivo-Comportamental (TCC) com técnicas modernas de regulação emocional. É rápido, é prático e é libertador.
               </p>
+            </div>
+
+            {/* Assinatura movida para cá (entre o texto e os selos) */}
+            <div className="about-content pt-2 pb-4">
+              <img 
+                src="https://metodocms.com/wp-content/uploads/2025/11/quiteria_signature.png" 
+                alt="Assinatura Dra. Quitéria Gouveia" 
+                className="h-16 md:h-20 w-auto opacity-80 transform -rotate-2" 
+              />
             </div>
 
             <div className="about-content grid grid-cols-2 gap-6 pt-6 border-t border-slate-200">
@@ -114,9 +123,6 @@ export const About: React.FC = () => {
               </div>
             </div>
             
-            <div className="about-content pt-4">
-              <span className="font-signature text-5xl text-blue-900/40 transform -rotate-2 inline-block">Quitéria Gouveia</span>
-            </div>
           </div>
         </div>
       </div>

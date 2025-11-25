@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, X, MessageCircle } from 'lucide-react';
+import gsap from 'gsap';
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -10,7 +11,21 @@ export const Navbar: React.FC = () => {
       setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Animação Contínua da Borda do CTA (Fluxo Eterno)
+    const ctx = gsap.context(() => {
+      gsap.to(".nav-cta-border", {
+        backgroundPosition: "200% center",
+        duration: 3,
+        ease: "linear",
+        repeat: -1
+      });
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      ctx.revert();
+    };
   }, []);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -68,8 +83,22 @@ export const Navbar: React.FC = () => {
             <MessageCircle className="w-5 h-5" />
           </a>
 
-          <a href="#pricing" onClick={(e) => scrollToSection(e, '#pricing')} className="px-6 py-2.5 bg-slate-900 text-white rounded-full text-sm font-semibold hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 shadow-lg cursor-pointer">
-            Começar minha Cura
+          {/* CTA Button with Animated Border */}
+          <a 
+            href="#pricing" 
+            onClick={(e) => scrollToSection(e, '#pricing')} 
+            className="relative group px-6 py-2.5 rounded-full overflow-hidden shadow-lg hover:shadow-blue-500/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
+          >
+            {/* 1. Borda Animada */}
+            <div className="nav-cta-border absolute -inset-[3px] bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-[length:200%_auto]"></div>
+            
+            {/* 2. Fundo/Máscara (Simulando botão sólido) */}
+            <div className="absolute inset-[2px] bg-slate-900 rounded-full transition-colors group-hover:bg-slate-800"></div>
+            
+            {/* 3. Texto */}
+            <span className="relative z-10 text-white text-sm font-semibold flex items-center gap-2">
+              Começar minha Cura
+            </span>
           </a>
         </div>
 
@@ -97,8 +126,16 @@ export const Navbar: React.FC = () => {
           >
              <MessageCircle className="w-5 h-5" /> Suporte WhatsApp
           </a>
-          <a href="#pricing" className="w-full py-4 bg-blue-600 text-white rounded-xl font-semibold mt-auto shadow-lg shadow-blue-200 text-center" onClick={(e) => scrollToSection(e, '#pricing')}>
-            Começar minha Cura
+          
+          {/* Mobile CTA with Animated Border */}
+          <a 
+            href="#pricing" 
+            className="relative group w-full py-4 rounded-xl overflow-hidden shadow-lg shadow-blue-200 text-center mt-auto" 
+            onClick={(e) => scrollToSection(e, '#pricing')}
+          >
+             <div className="nav-cta-border absolute -inset-[3px] bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 bg-[length:200%_auto]"></div>
+             <div className="absolute inset-[2px] bg-blue-600 rounded-[0.6rem]"></div>
+             <span className="relative z-10 text-white font-semibold">Começar minha Cura</span>
           </a>
         </div>
       )}

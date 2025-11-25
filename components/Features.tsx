@@ -8,32 +8,32 @@ gsap.registerPlugin(ScrollTrigger);
 const features: FeatureItem[] = [
   {
     title: "O Fim do 'Eu sou Louca'",
-    description: "Você vai entender que seus sintomas são químicos, não falha de caráter. Essa clareza tira um peso de 1 tonelada das suas costas.",
+    description: "Você vai entender que seus sintomas são reações automáticas, não falha de caráter. Essa clareza tira um peso de 1 tonelada das suas costas.",
     color: "from-blue-200/40 to-blue-100/10"
   },
   {
     title: "Alívio sem Remédio",
-    description: "Aprenda técnicas mecânicas que funcionam mais rápido que medicação sublingual. Regule sua crise na respiração e no nervo vago.",
+    description: "Aprenda técnicas de autorregulação que funcionam mais rápido que medicação. Controle sua crise com a respiração e foco atencional.",
     color: "from-amber-200/40 to-amber-100/10"
   },
   {
     title: "Chega de Frankenstein",
-    description: "Pare de pegar dicas soltas no Instagram. Aqui você tem um sistema com começo, meio e fim. O quebra-cabeça finalmente se encaixa.",
+    description: "Pare de pegar dicas soltas no Instagram. Aqui você tem um sistema terapêutico com começo, meio e fim. O quebra-cabeça finalmente se encaixa.",
     color: "from-indigo-200/40 to-indigo-100/10"
   },
   {
     title: "Silencie a Voz Ruim",
-    description: "Aquela voz que diz 'vai dar tudo errado' tem um botão de mudo. Eu vou te ensinar a apertar esse botão com neurociência.",
+    description: "Aquela voz que diz 'vai dar tudo errado' tem um botão de mudo. Eu vou te ensinar a apertar esse botão com técnicas psicológicas.",
     color: "from-red-200/40 to-red-100/10"
   },
   {
     title: "Zero Improviso",
-    description: "O medo vem da incerteza. Você terá um protocolo de guerra. Sentiu o coração bater? Faça A, B e C. O pânico não tem chance.",
+    description: "O medo vem da incerteza. Você terá um protocolo de ação. Sentiu o coração bater? Faça A, B e C. O pânico não tem chance.",
     color: "from-emerald-200/40 to-emerald-100/10"
   },
   {
     title: "Sono Reparador",
-    description: "Sua mente não desliga à noite? Vamos desinflamar seu sistema nervoso para que você apague e acorde renovada, não exausta.",
+    description: "Sua mente não desliga à noite? Vamos acalmar sua mente hipervigilante para que você apague e acorde renovada, não exausta.",
     color: "from-orange-200/40 to-orange-100/10"
   },
   {
@@ -93,7 +93,7 @@ export const Features: React.FC = () => {
             10 Pilares da Liberdade
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-lg font-light leading-relaxed">
-            Esqueça o "controle". O objetivo aqui é a eliminação do sintoma através da regulação biológica.
+            Esqueça o "controle". O objetivo aqui é a eliminação do sintoma através da regulação emocional.
           </p>
         </div>
 

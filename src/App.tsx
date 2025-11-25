@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar } from './components/Navbar';
 import { IntroHook } from './components/IntroHook';
 import { Hero } from './components/Hero';
-import { VerticalScroll } from './components/VerticalScroll';
+import { HorizontalScroll } from './components/HorizontalScroll';
 import { ProgramDetails } from './components/ProgramDetails';
 import { About } from './components/About';
 import { Features } from './components/Features';
@@ -12,6 +12,7 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { StickyCTA } from './components/StickyCTA';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
+import { NeuralLine } from './components/NeuralLine';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
@@ -20,9 +21,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
-    // REMOVIDO overflow-x-hidden: Essencial para que position: sticky funcione nos filhos (VerticalScroll)
-    // O controle de overflow horizontal deve ser feito no body (index.html) ou em containers específicos
-    <div className="bg-slate-50 min-h-screen text-slate-900 selection:bg-blue-200 selection:text-blue-900 relative w-full">
+    // Relative para âncora absoluta
+    // CRÍTICO: overflow-x-hidden em vez de overflow-hidden para não quebrar o GSAP Pinning vertical
+    <div className="bg-slate-50 min-h-screen text-slate-900 selection:bg-blue-200 selection:text-blue-900 relative w-full overflow-x-hidden">
       
       {/* CAMADA 0: Background Blobs (Fundo Absoluto) */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
@@ -31,7 +32,10 @@ function App() {
           <div className="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-indigo-200/40 rounded-full blur-[100px] animate-blob animation-delay-4000 mix-blend-multiply"></div>
       </div>
 
-      {/* CAMADA 2: Global Blur Overlay (Vidro Fosco) */}
+      {/* CAMADA 1: Neural Line (Meio - Entre Blobs e Blur) */}
+      <NeuralLine />
+
+      {/* CAMADA 2: Global Blur Overlay (Vidro Fosco sobre a linha) */}
       <div className="fixed inset-0 z-[2] pointer-events-none bg-slate-50/20 backdrop-blur-[2px]"></div>
 
       {/* CAMADA 10000: Navbar */}
@@ -41,10 +45,12 @@ function App() {
       <main className="relative z-10 w-full">
         <IntroHook />
         
+        {/* Layout Restaurado na Ordem Correta: Intro -> Hero -> HorizontalScroll */}
         <Hero />
         
-        {/* Seção "O Método" com Scroll Vertical e Sticky Nativo */}
-        <VerticalScroll />
+        <HorizontalScroll />
+
+        <ProgramDetails />
 
         <Features />
         
@@ -60,11 +66,7 @@ function App() {
         <About />
 
         <Testimonials />
-        
-        <ProgramDetails />
-
         <Pricing />
-        
         <FAQ />
       </main>
       <Footer />
