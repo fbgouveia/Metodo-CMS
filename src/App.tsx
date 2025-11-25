@@ -1,8 +1,8 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { IntroHook } from './components/IntroHook';
-import { HorizontalScroll } from './components/HorizontalScroll'; // Agora vem antes
-import { Hero } from './components/Hero'; // Agora vem depois
+import { HorizontalScroll } from './components/HorizontalScroll';
+import { Hero } from './components/Hero';
 import { ProgramDetails } from './components/ProgramDetails';
 import { Features } from './components/Features';
 import { About } from './components/About';
@@ -12,6 +12,10 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { StickyCTA } from './components/StickyCTA';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
@@ -25,20 +29,19 @@ function App() {
 
       <Navbar />
       
-      <main className="relative w-full flex flex-col">
+      <main className="relative z-10 w-full flex flex-col">
         
-        {/* 1. INTRO (Vai travar a tela e expandir a imagem) */}
+        {/* 1. INTRO (Vai travar e empurrar o resto para baixo) */}
         <IntroHook />
         
-        {/* 2. HORIZONTAL SCROLL (JORNADA) */}
-        {/* Vem logo após a Intro destravada. Z-Index maior para garantir sobreposição limpa se necessário */}
-        <div className="relative z-20 bg-[#f5f5f7]">
+        {/* 2. JORNADA (HORIZONTAL SCROLL) */}
+        {/* Fundo sólido para garantir transição limpa */}
+        <div className="relative z-20 bg-[#f5f5f7] border-t border-white/50">
             <HorizontalScroll />
         </div>
 
-        {/* 3. HERO (VÍDEO) + OFERTA RÁPIDA */}
+        {/* 3. HERO (VÍDEO) + OFERTA */}
         <div className="relative z-20 bg-white py-20">
-           
            {/* Oferta Rápida */}
            <div className="max-w-3xl mx-auto px-4 mb-12">
               <div className="bg-slate-50 p-4 rounded-full shadow-md border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
@@ -54,12 +57,10 @@ function App() {
                   </a>
               </div>
            </div>
-
-           {/* Vídeo de Vendas */}
            <Hero />
         </div>
 
-        {/* 4. CONTEÚDO RESTANTE */}
+        {/* 4. RESTO DO SITE */}
         <div className="relative z-20 bg-white/80 backdrop-blur-md">
            <ProgramDetails />
            <Features />
