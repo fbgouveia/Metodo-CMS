@@ -7,90 +7,95 @@ gsap.registerPlugin(ScrollTrigger);
 export const IntroHook: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const imageWrapperRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Cria a timeline atrelada ao scroll
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=1500", // Distância do scroll para completar o efeito
-          scrub: 1,      // Suavidade
+          end: "+=150%", // Duração da animação
+          scrub: 1,
           pin: true,     // Trava a tela
-          pinSpacing: true, // Empurra o conteúdo seguinte
-          anticipatePin: 1
+          pinSpacing: true, // Empurra o conteúdo de baixo (Correção do conflito)
+          anticipatePin: 1,
         }
       });
 
       // 1. Texto sobe e desaparece
       tl.to(textRef.current, {
         y: -150,
-        opacity: 0,
+        autoAlpha: 0,
         scale: 0.8,
-        duration: 1,
+        duration: 0.5,
         ease: "power2.inOut"
       }, 0);
 
-      // 2. A Imagem CRESCE e FICA NÍTIDA (Efeito Blur Restaurado)
-      // Usamos fromTo para definir exatamente o estado inicial e final
-      tl.fromTo(imageWrapperRef.current, 
+      // 2. Imagem cresce e foca (Efeito Restaurado)
+      tl.fromTo(imageRef.current, 
         {
-          // ESTADO INICIAL (Como começa)
-          width: "40vw",
-          height: "50vh",
-          borderRadius: "3rem",
-          filter: "blur(20px)", // <--- O BLUR ESTÁ AQUI
-          scale: 0.95, // Um leve zoom out inicial para dar mais impacto
+          scale: 0.4,
+          borderRadius: "100px",
+          autoAlpha: 0.5, // Começa meio transparente
+          filter: "blur(10px)", // Começa desfocada
+          y: 100,
+          width: "90vw", // Largura inicial contida
+          height: "80vh"
         },
         {
-          // ESTADO FINAL (Como termina)
-          width: "100vw",
-          height: "100vh",
-          borderRadius: "0px",
-          filter: "blur(0px)", // <--- REMOVE O BLUR SUAVEMENTE
           scale: 1,
+          borderRadius: "0px", // Vira quadrado ao encher a tela
+          width: "100vw",      // Enche a largura
+          height: "100vh",     // Enche a altura
+          autoAlpha: 1,        // Fica totalmente visível
+          filter: "blur(0px)", // Fica nítida
+          y: 0,
           duration: 1,
-          ease: "power2.inOut"
+          ease: "power2.out"
         }, 
-        0 // "0" significa que começa ao mesmo tempo que o texto
+        0.1 // Pequeno delay para o texto sair primeiro
       );
 
     }, containerRef);
 
-    return () => ctx.revert(); // Limpeza importante
+    return () => ctx.revert();
   }, []);
 
   return (
     <section ref={containerRef} className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white z-50">
       
-      {/* TEXTO (Fica na frente da imagem inicialmente) */}
-      {/* Usamos mix-blend-difference para o texto mudar de cor e ficar legível quando a imagem branca passar por baixo */}
-      <div ref={textRef} className="absolute z-30 text-center px-4 mix-blend-difference text-white"> 
-        <span className="inline-block py-1 px-3 rounded-full border border-white/40 text-xs font-bold tracking-widest uppercase mb-6">
-          Psicologia Clínica
-        </span>
-        <h1 className="text-5xl md:text-8xl lg:text-9xl font-serif leading-[0.9] tracking-tighter mb-6">
-          Sua Mente,<br/>Seu Lar.
-        </h1>
-        <div className="mt-8 animate-bounce text-sm font-medium uppercase tracking-widest">
-          Role para entrar ↓
+      {/* Content Layer (Z-10) */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
+        
+        {/* TEXTO ORIGINAL RESTAURADO */}
+        <div ref={textRef} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none z-20">
+          <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-600 text-xs font-bold tracking-widest uppercase mb-6 border border-blue-200 shadow-sm">
+            Você não está louca
+          </span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-slate-900 tracking-tight mb-6 leading-[1.1] drop-shadow-sm">
+            A exaustão de lutar<br/>
+            contra a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Própria Mente</span>.
+          </h1>
+          <p className="text-xl md:text-2xl text-slate-500 font-light max-w-2xl leading-relaxed">
+            Você sente que seu emocional está desregulado? Como se o botão de perigo estivesse travado na posição LIGADO?
+          </p>
+          <div className="mt-10 animate-bounce text-slate-400 text-sm font-medium tracking-widest uppercase">
+            Existe um jeito de desligar ↓
+          </div>
         </div>
-      </div>
 
-      {/* IMAGEM (O container que vai crescer e focar) */}
-      {/* Removemos os estilos inline fixos, pois agora o GSAP controla tudo via .fromTo() */}
-      <div 
-        ref={imageWrapperRef} 
-        className="relative z-10 overflow-hidden shadow-2xl bg-slate-100 origin-center will-change-transform"
-      >
-        <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
-        <img 
-          src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg" 
-          alt="Paz Mental" 
-          className="w-full h-full object-cover object-center"
-        />
+        {/* IMAGEM (Container que anima) */}
+        <div className="relative z-10 flex items-center justify-center w-full h-full">
+          <div ref={imageRef} className="overflow-hidden shadow-2xl shadow-blue-900/20 bg-slate-200 origin-center">
+            <img 
+              src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg" 
+              alt="Abstract Neural Flow" 
+              className="w-full h-full object-cover opacity-90"
+            />
+            <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay"></div>
+          </div>
+        </div>
       </div>
 
     </section>
