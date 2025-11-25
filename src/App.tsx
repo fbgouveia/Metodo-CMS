@@ -15,37 +15,38 @@ import { WhatsAppFloat } from './components/WhatsAppFloat';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-// Registra o plugin do GSAP para garantir as animações
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
-    <div className="bg-slate-50 min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
+    // Fundo base transparente para deixar o fixed aparecer
+    <div className="min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
       
-      {/* CAMADA 0: Background Animado (Blobs) */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-200/30 rounded-full blur-[120px] mix-blend-multiply opacity-70"></div>
-          <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-200/30 rounded-full blur-[120px] mix-blend-multiply opacity-70"></div>
-          <div className="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-indigo-200/40 rounded-full blur-[100px] animate-blob animation-delay-4000 mix-blend-multiply opacity-60"></div>
+      {/* --- CAMADA 0: BACKGROUND ANIMADO (BLOBS) --- */}
+      {/* Eles ficam fixos no fundo da tela */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#f0f4f8]">
+          <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-300/30 rounded-full blur-[120px] mix-blend-multiply opacity-80 animate-blob"></div>
+          <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-300/30 rounded-full blur-[120px] mix-blend-multiply opacity-80 animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-indigo-300/30 rounded-full blur-[120px] mix-blend-multiply opacity-80 animate-blob animation-delay-4000"></div>
       </div>
 
-      {/* CAMADA 50: Navbar no topo */}
+      {/* Navbar */}
       <Navbar />
       
-      {/* CAMADA 10: Conteúdo Principal */}
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* 1. INTRO: Ocupa a primeira tela com efeito de zoom */}
+        {/* 1. INTRO (Fundo Transparente para ver os blobs logo de cara) */}
         <div className="relative z-10">
            <IntroHook />
         </div>
         
-        {/* 2. HERO + OFERTA RÁPIDA: Vem logo após a Intro */}
-        <div className="relative z-20 bg-white/80 backdrop-blur-sm py-20 shadow-xl rounded-t-[3rem] -mt-12 border-t border-white/50"> 
+        {/* 2. HERO + OFERTA (Vidro Fosco) */}
+        {/* bg-white/60 permite ver as cores passando por trás */}
+        <div className="relative z-20 bg-white/60 backdrop-blur-xl py-20 shadow-xl rounded-t-[3rem] -mt-12 border-t border-white/40"> 
            
-           {/* Oferta Rápida (Impulso Inicial) */}
+           {/* Oferta Rápida */}
            <div className="max-w-3xl mx-auto px-4 mb-12">
-              <div className="bg-white/90 backdrop-blur p-4 rounded-full shadow-lg border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4 transform hover:scale-[1.01] transition-transform duration-300">
+              <div className="bg-white/80 backdrop-blur-md p-4 rounded-full shadow-lg border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4 transform hover:scale-[1.01] transition-transform duration-300">
                   <div className="flex items-center gap-4">
                       <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md animate-pulse">⚡</div>
                       <div className="text-center md:text-left">
@@ -59,24 +60,23 @@ function App() {
               </div>
            </div>
 
-           {/* Vídeo de Vendas */}
            <Hero />
         </div>
         
-        {/* 3. HORIZONTAL SCROLL (A JORNADA): Fundo sólido para contraste */}
-        <div className="relative z-30 bg-[#f5f5f7] border-t border-white">
+        {/* 3. HORIZONTAL SCROLL (Vidro Fosco um pouco mais denso para contraste) */}
+        <div className="relative z-30 bg-slate-50/80 backdrop-blur-xl border-t border-white/50">
             <HorizontalScroll />
         </div>
 
-        {/* 4. CONTEÚDO RESTANTE: Fundo Branco para leitura clara */}
-        <div className="relative z-40 bg-white shadow-[0_-20px_60px_rgba(0,0,0,0.05)] rounded-t-[3rem] -mt-10 pt-16 pb-20">
+        {/* 4. CONTEÚDO RESTANTE (Vidro Fosco Limpo) */}
+        <div className="relative z-40 bg-white/70 backdrop-blur-xl shadow-[0_-20px_60px_rgba(0,0,0,0.05)] rounded-t-[3rem] -mt-10 pt-16 pb-20">
            
            <ProgramDetails />
            
            <Features />
            
-           {/* Oferta Intermediária (Meio do Funil) */}
-           <div className="py-16 px-4 bg-slate-50 my-10">
+           {/* Oferta Intermediária */}
+           <div className="py-16 px-4 my-10 bg-white/50 backdrop-blur-sm rounded-3xl border border-white/60 mx-4 md:mx-auto max-w-6xl">
              <Pricing 
                isPreview={true} 
                id="pricing-middle" 
@@ -90,7 +90,6 @@ function App() {
            
            <Testimonials />
            
-           {/* Oferta Final (Tabela de Preços) */}
            <Pricing />
            
            <FAQ />
@@ -100,7 +99,6 @@ function App() {
 
       <Footer />
       
-      {/* Elementos que flutuam sobre tudo */}
       <StickyCTA />
       <WhatsAppFloat />
       
