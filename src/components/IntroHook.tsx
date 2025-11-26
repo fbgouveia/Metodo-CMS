@@ -15,46 +15,44 @@ export const IntroHook: React.FC = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=150%", // Duração da animação
+          end: "+=150%", 
           scrub: 1,
-          pin: true,     // Trava a tela
-          pinSpacing: true, // Empurra o conteúdo de baixo (Correção do conflito)
+          pin: true,
+          pinSpacing: true, // CRUCIAL: Pushes content down
           anticipatePin: 1,
         }
       });
 
-      // 1. Texto sobe e desaparece
+      // 1. Texto sobe
       tl.to(textRef.current, {
-        y: -150,
+        y: -100,
         autoAlpha: 0,
-        scale: 0.8,
-        duration: 0.5,
+        scale: 0.9,
+        duration: 0.4,
         ease: "power2.inOut"
       }, 0);
 
-      // 2. Imagem cresce e foca (Efeito Restaurado)
+      // 2. Imagem cresce
       tl.fromTo(imageRef.current, 
         {
           scale: 0.4,
           borderRadius: "100px",
-          autoAlpha: 0.5, // Começa meio transparente
-          filter: "blur(10px)", // Começa desfocada
-          y: 100,
-          width: "90vw", // Largura inicial contida
-          height: "80vh"
+          autoAlpha: 0.5,
+          filter: "blur(10px)",
+          y: 100
         },
         {
           scale: 1,
-          borderRadius: "0px", // Vira quadrado ao encher a tela
-          width: "100vw",      // Enche a largura
-          height: "100vh",     // Enche a altura
-          autoAlpha: 1,        // Fica totalmente visível
-          filter: "blur(0px)", // Fica nítida
+          borderRadius: "0px",
+          width: "100vw",
+          height: "100vh",
+          autoAlpha: 1,
+          filter: "blur(0px)",
           y: 0,
           duration: 1,
           ease: "power2.out"
         }, 
-        0.1 // Pequeno delay para o texto sair primeiro
+        0
       );
 
     }, containerRef);
@@ -63,31 +61,26 @@ export const IntroHook: React.FC = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white z-50">
-      
-      {/* Content Layer (Z-10) */}
+    <section ref={containerRef} className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white">
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
-        
-        {/* TEXTO ORIGINAL RESTAURADO */}
         <div ref={textRef} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center pointer-events-none z-20">
-          <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-600 text-xs font-bold tracking-widest uppercase mb-6 border border-blue-200 shadow-sm">
+          <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-600 text-xs font-bold tracking-widest uppercase mb-6 border border-blue-200">
             Você não está louca
           </span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-slate-900 tracking-tight mb-6 leading-[1.1] drop-shadow-sm">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-slate-900 tracking-tight mb-6 leading-[1.1]">
             A exaustão de lutar<br/>
             contra a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Própria Mente</span>.
           </h1>
           <p className="text-xl md:text-2xl text-slate-500 font-light max-w-2xl leading-relaxed">
-            Você sente que seu emocional está desregulado? Como se o botão de perigo estivesse travado na posição LIGADO?
+            Você sente que seu emocional está desregulado?
           </p>
           <div className="mt-10 animate-bounce text-slate-400 text-sm font-medium tracking-widest uppercase">
-            Existe um jeito de desligar ↓
+            Existe um jeito de desligar
           </div>
         </div>
 
-        {/* IMAGEM (Container que anima) */}
-        <div className="relative z-10 flex items-center justify-center w-full h-full">
-          <div ref={imageRef} className="overflow-hidden shadow-2xl shadow-blue-900/20 bg-slate-200 origin-center">
+        <div className="relative w-[90vw] h-[80vh] z-10 flex items-center justify-center pointer-events-none">
+          <div ref={imageRef} className="w-full h-full overflow-hidden shadow-2xl shadow-blue-900/20 bg-slate-200 origin-center">
             <img 
               src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg" 
               alt="Abstract Neural Flow" 
@@ -97,7 +90,6 @@ export const IntroHook: React.FC = () => {
           </div>
         </div>
       </div>
-
     </section>
   );
 };
