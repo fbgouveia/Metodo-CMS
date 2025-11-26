@@ -1,8 +1,8 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { IntroHook } from './components/IntroHook';
-import { HorizontalScroll } from './components/HorizontalScroll'; // Jornada vem antes
-import { Hero } from './components/Hero'; // Vídeo vem depois
+import { Hero } from './components/Hero';
+import { HorizontalScroll } from './components/HorizontalScroll';
 import { ProgramDetails } from './components/ProgramDetails';
 import { Features } from './components/Features';
 import { About } from './components/About';
@@ -15,7 +15,6 @@ import { WhatsAppFloat } from './components/WhatsAppFloat';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-// Registra o plugin GSAP globalmente
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
@@ -33,18 +32,17 @@ function App() {
       
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* 1. INTRO (Ocupa a tela toda e trava o scroll momentaneamente) */}
+        {/* 1. INTRO (Ocupa a tela toda) */}
         <IntroHook />
         
         {/* 2. HORIZONTAL SCROLL (A JORNADA) */}
-        {/* bg-slate-50 sólido para cobrir a intro ao subir */}
-        {/* z-20 para ficar acima da Intro (z-10 interno) */}
+        {/* Importante: z-20 e bg-solido para cobrir a intro e não ser coberto pelo fundo */}
         <div className="relative z-20 bg-[#f5f5f7] border-t border-white/50 shadow-[0_-20px_60px_rgba(0,0,0,0.05)]">
             <HorizontalScroll />
         </div>
 
         {/* 3. HERO (VÍDEO + OFERTA) */}
-        {/* z-30 para vir depois do scroll */}
+        {/* z-30 para vir DEPOIS do scroll. Margem negativa suave (-mt-12) para design */}
         <div className="relative z-30 bg-white/80 backdrop-blur-sm py-20 rounded-t-[3rem] -mt-12 shadow-2xl"> 
            
            {/* Oferta Rápida */}
