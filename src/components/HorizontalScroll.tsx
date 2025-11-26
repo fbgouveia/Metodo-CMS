@@ -43,11 +43,11 @@ export const HorizontalScroll: React.FC = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // SEGURANÇA: Mata triggers antigos para evitar duplicação visual
+    let ctx = gsap.context(() => {
+      // Cleanup triggers to prevent duplication
       ScrollTrigger.getAll().forEach(t => t.kill());
 
-      // Animação APENAS para Desktop (> 768px)
+      // Desktop Only (> 768px)
       if (window.innerWidth > 768) {
         const slider = sliderRef.current;
         const container = componentRef.current;
@@ -76,26 +76,29 @@ export const HorizontalScroll: React.FC = () => {
   }, []);
 
   return (
-    // py-24 adiciona um respiro bom acima e abaixo
-    <section id="method" ref={componentRef} className="relative bg-[#f5f5f7] overflow-hidden py-24">
+    <section ref={componentRef} id="method" className="relative bg-[#f5f5f7] overflow-hidden py-24 z-20">
       
-      {/* --- DESKTOP (GSAP SCROLL) --- */}
+      {/* DESKTOP VIEW */}
       <div className="hidden md:flex h-screen items-center overflow-hidden sticky top-0">
-        <div ref={sliderRef} className="flex gap-12 px-20 w-max h-full items-center">
+        <div ref={sliderRef} className="flex gap-16 px-20 w-max h-full items-center">
           
           {/* Intro */}
           <div className="min-w-[35vw] pr-10 flex flex-col justify-center">
             <span className="text-blue-600 font-bold tracking-widest uppercase text-sm block mb-4">O Método</span>
-            <h2 className="text-5xl font-serif text-slate-900 mb-6 leading-tight">Não é mágica.<br/>É Ciência.</h2>
-            <p className="text-lg text-slate-600 max-w-md leading-relaxed">Um protocolo clínico passo a passo.</p>
-            <div className="mt-8 flex items-center gap-2 text-slate-400 animate-pulse">
-                <span>Arraste para o lado</span> <ArrowRight size={20} />
+            <h2 className="text-5xl xl:text-7xl font-serif text-slate-900 mb-6 leading-tight">
+              Não é mágica.<br/>É Ciência.
+            </h2>
+            <p className="text-lg text-slate-600 max-w-md leading-relaxed">
+              Um protocolo clínico passo a passo.
+            </p>
+            <div className="mt-8 flex items-center gap-2 text-slate-400 animate-pulse text-sm">
+               <span>Arraste para ver os passos</span> <ArrowRight size={16} />
             </div>
           </div>
 
           {/* Cards */}
           {steps.map((step) => (
-            <div key={step.id} className="relative min-w-[450px] h-[65vh] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white bg-white group">
+            <div key={step.id} className="relative min-w-[500px] h-[70vh] rounded-[2.5rem] overflow-hidden shadow-2xl bg-white border-4 border-white group">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
               <img src={step.image} alt={step.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="relative z-20 h-full flex flex-col justify-end p-10 text-white">
@@ -106,21 +109,21 @@ export const HorizontalScroll: React.FC = () => {
             </div>
           ))}
 
-          {/* Final CTA */}
-          <div className="min-w-[400px] h-[65vh] rounded-[2.5rem] bg-slate-900 text-white flex flex-col justify-center items-center text-center p-10 shadow-2xl">
+          {/* CTA Final */}
+          <div className="min-w-[400px] h-[70vh] rounded-[2.5rem] bg-slate-900 text-white flex flex-col justify-center items-center text-center p-10 shadow-2xl">
               <h3 className="text-4xl font-serif mb-6">Sua vez.</h3>
-              <a href="#pricing" className="px-8 py-4 bg-white text-slate-900 rounded-full font-bold hover:bg-blue-50 transition-all">Ver Planos</a>
+              <a href="#pricing" className="px-8 py-4 bg-white text-slate-900 rounded-full font-bold hover:bg-blue-50 transition-all shadow-lg">Ver Planos</a>
           </div>
           
-          <div className="w-20"></div>
+          <div className="w-24"></div>
         </div>
       </div>
 
-      {/* --- MOBILE (NATIVE SNAP SCROLL) --- */}
+      {/* MOBILE VIEW */}
       <div className="md:hidden px-4 pb-12">
          <div className="mb-8 px-2">
             <span className="text-blue-600 font-bold text-xs uppercase tracking-widest">O Protocolo</span>
-            <h2 className="text-3xl font-serif text-slate-900">5 Passos</h2>
+            <h2 className="text-3xl font-serif text-slate-900 mt-2">5 Passos</h2>
          </div>
          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 no-scrollbar">
             {steps.map((step) => (
