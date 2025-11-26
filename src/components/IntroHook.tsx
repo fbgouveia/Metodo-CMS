@@ -6,100 +6,78 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const IntroHook: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const bgImageRef = useRef<HTMLImageElement>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       
-      // FORÇA BRUTA: Define estado inicial imediatamente
-      gsap.set(imageRef.current, {
-        scale: 0.4,
-        borderRadius: "100px",
-        autoAlpha: 0.5,
-        filter: "blur(10px)",
-        y: 100,
-        width: "90vw",
-        height: "80vh"
-      });
-
-      const tl = gsap.timeline({
+      // 1. Parallax da Imagem (Fundo)
+      // A imagem se move mais devagar que o scroll (yPercent: 30), criando profundidade
+      gsap.to(bgImageRef.current, {
+        yPercent: 30,
+        ease: "none",
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=150%", 
-          scrub: 1,
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
+          end: "bottom top",
+          scrub: true
         }
       });
 
-      tl.to(textRef.current, {
+      // 2. Parallax do Texto (Conteúdo)
+      // O texto sobe mais rápido e desaparece
+      gsap.to(contentRef.current, {
         y: -150,
-        autoAlpha: 0,
-        scale: 0.8,
-        duration: 0.5,
-        ease: "power2.inOut"
-      }, 0);
-
-      tl.to(imageRef.current, {
-        scale: 1,
-        borderRadius: "0px",
-        width: "100vw",
-        height: "100vh",
-        autoAlpha: 1,
-        filter: "blur(0px)",
-        y: 0,
-        duration: 1,
-        ease: "power2.out"
-      }, 0.1);
+        opacity: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top top",
+          end: "center top", // Texto some na metade do caminho
+          scrub: true
+        }
+      });
 
     }, containerRef);
-    
-    // O SEGREDO: Força o GSAP a recalcular posições após 100ms
-    // Isso corrige bugs onde o site carrega e a animação não "pega"
-    setTimeout(() => {
-        ScrollTrigger.refresh();
-    }, 100);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white z-10">
+    <section ref={containerRef} className="relative h-screen w-full overflow-hidden flex items-center justify-center">
       
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
-        
-        {/* Texto */}
-        <div ref={textRef} className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center z-20">
-          <span className="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-600 text-xs font-bold tracking-widest uppercase mb-6 border border-blue-200 shadow-sm">
-            Você não está louca
-          </span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-slate-900 tracking-tight mb-6 leading-[1.1] drop-shadow-sm">
-            A exaustão de lutar<br/>
-            contra a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Própria Mente</span>.
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-500 font-light max-w-2xl leading-relaxed">
-            Você sente que seu emocional está desregulado?
-          </p>
-          <div className="mt-10 animate-bounce text-slate-400 text-sm font-medium tracking-widest uppercase">
-            Existe um jeito de desligar ↓
-          </div>
-        </div>
+      {/* --- CAMADA 0: IMAGEM DE FUNDO (FIXA/PARALLAX) --- */}
+      <div className="absolute inset-0 z-0 w-full h-[120%] -top-[10%]"> 
+        {/* h-120% e top negativo para dar margem ao movimento parallax sem criar buracos */}
+        <div className="absolute inset-0 bg-black/40 z-10"></div> {/* Filtro escuro para leitura */}
+        <img 
+          ref={bgImageRef}
+          src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg" 
+          alt="Background Neural" 
+          className="w-full h-full object-cover"
+          // Fallback caso a imagem não carregue
+          onError={(e) => {e.currentTarget.src = "https://images.unsplash.com/photo-1515023115689-589c33041d3c?q=80&w=2400"}}
+        />
+      </div>
 
-        {/* Imagem */}
-        <div className="relative flex items-center justify-center w-full h-full pointer-events-none">
-          <div ref={imageRef} className="overflow-hidden shadow-2xl shadow-blue-900/20 bg-slate-200 origin-center">
-            <img 
-              src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg" 
-              alt="Abstract Neural Flow" 
-              className="w-full h-full object-cover opacity-90"
-              // Backup caso a imagem quebre
-              onError={(e) => {e.currentTarget.src = "https://images.unsplash.com/photo-1515023115689-589c33041d3c?q=80&w=2400"}}
-            />
-            <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay"></div>
-          </div>
+      {/* --- CAMADA 1: TEXTO (PARALLAX RÁPIDO) --- */}
+      <div ref={contentRef} className="relative z-20 text-center px-6 text-white max-w-4xl mx-auto">
+        <span className="inline-block py-1.5 px-4 rounded-full border border-white/30 bg-white/10 backdrop-blur-md text-xs md:text-sm font-bold tracking-widest uppercase mb-6 shadow-sm">
+          Psicologia Clínica & Neurociência
+        </span>
+        
+        <h1 className="text-5xl md:text-7xl lg:text-9xl font-serif leading-[1] tracking-tight mb-6 drop-shadow-lg">
+          Sua Mente,<br/><span className="italic text-blue-200">Seu Lar.</span>
+        </h1>
+        
+        <p className="text-lg md:text-2xl font-light text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+          Você não precisa lutar contra seus pensamentos para sempre.<br/>
+          Existe um caminho científico para o silêncio.
+        </p>
+
+        <div className="mt-12 animate-bounce text-white/70 text-xs uppercase tracking-widest font-bold">
+          Role para descobrir ↓
         </div>
       </div>
 
