@@ -1,8 +1,8 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { IntroHook } from './components/IntroHook';
-import { HorizontalScroll } from './components/HorizontalScroll'; // Jornada vem logo após a Intro
-import { Hero } from './components/Hero'; // Vídeo vem depois da Jornada
+import { HorizontalScroll } from './components/HorizontalScroll';
+import { Hero } from './components/Hero';
 import { ProgramDetails } from './components/ProgramDetails';
 import { Features } from './components/Features';
 import { About } from './components/About';
@@ -12,55 +12,61 @@ import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 import { StickyCTA } from './components/StickyCTA';
 import { WhatsAppFloat } from './components/WhatsAppFloat';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
-// Removemos imports do GSAP daqui para evitar conflitos globais. 
-// Deixe o GSAP apenas dentro dos componentes que o usam.
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
     <div className="bg-slate-50 min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
-      
-      {/* Navbar Fixa */}
       <Navbar />
       
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* 1. INTRODUÇÃO */}
+        {/* 1. INTRO */}
         <IntroHook />
         
-        {/* 2. JORNADA (HORIZONTAL SCROLL) */}
-        {/* Background sólido para garantir que cubra qualquer coisa atrás */}
+        {/* 2. JORNADA (Horizontal) */}
         <div className="relative z-20 bg-[#f5f5f7]">
             <HorizontalScroll />
         </div>
 
-        {/* 3. HERO (VÍDEO + OFERTA) */}
-        <div className="relative z-30 bg-white py-20 shadow-xl"> 
-           
+        {/* 3. HERO (Vídeo) */}
+        <div className="relative z-20 bg-white py-20 border-t border-white"> 
            {/* Oferta Rápida */}
            <div className="max-w-2xl mx-auto px-4 mb-12">
-              <div className="bg-white p-4 rounded-full shadow-md border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="bg-slate-50 p-4 rounded-full shadow-sm border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">⚡</div>
+                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-sm">⚡</div>
                       <div className="text-center md:text-left">
                           <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wide">Oferta Relâmpago</p>
                           <p class="text-sm font-bold text-slate-900">Curso Completo: <span class="text-blue-600 text-base">12x R$ 49,90</span></p>
                       </div>
                   </div>
-                  <a href="#pricing" className="bg-slate-900 text-white px-8 py-2 rounded-full text-sm font-bold hover:bg-blue-600 transition w-full md:w-auto text-center">
-                      Quero me curar agora
+                  <a href="#pricing" className="bg-slate-900 text-white px-8 py-2 rounded-full text-sm font-bold hover:bg-blue-700 transition w-full md:w-auto text-center">
+                      Quero me curar
                   </a>
               </div>
            </div>
-
-           {/* O Player de Vídeo */}
            <Hero />
         </div>
 
-        {/* 4. RESTO DO CONTEÚDO */}
-        <div className="relative z-40 bg-white">
+        {/* 4. RESTO */}
+        <div className="relative z-20 bg-white">
            <ProgramDetails />
            <Features />
+           
+           <div className="py-16 px-4 bg-slate-50 my-10">
+             <Pricing 
+               isPreview={true} 
+               id="pricing-middle" 
+               customTitle="Transforme esses 10 Pilares em Realidade"
+               customSubtitle="Escolha agora como quer aplicar o método."
+               customBadge="Próximo Passo"
+             />
+           </div>
+           
            <About />
            <Testimonials />
            <Pricing />
@@ -71,7 +77,6 @@ function App() {
       <Footer />
       <StickyCTA />
       <WhatsAppFloat />
-      
     </div>
   );
 }
