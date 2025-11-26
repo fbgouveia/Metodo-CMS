@@ -1,8 +1,8 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { IntroHook } from './components/IntroHook';
-import { HorizontalScroll } from './components/HorizontalScroll';
 import { Hero } from './components/Hero';
+import { HorizontalScroll } from './components/HorizontalScroll'; // A JORNADA
 import { ProgramDetails } from './components/ProgramDetails';
 import { Features } from './components/Features';
 import { About } from './components/About';
@@ -19,59 +19,41 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
-    <div className="bg-slate-50 min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
+    // ADICIONEI BORDER-RED PARA VOCÊ SABER SE ATUALIZOU
+    <div className="bg-slate-50 min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f] border-8 border-red-600 box-border">
       
+      {/* Aviso de Versão (Só aparece se o código atualizou) */}
+      <div className="fixed top-0 left-0 w-full bg-red-600 text-white text-center text-xs font-bold z-[9999] p-1">
+        VERSÃO 5.0 - SE VOCÊ LÊ ISSO, O CÓDIGO ATUALIZOU
+      </div>
+
       <Navbar />
       
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* 1. INTRO (Parallax Background) */}
+        {/* 1. INTRODUÇÃO (Capa com Zoom) */}
         <IntroHook />
         
-        {/* 2. HORIZONTAL SCROLL (A Jornada) */}
-        {/* Vem imediatamente abaixo, fundo sólido para cobrir a imagem da intro ao subir */}
-        <div className="relative z-20 bg-[#f5f5f7]">
+        {/* 2. JORNADA (HORIZONTAL SCROLL) */}
+        {/* Forcei bg-slate-200 para diferenciar visualmente */}
+        <div className="relative z-20 bg-slate-200">
             <HorizontalScroll />
         </div>
 
-        {/* 3. HERO (VÍDEO + OFERTA) */}
-        {/* Fundo branco para destacar o vídeo */}
-        <div className="relative z-20 bg-white py-20 border-t border-white"> 
-           
-           {/* Oferta Rápida */}
-           <div className="max-w-2xl mx-auto px-4 mb-12">
-              <div className="bg-slate-50 p-4 rounded-full shadow-sm border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
-                  <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-sm">⚡</div>
-                      <div className="text-center md:text-left">
-                          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wide">Oferta Relâmpago</p>
-                          <p class="text-sm font-bold text-slate-900">Curso Completo: <span class="text-blue-600 text-base">12x R$ 49,90</span></p>
-                      </div>
-                  </div>
-                  <a href="#pricing" className="bg-slate-900 text-white px-8 py-2 rounded-full text-sm font-bold hover:bg-blue-700 transition w-full md:w-auto text-center">
-                      Quero me curar
-                  </a>
-              </div>
+        {/* 3. HERO (VÍDEO) */}
+        {/* Forcei bg-white para separar */}
+        <div className="relative z-30 bg-white py-20 shadow-2xl"> 
+           <div className="max-w-2xl mx-auto px-4 mb-12 text-center">
+              <span className="text-blue-600 font-bold text-xs uppercase tracking-widest mb-2 block">Assista ao Vídeo</span>
+              <h2 className="text-3xl font-serif text-slate-900">Entenda o Método</h2>
            </div>
-
            <Hero />
         </div>
 
-        {/* 4. RESTO DO CONTEÚDO */}
-        <div className="relative z-20 bg-white">
+        {/* 4. CONTEÚDO RESTANTE */}
+        <div className="relative z-40 bg-white">
            <ProgramDetails />
            <Features />
-           
-           <div className="py-16 px-4 bg-slate-50 my-10">
-             <Pricing 
-               isPreview={true} 
-               id="pricing-middle" 
-               customTitle="Transforme esses 10 Pilares em Realidade"
-               customSubtitle="Escolha agora como quer aplicar o método."
-               customBadge="Próximo Passo"
-             />
-           </div>
-           
            <About />
            <Testimonials />
            <Pricing />
