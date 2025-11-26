@@ -1,8 +1,8 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { IntroHook } from './components/IntroHook';
-import { Hero } from './components/Hero';
 import { HorizontalScroll } from './components/HorizontalScroll';
+import { Hero } from './components/Hero';
 import { ProgramDetails } from './components/ProgramDetails';
 import { Features } from './components/Features';
 import { About } from './components/About';
@@ -19,33 +19,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
-    // REMOVI 'h-screen' e 'overflow-hidden' daqui. Deixe o body controlar o scroll.
-    <div className="bg-slate-50 w-full relative font-sans text-[#1d1d1f] overflow-clip">
+    <div className="bg-slate-50 min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
       
-      {/* Background Animado */}
-      <div className="fixed inset-0 z-0 pointer-events-none bg-[#f0f4f8]">
-          <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-200/40 rounded-full blur-[100px] mix-blend-multiply animate-blob opacity-70"></div>
-          <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-200/40 rounded-full blur-[100px] mix-blend-multiply animate-blob animation-delay-2000 opacity-70"></div>
-          <div className="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-indigo-200/40 rounded-full blur-[100px] mix-blend-multiply animate-blob animation-delay-4000 opacity-70"></div>
-      </div>
-
       <Navbar />
       
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* 1. INTRO */}
+        {/* 1. INTRO (Parallax Background) */}
         <IntroHook />
         
-        {/* 2. JORNADA (HORIZONTAL SCROLL) */}
-        <div className="relative z-20 bg-[#f5f5f7] border-t border-white/50 shadow-sm">
+        {/* 2. HORIZONTAL SCROLL (A Jornada) */}
+        {/* Vem imediatamente abaixo, fundo sólido para cobrir a imagem da intro ao subir */}
+        <div className="relative z-20 bg-[#f5f5f7]">
             <HorizontalScroll />
         </div>
 
         {/* 3. HERO (VÍDEO + OFERTA) */}
-        <div className="relative z-30 bg-white py-20 rounded-t-[3rem] -mt-12 shadow-2xl border-t border-white"> 
+        {/* Fundo branco para destacar o vídeo */}
+        <div className="relative z-20 bg-white py-20 border-t border-white"> 
            
+           {/* Oferta Rápida */}
            <div className="max-w-2xl mx-auto px-4 mb-12">
-              <div className="bg-white p-4 rounded-full shadow-md border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4 transform hover:scale-[1.01] transition-transform">
+              <div className="bg-slate-50 p-4 rounded-full shadow-sm border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-sm">⚡</div>
                       <div className="text-center md:text-left">
@@ -53,8 +48,8 @@ function App() {
                           <p class="text-sm font-bold text-slate-900">Curso Completo: <span class="text-blue-600 text-base">12x R$ 49,90</span></p>
                       </div>
                   </div>
-                  <a href="#pricing" className="bg-slate-900 text-white px-8 py-2 rounded-full text-sm font-bold hover:bg-blue-600 transition w-full md:w-auto text-center shadow-lg">
-                      Quero me curar agora
+                  <a href="#pricing" className="bg-slate-900 text-white px-8 py-2 rounded-full text-sm font-bold hover:bg-blue-700 transition w-full md:w-auto text-center">
+                      Quero me curar
                   </a>
               </div>
            </div>
@@ -62,8 +57,8 @@ function App() {
            <Hero />
         </div>
 
-        {/* 4. CONTEÚDO RESTANTE */}
-        <div className="relative z-40 bg-white">
+        {/* 4. RESTO DO CONTEÚDO */}
+        <div className="relative z-20 bg-white">
            <ProgramDetails />
            <Features />
            
