@@ -25,31 +25,27 @@ function App() {
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#f0f4f8]">
           <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-200/40 rounded-full blur-[100px] mix-blend-multiply animate-blob opacity-70"></div>
           <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-200/40 rounded-full blur-[100px] mix-blend-multiply animate-blob animation-delay-2000 opacity-70"></div>
+          <div className="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-indigo-200/40 rounded-full blur-[100px] mix-blend-multiply animate-blob animation-delay-4000 opacity-70"></div>
       </div>
 
       <Navbar />
       
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* 1. INTRO PARALLAX */}
-        {/* z-30 para garantir que o texto fique legível */}
-        <div className="relative z-30 bg-white shadow-xl rounded-b-[3rem]">
-           <IntroHook />
-        </div>
+        {/* 1. INTRO (Vai travar e expandir a imagem) */}
+        <IntroHook />
         
         {/* 2. JORNADA (HORIZONTAL SCROLL) */}
-        {/* Vem logo abaixo. A sombra da Intro vai cair suavemente sobre ele */}
-        <div className="relative z-20 bg-[#f5f5f7] -mt-20 pt-20"> 
-            {/* -mt-20 faz a Jornada começar "por baixo" da Intro arredondada */}
+        {/* Vem logo após a Intro terminar de destravar */}
+        <div className="relative z-20 bg-[#f5f5f7] border-t border-white/50">
             <HorizontalScroll />
         </div>
 
-        {/* 3. VÍDEO + OFERTA */}
-        <div className="relative z-30 bg-white py-20 rounded-t-[3rem] shadow-[0_-20px_60px_rgba(0,0,0,0.05)]"> 
+        {/* 3. HERO (VÍDEO + OFERTA) */}
+        <div className="relative z-30 bg-white/80 backdrop-blur-sm py-20 shadow-2xl rounded-t-[3rem] -mt-10"> 
            
-           {/* Oferta Rápida */}
            <div className="max-w-2xl mx-auto px-4 mb-12">
-              <div className="bg-slate-50 p-4 rounded-full shadow-md border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4 transform hover:scale-[1.01] transition-transform">
+              <div className="bg-white p-4 rounded-full shadow-md border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-sm">⚡</div>
                       <div className="text-center md:text-left">
@@ -66,11 +62,10 @@ function App() {
            <Hero />
         </div>
 
-        {/* 4. CONTEÚDO FINAL */}
+        {/* 4. CONTEÚDO RESTANTE */}
         <div className="relative z-30 bg-white">
            <ProgramDetails />
            <Features />
-           
            <div className="py-12 px-4">
              <Pricing 
                isPreview={true} 
@@ -80,7 +75,6 @@ function App() {
                customBadge="Próximo Passo"
              />
            </div>
-           
            <About />
            <Testimonials />
            <Pricing />
