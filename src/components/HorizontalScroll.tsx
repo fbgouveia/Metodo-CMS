@@ -1,45 +1,45 @@
 import React, { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { ArrowRight } from 'lucide-react';
 
+// Registra o plugin
 gsap.registerPlugin(ScrollTrigger);
 
-// IMAGENS SELECIONADAS PARA PSICOLOGIA/MENTORIA
+// IMAGENS NOVAS (PSICOLOGIA/MENTORIA)
 const steps = [
   {
     id: 1,
     title: "A Verdade Emocional",
-    subtitle: "Sua ansiedade não é 'coisa da sua cabeça'. É uma desregulação química. Vamos identificar os gatilhos.",
-    // Imagem: Arte abstrata remetendo a conexões neurais/cérebro
+    subtitle: "Sua ansiedade não é 'coisa da sua cabeça'. É uma desregulação do sistema de alerta.",
+    // Imagem: Conexões Neurais / Abstrato
     image: "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=1000&auto=format&fit=crop"
   },
   {
     id: 2,
     title: "O Freio Emocional",
-    subtitle: "Técnicas para ativar seu sistema de relaxamento imediatamente. É como puxar o freio de mão do caos.",
-    // Imagem: Mulher em estado de paz/meditação/respiração
+    subtitle: "Técnicas para ativar seu sistema de relaxamento imediatamente. É como puxar o freio de mão.",
+    // Imagem: Calma, Respiração, Mulher em paz
     image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1000&auto=format&fit=crop"
   },
   {
     id: 3,
     title: "O Detox da Ansiedade",
-    subtitle: "Vamos 'ressignificar' o centro do medo para que você volte a dormir e a sonhar, não apenas sobreviver.",
-    // Imagem: Conforto, cama, sono, leveza
+    subtitle: "Vamos 'ressignificar' o centro do medo para que você volte a dormir e a sonhar.",
+    // Imagem: Sono, Relaxamento, Cama
     image: "https://images.unsplash.com/photo-1511296933631-18b8f0017c2a?q=80&w=1000&auto=format&fit=crop"
   },
   {
     id: 4,
     title: "O Resgate da Identidade",
-    subtitle: "Quem era você antes do medo? A ansiedade roubou sua personalidade. Vamos buscá-la de volta.",
-    // Imagem: Retrato feminino forte, olhando para o horizonte
+    subtitle: "Quem era você antes do medo? A ansiedade roubou sua personalidade. Vamos buscá-la.",
+    // Imagem: Mulher forte olhando horizonte
     image: "https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?q=80&w=1000&auto=format&fit=crop"
   },
   {
     id: 5,
     title: "Soberania Emocional",
-    subtitle: "O objetivo não é 'controlar' a crise, é não ter crise. Você no comando da sua própria biologia.",
-    // Imagem: Liberdade, braços abertos, natureza
+    subtitle: "O objetivo não é 'controlar' a crise, é não ter crise. Você no comando.",
+    // Imagem: Liberdade, Natureza, Braços abertos
     image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1000&auto=format&fit=crop"
   }
 ];
@@ -50,8 +50,10 @@ export const HorizontalScroll: React.FC = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      // Limpeza de segurança
       ScrollTrigger.getAll().forEach(t => t.kill());
 
+      // Apenas Desktop (> 768px)
       if (window.innerWidth > 768) {
         const slider = sliderRef.current;
         const container = componentRef.current;
@@ -59,19 +61,22 @@ export const HorizontalScroll: React.FC = () => {
         if (slider && container) {
           const totalWidth = slider.scrollWidth - window.innerWidth;
 
-          gsap.to(slider, {
-            x: -totalWidth,
-            ease: "none",
-            scrollTrigger: {
-              trigger: container,
-              start: "top top",
-              end: () => `+=${totalWidth}`,
-              pin: true,
-              scrub: 1,
-              invalidateOnRefresh: true,
-              anticipatePin: 1
-            }
-          });
+          // Só anima se houver conteúdo suficiente para rolar
+          if (totalWidth > 0) {
+            gsap.to(slider, {
+              x: -totalWidth,
+              ease: "none",
+              scrollTrigger: {
+                trigger: container,
+                start: "top top",
+                end: () => `+=${totalWidth}`,
+                pin: true,
+                scrub: 1,
+                invalidateOnRefresh: true,
+                anticipatePin: 1
+              }
+            });
+          }
         }
       }
     }, componentRef);
@@ -82,7 +87,7 @@ export const HorizontalScroll: React.FC = () => {
   return (
     <section ref={componentRef} id="method" className="relative bg-[#f5f5f7] overflow-hidden py-24 z-20">
       
-      {/* Desktop View */}
+      {/* --- DESKTOP VIEW --- */}
       <div className="hidden md:flex h-screen items-center overflow-hidden sticky top-0">
         <div ref={sliderRef} className="flex gap-16 px-20 w-max h-full items-center">
           
@@ -93,10 +98,12 @@ export const HorizontalScroll: React.FC = () => {
               Não é mágica.<br/>É Ciência.
             </h2>
             <p className="text-xl text-slate-600 max-w-md leading-relaxed">
-              Vamos regular seu sistema nervoso com um protocolo clínico validado.
+              Vamos regular seu sistema nervoso com um protocolo clínico passo a passo.
             </p>
             <div className="mt-8 flex items-center gap-2 text-slate-400 animate-pulse text-sm">
-               <span>Arraste para ver os passos</span> <ArrowRight size={20} />
+               <span>Arraste para ver os passos</span>
+               {/* Ícone SVG Direto (Sem importação externa) */}
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </div>
           </div>
 
@@ -120,9 +127,9 @@ export const HorizontalScroll: React.FC = () => {
           ))}
 
           {/* CTA Final */}
-          <div className="min-w-[400px] h-[70vh] rounded-[2.5rem] bg-slate-900 text-white flex flex-col justify-center items-center text-center p-10 shadow-2xl">
-            <h3 className="text-4xl font-serif mb-6">Sua vez.</h3>
-            <p className="text-gray-400 mb-10">A vida sem o aperto no peito existe e começa com uma decisão.</p>
+          <div className="min-w-[400px] h-[70vh] rounded-[2.5rem] bg-[#1d1d1f] text-white flex flex-col justify-center items-center text-center p-10 shadow-2xl">
+            <h3 className="text-3xl font-serif mb-6">Sua vez.</h3>
+            <p className="text-gray-400 mb-8 max-w-xs text-sm">A vida sem o aperto no peito existe.</p>
             <a href="#pricing" className="px-10 py-4 bg-white text-slate-900 rounded-full font-bold hover:bg-blue-50 transition-all shadow-lg hover:scale-105">
               Ver Planos
             </a>
@@ -132,27 +139,28 @@ export const HorizontalScroll: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile View */}
+      {/* --- MOBILE VIEW --- */}
       <div className="md:hidden py-16 px-4">
-        <div className="mb-8 px-2 text-center">
+        <div className="mb-8 px-2">
             <span className="text-blue-600 font-bold text-xs uppercase tracking-widest">O Protocolo</span>
             <h2 className="text-3xl font-serif text-slate-900 mt-2">5 Passos para a Liberdade</h2>
         </div>
+        
         <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 no-scrollbar">
             {steps.map((step) => (
-            <div key={step.id} className="snap-center shrink-0 w-[85vw] h-[60vh] rounded-3xl relative overflow-hidden shadow-lg border-2 border-white">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+            <div key={step.id} className="snap-center shrink-0 w-[85vw] h-[60vh] rounded-3xl relative overflow-hidden shadow-lg border-2 border-white bg-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent z-10"></div>
                 <img src={step.image} alt={step.title} className="absolute inset-0 w-full h-full object-cover" />
                 <div className="relative z-20 h-full flex flex-col justify-end p-6 text-white">
-                    <span className="text-5xl font-bold text-white/10 absolute top-4 right-4 font-sans">0{step.id}</span>
-                    <h3 className="text-2xl font-serif mb-2">{step.title}</h3>
-                    <p className="text-white/80 text-xs leading-relaxed">{step.subtitle}</p>
+                <span className="text-5xl font-bold text-white/10 absolute top-4 right-4 font-sans">0{step.id}</span>
+                <h3 className="text-2xl font-serif mb-2">{step.title}</h3>
+                <p className="text-white/80 text-xs leading-relaxed">{step.subtitle}</p>
                 </div>
             </div>
             ))}
             
             <div className="snap-center shrink-0 w-[85vw] h-[60vh] rounded-3xl bg-slate-900 flex flex-col justify-center items-center text-center p-8 text-white">
-                <h3 className="text-2xl font-serif mb-4">Assuma o Controle.</h3>
+                <h3 className="text-2xl font-serif mb-4">Sua vez.</h3>
                 <a href="#pricing" className="px-8 py-3 bg-white text-slate-900 rounded-full font-bold text-sm shadow-lg">Ver Valores</a>
             </div>
         </div>
