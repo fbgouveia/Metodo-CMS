@@ -2,15 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ... resto do seu css ... */
+:root {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+}
 
-/* ... seus imports do tailwind ... */
+/* Garante rolagem suave */
+html {
+  scroll-behavior: smooth;
+}
 
-/* Utilitário para esconder barra de rolagem */
+/* Remove scrollbar feia no mobile */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
