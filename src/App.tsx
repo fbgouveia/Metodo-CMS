@@ -1,8 +1,8 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
 import { IntroHook } from './components/IntroHook';
-import { HorizontalScroll } from './components/HorizontalScroll';
 import { Hero } from './components/Hero';
+import { HorizontalScroll } from './components/HorizontalScroll';
 import { ProgramDetails } from './components/ProgramDetails';
 import { Features } from './components/Features';
 import { About } from './components/About';
@@ -19,10 +19,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
-    <div className="bg-slate-50 min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
+    // REMOVI 'h-screen' e 'overflow-hidden' daqui. Deixe o body controlar o scroll.
+    <div className="bg-slate-50 w-full relative font-sans text-[#1d1d1f] overflow-clip">
       
-      {/* Background Blobs */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#f0f4f8]">
+      {/* Background Animado */}
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[#f0f4f8]">
           <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-200/40 rounded-full blur-[100px] mix-blend-multiply animate-blob opacity-70"></div>
           <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-200/40 rounded-full blur-[100px] mix-blend-multiply animate-blob animation-delay-2000 opacity-70"></div>
           <div className="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-indigo-200/40 rounded-full blur-[100px] mix-blend-multiply animate-blob animation-delay-4000 opacity-70"></div>
@@ -32,20 +33,19 @@ function App() {
       
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* 1. INTRO (Vai travar e expandir a imagem) */}
+        {/* 1. INTRO */}
         <IntroHook />
         
         {/* 2. JORNADA (HORIZONTAL SCROLL) */}
-        {/* Vem logo após a Intro terminar de destravar */}
-        <div className="relative z-20 bg-[#f5f5f7] border-t border-white/50">
+        <div className="relative z-20 bg-[#f5f5f7] border-t border-white/50 shadow-sm">
             <HorizontalScroll />
         </div>
 
         {/* 3. HERO (VÍDEO + OFERTA) */}
-        <div className="relative z-30 bg-white/80 backdrop-blur-sm py-20 shadow-2xl rounded-t-[3rem] -mt-10"> 
+        <div className="relative z-30 bg-white py-20 rounded-t-[3rem] -mt-12 shadow-2xl border-t border-white"> 
            
            <div className="max-w-2xl mx-auto px-4 mb-12">
-              <div className="bg-white p-4 rounded-full shadow-md border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="bg-white p-4 rounded-full shadow-md border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4 transform hover:scale-[1.01] transition-transform">
                   <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-sm">⚡</div>
                       <div className="text-center md:text-left">
@@ -63,10 +63,11 @@ function App() {
         </div>
 
         {/* 4. CONTEÚDO RESTANTE */}
-        <div className="relative z-30 bg-white">
+        <div className="relative z-40 bg-white">
            <ProgramDetails />
            <Features />
-           <div className="py-12 px-4">
+           
+           <div className="py-16 px-4 bg-slate-50 my-10">
              <Pricing 
                isPreview={true} 
                id="pricing-middle" 
@@ -75,6 +76,7 @@ function App() {
                customBadge="Próximo Passo"
              />
            </div>
+           
            <About />
            <Testimonials />
            <Pricing />
