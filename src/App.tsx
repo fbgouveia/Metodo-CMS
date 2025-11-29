@@ -1,5 +1,10 @@
 import React from 'react';
 import { Navbar } from './components/Navbar';
+import { Footer } from './components/Footer';
+import { StickyCTA } from './components/StickyCTA';
+import { WhatsAppFloat } from './components/WhatsAppFloat';
+
+// Seções
 import { IntroHook } from './components/IntroHook';
 import { HorizontalScroll } from './components/HorizontalScroll';
 import { Hero } from './components/Hero';
@@ -9,9 +14,7 @@ import { About } from './components/About';
 import { Testimonials } from './components/Testimonials';
 import { Pricing } from './components/Pricing';
 import { FAQ } from './components/FAQ';
-import { Footer } from './components/Footer';
-import { StickyCTA } from './components/StickyCTA';
-import { WhatsAppFloat } from './components/WhatsAppFloat';
+
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
@@ -19,45 +22,50 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   return (
-    <div className="bg-slate-50 min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
+    // 1. REMOVI O FUNDO SÓLIDO (bg-slate-50)
+    <div className="min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
+      
+      {/* 2. BACKGROUND ANIMADO (Agora vai aparecer!) */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#f0f4f8]">
+          <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-300/40 rounded-full blur-[120px] mix-blend-multiply animate-blob opacity-80"></div>
+          <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-300/40 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-2000 opacity-80"></div>
+          <div className="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-indigo-300/40 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-4000 opacity-80"></div>
+      </div>
+
       <Navbar />
       
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* 1. INTRO */}
+        {/* IntroHook (Capa) */}
         <IntroHook />
         
-        {/* 2. JORNADA (Horizontal) */}
-        <div className="relative z-20 bg-[#f5f5f7]">
+        {/* JORNADA (Transparente para ver os blobs) */}
+        <div className="relative z-20 bg-transparent py-10">
             <HorizontalScroll />
         </div>
 
-        {/* 3. HERO (Vídeo) */}
-        <div className="relative z-20 bg-white py-20 border-t border-white"> 
-           {/* Oferta Rápida */}
-           <div className="max-w-2xl mx-auto px-4 mb-12">
-              <div className="bg-slate-50 p-4 rounded-full shadow-sm border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
-                  <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-sm">⚡</div>
-                      <div className="text-center md:text-left">
-                          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wide">Oferta Relâmpago</p>
-                          <p class="text-sm font-bold text-slate-900">Curso Completo: <span class="text-blue-600 text-base">12x R$ 49,90</span></p>
-                      </div>
-                  </div>
-                  <a href="#pricing" className="bg-slate-900 text-white px-8 py-2 rounded-full text-sm font-bold hover:bg-blue-700 transition w-full md:w-auto text-center">
-                      Quero me curar
-                  </a>
-              </div>
+        {/* HERO (VÍDEO) - Efeito Vidro */}
+        <div className="relative z-30 bg-white/40 backdrop-blur-xl py-24 rounded-t-[3rem] -mt-12 border-t border-white/50 shadow-xl"> 
+           
+           <div className="max-w-3xl mx-auto px-4 mb-12 relative z-10">
+              <Pricing 
+                isPreview={true} 
+                id="pricing-fast-track" 
+                customTitle="Oferta Relâmpago" 
+                customSubtitle="Comece agora: 12x R$ 49,90" 
+              />
            </div>
+
            <Hero />
         </div>
 
-        {/* 4. RESTO */}
-        <div className="relative z-20 bg-white">
+        {/* CONTEÚDO RESTANTE - Efeito Vidro Fosco (Para ler o texto) */}
+        <div className="relative z-40 bg-white/60 backdrop-blur-2xl pt-10">
+           
            <ProgramDetails />
            <Features />
            
-           <div className="py-16 px-4 bg-slate-50 my-10">
+           <div className="py-16 px-4 my-10 border-y border-white/50 bg-white/30">
              <Pricing 
                isPreview={true} 
                id="pricing-middle" 
@@ -71,12 +79,14 @@ function App() {
            <Testimonials />
            <Pricing />
            <FAQ />
+           
         </div>
       </main>
 
       <Footer />
       <StickyCTA />
       <WhatsAppFloat />
+      
     </div>
   );
 }
