@@ -18,14 +18,15 @@ import { FAQ } from './components/FAQ';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 function App() {
   return (
-    // 1. REMOVI O FUNDO SÓLIDO (bg-slate-50)
     <div className="min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
       
-      {/* 2. BACKGROUND ANIMADO (Agora vai aparecer!) */}
+      {/* Background Animado (Blobs) */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#f0f4f8]">
           <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-300/40 rounded-full blur-[120px] mix-blend-multiply animate-blob opacity-80"></div>
           <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-300/40 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-2000 opacity-80"></div>
@@ -36,17 +37,14 @@ function App() {
       
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* IntroHook (Capa) */}
         <IntroHook />
         
-        {/* JORNADA (Transparente para ver os blobs) */}
+        {/* Fundo Transparente para ver os blobs */}
         <div className="relative z-20 bg-transparent py-10">
             <HorizontalScroll />
         </div>
 
-        {/* HERO (VÍDEO) - Efeito Vidro */}
         <div className="relative z-30 bg-white/40 backdrop-blur-xl py-24 rounded-t-[3rem] -mt-12 border-t border-white/50 shadow-xl"> 
-           
            <div className="max-w-3xl mx-auto px-4 mb-12 relative z-10">
               <Pricing 
                 isPreview={true} 
@@ -55,13 +53,10 @@ function App() {
                 customSubtitle="Comece agora: 12x R$ 49,90" 
               />
            </div>
-
            <Hero />
         </div>
 
-        {/* CONTEÚDO RESTANTE - Efeito Vidro Fosco (Para ler o texto) */}
         <div className="relative z-40 bg-white/60 backdrop-blur-2xl pt-10">
-           
            <ProgramDetails />
            <Features />
            
@@ -70,8 +65,8 @@ function App() {
                isPreview={true} 
                id="pricing-middle" 
                customTitle="Transforme esses 10 Pilares em Realidade"
-               customSubtitle="Escolha agora como quer aplicar o método."
-               customBadge="Próximo Passo"
+               customSubtitle="Próximo Passo"
+               customBadge="Aproveite"
              />
            </div>
            
@@ -79,7 +74,6 @@ function App() {
            <Testimonials />
            <Pricing />
            <FAQ />
-           
         </div>
       </main>
 
