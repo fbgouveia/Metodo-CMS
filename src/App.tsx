@@ -44,20 +44,13 @@ function App() {
             <HorizontalScroll />
         </div>
 
-        {/* --- HERO (Apenas o Vídeo na Moldura de Vidro) --- */}
+        {/* HERO (Box de Vidro com Vídeo) */}
         <div className="relative z-30 flex justify-center -mt-12 px-4 mb-20">
-           
-           {/* Box de Vidro */}
            <div className="w-full max-w-6xl bg-white/30 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-[3rem] p-6 md:p-12 relative overflow-hidden">
-               
-               {/* Brilho interno */}
                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/40 to-transparent pointer-events-none"></div>
-
-               {/* O Player de Vídeo (Sem a barra de preço acima) */}
                <div className="relative z-10">
                    <Hero />
                </div>
-
            </div>
         </div>
 
@@ -65,22 +58,18 @@ function App() {
         <div className="relative z-40 bg-transparent pt-0">
            
            <ProgramDetails />
+           
            <Features />
            
-           {/* Oferta do Meio (Esta continua aqui) */}
-           <div className="py-16 px-4 my-10">
-             <Pricing 
-               isPreview={true} 
-               id="pricing-middle" 
-               customTitle="Transforme esses 10 Pilares em Realidade"
-               customSubtitle="Próximo Passo"
-               customBadge="Aproveite"
-             />
-           </div>
+           {/* (Barra de Preço Intermediária removida aqui) */}
            
            <About />
+           
            <Testimonials />
+           
+           {/* Tabela de Preços Final (Completa) */}
            <Pricing /> 
+           
            <FAQ />
            
         </div>
