@@ -20,7 +20,7 @@ export const IntroHook: React.FC = () => {
       <div className="relative z-20 text-center px-4 max-w-5xl mx-auto animate-fade-in-up">
         
         <span className="inline-block py-1.5 px-5 rounded-full border border-white/30 bg-white/10 backdrop-blur-md text-xs font-bold tracking-[0.2em] uppercase mb-8 shadow-sm">
-          Psicologia Clínica & Neurociência
+          Psicologia Clínica
         </span>
         
         <h1 className="text-5xl md:text-7xl lg:text-9xl font-serif leading-none tracking-tight mb-8 drop-shadow-2xl">
