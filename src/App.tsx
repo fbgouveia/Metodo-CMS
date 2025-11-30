@@ -37,39 +37,47 @@ function App() {
       
       <main className="relative z-10 w-full flex flex-col">
         
-        {/* Intro */}
         <IntroHook />
         
-        {/* Jornada (Transparente) */}
+        {/* Jornada */}
         <div className="relative z-20 bg-transparent py-10">
             <HorizontalScroll />
         </div>
 
-        {/* HERO + Oferta Rápida (Vidro Muito Leve) */}
-        {/* Removi bg-white/40 para bg-white/10 (quase invisível) */}
-        <div className="relative z-30 bg-white/10 backdrop-blur-md py-24 rounded-t-[3rem] -mt-12 border-t border-white/30 shadow-xl"> 
+        {/* --- HERO + OFERTA (Box Ajustado) --- */}
+        {/* Mudei de 'w-full' para um container centralizado e mais justo */}
+        <div className="relative z-30 flex justify-center -mt-12 px-4 mb-20">
            
-           <div className="max-w-3xl mx-auto px-4 mb-12 relative z-10">
-              <Pricing 
-                isPreview={true} 
-                id="pricing-fast-track" 
-                customTitle="Oferta Relâmpago" 
-                customSubtitle="Comece agora: 12x R$ 49,90" 
-              />
-           </div>
+           {/* Este é o Background de Vidro que envolve o Player */}
+           <div className="w-full max-w-6xl bg-white/30 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-[3rem] p-6 md:p-12 relative overflow-hidden">
+               
+               {/* Brilho interno sutil */}
+               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/40 to-transparent pointer-events-none"></div>
 
-           <Hero />
+               {/* Barra de Preço (Topo) */}
+               <div className="max-w-3xl mx-auto mb-8 relative z-10">
+                  <Pricing 
+                    isPreview={true} 
+                    id="pricing-fast-track" 
+                    customTitle="Oferta Relâmpago" 
+                    customSubtitle="Comece agora: 12x R$ 49,90" 
+                  />
+               </div>
+
+               {/* O Player de Vídeo */}
+               <div className="relative z-10">
+                   <Hero />
+               </div>
+
+           </div>
         </div>
 
-        {/* CONTEÚDO RESTANTE (TOTALMENTE TRANSPARENTE) */}
-        {/* Removi bg-white/60. Agora é bg-transparent. */}
-        <div className="relative z-40 bg-transparent pt-10">
+        {/* CONTEÚDO RESTANTE (Fundo Transparente) */}
+        <div className="relative z-40 bg-transparent pt-0">
            
-           {/* Cards de detalhes terão seus próprios fundos de vidro */}
            <ProgramDetails />
            <Features />
            
-           {/* Oferta do Meio (Sem fundo de seção, apenas a barra flutuando) */}
            <div className="py-16 px-4 my-10">
              <Pricing 
                isPreview={true} 
@@ -82,10 +90,7 @@ function App() {
            
            <About />
            <Testimonials />
-           
-           {/* Tabela Final de Preços */}
            <Pricing /> 
-           
            <FAQ />
            
         </div>
