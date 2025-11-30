@@ -9,13 +9,13 @@ if (typeof window !== 'undefined') {
 
 // 7 MÓDULOS + IMAGENS PSICOLOGIA
 const steps = [
-  { id: 1, title: "Módulo 1: Introdução", subtitle: "Descubra o que é ansiedade, como ela se manifesta e quando deixa de ser natural.", image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card0.jpg=80&w=1000&auto=format&fit=crop" },
-  { id: 2, title: "Módulo 2: Entendendo", subtitle: "Aprenda a diferenciar ansiedade normal de patológica e mapeie seus gatilhos.", image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card1.jpg=80&w=1000&auto=format&fit=crop" },
-  { id: 3, title: "Módulo 3: Técnicas", subtitle: "Respiração e relaxamento. Ferramentas práticas para controlar crises.", image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card2.jpg=80&w=1000&auto=format&fit=crop" },
-  { id: 4, title: "Módulo 4: Pensamentos", subtitle: "Gerenciamento de Pensamentos Automáticos Negativos. Quebre crenças sabotadoras.", image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card3.jpg=80&w=1000&auto=format&fit=crop" },
-  { id: 5, title: "Módulo 5: Hábitos", subtitle: "Sono, alimentação e rotina. Ajustes fisiológicos que reduzem a ansiedade.", image: "https://images.unsplash.com/photo-1511296933631-18b8f0017c2a?q=80&w=1000&auto=format&fit=crop" },
-  { id: 6, title: "Módulo 6: Autoestima", subtitle: "Fortaleça sua relação consigo mesma e aprenda a se acolher.", image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card4.jpg=80&w=1000&auto=format&fit=crop" },
-  { id: 7, title: "Módulo 7: Futuro Livre", subtitle: "Celebrando conquistas e planejando um futuro sem o peso do medo.", image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card5.jpg=80&w=1000&auto=format&fit=crop" }
+  { id: 1, title: "Módulo 1: Introdução", subtitle: "Descubra o que é ansiedade, como ela se manifesta e quando deixa de ser natural.", image: "https://www.quiteriagouveia.com/wp-content/uploads/2025/11/card0.jpg=80&w=1000&auto=format&fit=crop" },
+  { id: 2, title: "Módulo 2: Entendendo", subtitle: "Aprenda a diferenciar ansiedade normal de patológica e mapeie seus gatilhos.", image: "https://www.quiteriagouveia.com/wp-content/uploads/2025/11/card1.jpg=80&w=1000&auto=format&fit=crop" },
+  { id: 3, title: "Módulo 3: Técnicas", subtitle: "Respiração e relaxamento. Ferramentas práticas para controlar crises.", image: "https://www.quiteriagouveia.com/wp-content/uploads/2025/11/card2.jpg=80&w=1000&auto=format&fit=crop" },
+  { id: 4, title: "Módulo 4: Pensamentos", subtitle: "Gerenciamento de Pensamentos Automáticos Negativos. Quebre crenças sabotadoras.", image: "https://www.quiteriagouveia.com/wp-content/uploads/2025/11/card3.jpg=80&w=1000&auto=format&fit=crop" },
+  { id: 5, title: "Módulo 5: Hábitos", subtitle: "Sono, alimentação e rotina. Ajustes fisiológicos que reduzem a ansiedade.", image: "https://www.quiteriagouveia.com/wp-content/uploads/2025/11/card4.jpg=80&w=1000&auto=format&fit=crop" },
+  { id: 6, title: "Módulo 6: Autoestima", subtitle: "Fortaleça sua relação consigo mesma e aprenda a se acolher.", image: "https://www.quiteriagouveia.com/wp-content/uploads/2025/11/card4.jpg=80&w=1000&auto=format&fit=crop" },
+  { id: 7, title: "Módulo 7: Futuro Livre", subtitle: "Celebrando conquistas e planejando um futuro sem o peso do medo.", image: "https://www.quiteriagouveia.com/wp-content/uploads/2025/11/card5.jpg=80&w=1000&auto=format&fit=crop" }
 ];
 
 export const HorizontalScroll: React.FC = () => {
