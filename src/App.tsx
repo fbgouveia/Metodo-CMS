@@ -44,27 +44,16 @@ function App() {
             <HorizontalScroll />
         </div>
 
-        {/* --- HERO + OFERTA (Box Ajustado) --- */}
-        {/* Mudei de 'w-full' para um container centralizado e mais justo */}
+        {/* --- HERO (Apenas o Vídeo na Moldura de Vidro) --- */}
         <div className="relative z-30 flex justify-center -mt-12 px-4 mb-20">
            
-           {/* Este é o Background de Vidro que envolve o Player */}
+           {/* Box de Vidro */}
            <div className="w-full max-w-6xl bg-white/30 backdrop-blur-2xl border border-white/50 shadow-2xl rounded-[3rem] p-6 md:p-12 relative overflow-hidden">
                
-               {/* Brilho interno sutil */}
+               {/* Brilho interno */}
                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/40 to-transparent pointer-events-none"></div>
 
-               {/* Barra de Preço (Topo) */}
-               <div className="max-w-3xl mx-auto mb-8 relative z-10">
-                  <Pricing 
-                    isPreview={true} 
-                    id="pricing-fast-track" 
-                    customTitle="Oferta Relâmpago" 
-                    customSubtitle="Comece agora: 12x R$ 49,90" 
-                  />
-               </div>
-
-               {/* O Player de Vídeo */}
+               {/* O Player de Vídeo (Sem a barra de preço acima) */}
                <div className="relative z-10">
                    <Hero />
                </div>
@@ -72,12 +61,13 @@ function App() {
            </div>
         </div>
 
-        {/* CONTEÚDO RESTANTE (Fundo Transparente) */}
+        {/* CONTEÚDO RESTANTE */}
         <div className="relative z-40 bg-transparent pt-0">
            
            <ProgramDetails />
            <Features />
            
+           {/* Oferta do Meio (Esta continua aqui) */}
            <div className="py-16 px-4 my-10">
              <Pricing 
                isPreview={true} 
