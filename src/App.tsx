@@ -18,6 +18,7 @@ import { FAQ } from './components/FAQ';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
+// Registra o GSAP
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -26,7 +27,7 @@ function App() {
   return (
     <div className="min-h-screen w-full overflow-x-hidden relative font-sans text-[#1d1d1f]">
       
-      {/* Background Animado (Blobs) */}
+      {/* 1. BACKGROUND ANIMADO (Blobs coloridos) */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#f0f4f8]">
           <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-300/40 rounded-full blur-[120px] mix-blend-multiply animate-blob opacity-80"></div>
           <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-purple-300/40 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-2000 opacity-80"></div>
@@ -37,14 +38,18 @@ function App() {
       
       <main className="relative z-10 w-full flex flex-col">
         
+        {/* Intro (Capa Elegante) */}
         <IntroHook />
         
-        {/* Fundo Transparente para ver os blobs */}
+        {/* Jornada (Fundo Transparente para ver os blobs) */}
         <div className="relative z-20 bg-transparent py-10">
             <HorizontalScroll />
         </div>
 
+        {/* HERO (Vídeo) + Oferta Rápida */}
         <div className="relative z-30 bg-white/40 backdrop-blur-xl py-24 rounded-t-[3rem] -mt-12 border-t border-white/50 shadow-xl"> 
+           
+           {/* BARRA DE PREÇO PEQUENA (Topo de Funil) */}
            <div className="max-w-3xl mx-auto px-4 mb-12 relative z-10">
               <Pricing 
                 isPreview={true} 
@@ -53,27 +58,36 @@ function App() {
                 customSubtitle="Comece agora: 12x R$ 49,90" 
               />
            </div>
+
            <Hero />
         </div>
 
+        {/* CONTEÚDO RESTANTE (Fundo Vidro Fosco) */}
         <div className="relative z-40 bg-white/60 backdrop-blur-2xl pt-10">
+           
            <ProgramDetails />
            <Features />
            
+           {/* BARRA DE PREÇO PEQUENA (Meio do Funil) */}
            <div className="py-16 px-4 my-10 border-y border-white/50 bg-white/30">
              <Pricing 
                isPreview={true} 
                id="pricing-middle" 
                customTitle="Transforme esses 10 Pilares em Realidade"
-               customSubtitle="Próximo Passo"
-               customBadge="Aproveite"
+               customSubtitle="Escolha agora como quer aplicar o método."
+               customBadge="Próximo Passo"
              />
            </div>
            
            <About />
            <Testimonials />
-           <Pricing />
+           
+           {/* --- AQUI ESTÁ A CORREÇÃO: TABELA COMPLETA --- */}
+           {/* Sem 'isPreview', ele carrega os cards grandes de R$ 497 e R$ 997 */}
+           <Pricing /> 
+           
            <FAQ />
+           
         </div>
       </main>
 
