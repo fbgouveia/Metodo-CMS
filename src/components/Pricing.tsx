@@ -1,9 +1,9 @@
 import React from 'react';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, Star } from 'lucide-react';
 
 interface PricingProps {
   id?: string;
-  isPreview?: boolean; // Se for true, mostra a barra pequena. Se false, mostra a tabela grande.
+  isPreview?: boolean;
   customTitle?: string;
   customSubtitle?: string;
   customBadge?: string;
@@ -18,7 +18,6 @@ export const Pricing: React.FC<PricingProps> = ({
 }) => {
 
   // --- MODO 1: BARRA DE OFERTA RÁPIDA (Horizontal) ---
-  // Aparece apenas quando chamamos <Pricing isPreview={true} />
   if (isPreview) {
     return (
       <div id={id} className="w-full">
@@ -40,7 +39,6 @@ export const Pricing: React.FC<PricingProps> = ({
   }
 
   // --- MODO 2: TABELA DE PREÇOS PRINCIPAL (Vertical) ---
-  // Aparece quando chamamos <Pricing /> (sem props) no final da página
   return (
     <section id={id} className="py-24 px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -48,14 +46,14 @@ export const Pricing: React.FC<PricingProps> = ({
                 <span className="text-blue-600 font-bold tracking-widest uppercase text-sm">Investimento</span>
                 <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mt-4 mb-6">Escolha seu Caminho</h2>
                 <p className="text-slate-500 text-xl max-w-2xl mx-auto">
-                    Você tem duas opções para entrar no Método CMS hoje.
+                    Você tem duas opções para transformar sua vida hoje.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-center">
                 
-                {/* CARD 1: CURSO GRAVADO (R$ 497) */}
-                <div className="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-xl hover:border-blue-300 transition-all relative">
+                {/* CARD 1: CURSO GRAVADO (Standard) */}
+                <div className="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-xl hover:border-blue-300 transition-all relative transform hover:scale-[1.02] duration-300 z-0">
                     <div className="mb-8">
                         <h3 className="text-2xl font-bold text-slate-900">Curso CMS</h3>
                         <p className="text-slate-500 text-sm mt-1">Acesso Imediato às Aulas.</p>
@@ -76,35 +74,50 @@ export const Pricing: React.FC<PricingProps> = ({
                     </button>
                 </div>
 
-                {/* CARD 2: MENTORIA VIP (R$ 997) */}
-                <div className="bg-[#1d1d1f] text-white p-10 rounded-[3rem] shadow-2xl relative transform md:-translate-y-6 border border-gray-800 ring-4 ring-blue-500/20">
-                    <div className="absolute top-6 right-6 bg-blue-600 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-lg">
-                        Recomendado
+                {/* CARD 2: MENTORIA VIP (PREMIUM COM BORDA ANIMADA) */}
+                <div className="relative group z-10 md:-my-8"> 
+                    
+                    {/* A BORDA GRADIENTE ANIMADA */}
+                    <div className="absolute -inset-[3px] bg-gradient-to-r from-blue-600 via-purple-500 to-blue-600 rounded-[3rem] opacity-75 blur-sm group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+                    
+                    {/* O CONTEÚDO DO CARD */}
+                    <div className="relative bg-[#1d1d1f] text-white p-10 rounded-[3rem] shadow-2xl h-full border border-gray-800 flex flex-col justify-between transform transition-transform duration-300 group-hover:scale-[1.02]">
+                        
+                        <div className="absolute top-6 right-6 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-lg flex items-center gap-1">
+                            <Star size={10} fill="white" /> Recomendado
+                        </div>
+
+                        <div>
+                            <div className="mb-8">
+                                <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Mentoria VIP</h3>
+                                <p className="text-gray-400 text-sm mt-1">Acompanhamento + Aulas.</p>
+                            </div>
+                            <div className="mb-8">
+                                <span className="text-6xl font-bold">R$ 997</span>
+                                <span className="text-sm text-gray-400">/à vista</span>
+                                <p className="text-sm text-blue-400 mt-2 font-bold">ou 12x R$ 99,70</p>
+                            </div>
+                            <ul className="space-y-5 mb-10 text-sm text-gray-300">
+                                <li className="flex gap-3 text-white"><div className="bg-blue-600/20 p-1 rounded-full"><Check size={14} className="text-blue-400"/></div> <span><strong>Acesso Vitalício</strong></span></li>
+                                <li className="flex gap-3 text-white"><div className="bg-blue-600/20 p-1 rounded-full"><Check size={14} className="text-blue-400"/></div> <span>6 Encontros <strong>Ao Vivo</strong></span></li>
+                                <li className="flex gap-3 text-white"><div className="bg-blue-600/20 p-1 rounded-full"><Check size={14} className="text-blue-400"/></div> <span>Análise de Caso Individual</span></li>
+                                <li className="flex gap-3 text-white"><div className="bg-blue-600/20 p-1 rounded-full"><Check size={14} className="text-blue-400"/></div> <span><strong>Suporte WhatsApp</strong> (2 meses)</span></li>
+                            </ul>
+                        </div>
+
+                        <button className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full font-bold hover:from-blue-500 hover:to-purple-500 transition-all shadow-lg shadow-blue-900/50 hover:shadow-blue-600/50 text-lg tracking-wide">
+                            Quero Mentoria VIP
+                        </button>
                     </div>
-                    <div className="mb-8">
-                        <h3 className="text-2xl font-bold">Mentoria Premium</h3>
-                        <p className="text-gray-400 text-sm mt-1">Acompanhamento + Aulas.</p>
-                    </div>
-                    <div className="mb-8">
-                        <span className="text-5xl font-bold">R$ 997</span>
-                        <span className="text-sm text-gray-400">/à vista</span>
-                        <p className="text-xs text-blue-400 mt-2 font-bold">ou 12x R$ 99,70</p>
-                    </div>
-                    <ul className="space-y-4 mb-10 text-sm text-gray-300">
-                        <li className="flex gap-3 text-white"><Check size={18} className="text-blue-500 shrink-0"/> <span><strong>Acesso Vitalício</strong></span></li>
-                        <li className="flex gap-3 text-white"><Check size={18} className="text-blue-500 shrink-0"/> <span>6 Encontros <strong>Ao Vivo</strong></span></li>
-                        <li className="flex gap-3 text-white"><Check size={18} className="text-blue-500 shrink-0"/> <span>Análise de Caso Individual</span></li>
-                        <li className="flex gap-3 text-white"><Check size={18} className="text-blue-500 shrink-0"/> <span><strong>Suporte WhatsApp</strong> (2 meses)</span></li>
-                    </ul>
-                    <button className="w-full py-4 bg-blue-600 rounded-full font-bold hover:bg-blue-500 transition-all shadow-lg shadow-blue-900/50 hover:shadow-blue-600/50 hover:scale-[1.02]">
-                        Quero Mentoria VIP
-                    </button>
                 </div>
 
             </div>
             
-            <div className="mt-12 text-center text-sm text-slate-400">
-                <p>Pagamento seguro via Cartão, Pix ou Boleto. Garantia de 7 dias.</p>
+            <div className="mt-16 text-center text-sm text-slate-400">
+                <p className="flex items-center justify-center gap-2">
+                    <span className="w-2 h-2 bg-green-500 rounded-full"></span> 
+                    Pagamento seguro via Cartão, Pix ou Boleto. Garantia de 7 dias.
+                </p>
             </div>
         </div>
     </section>
