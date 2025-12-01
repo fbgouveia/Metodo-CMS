@@ -17,11 +17,10 @@ export const Pricing: React.FC<PricingProps> = ({
   customBadge 
 }) => {
 
-  // --- MODO 1: BARRA DE OFERTA (Horizontal) - Efeito Vidro ---
+  // --- MODO BARRA DE OFERTA (Topo) ---
   if (isPreview) {
     return (
       <div id={id} className="w-full">
-        {/* bg-white/50 + backdrop-blur = Transparente */}
         <div className="bg-white/50 backdrop-blur-xl p-6 rounded-[2rem] shadow-lg border border-white/50 flex flex-col md:flex-row items-center justify-between gap-6 transform hover:scale-[1.01] transition-transform duration-300">
             <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md animate-pulse">⚡</div>
@@ -39,7 +38,7 @@ export const Pricing: React.FC<PricingProps> = ({
     );
   }
 
-  // --- MODO 2: TABELA DE PREÇOS (Vertical) ---
+  // --- MODO TABELA (Final) ---
   return (
     <section id={id} className="py-24 px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -53,8 +52,7 @@ export const Pricing: React.FC<PricingProps> = ({
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-center">
                 
-                {/* CARD 1: CURSO GRAVADO (Standard) - EFEITO VIDRO */}
-                {/* bg-white/40 deixa ver os blobs atrás */}
+                {/* CARD 1: CURSO GRAVADO (Standard) */}
                 <div className="bg-white/40 backdrop-blur-xl p-10 rounded-[3rem] border border-white/60 shadow-xl hover:border-blue-300 transition-all relative transform hover:scale-[1.02] duration-300 z-0">
                     <div className="mb-8">
                         <h3 className="text-2xl font-bold text-slate-900">Curso CMS</h3>
@@ -76,13 +74,11 @@ export const Pricing: React.FC<PricingProps> = ({
                     </button>
                 </div>
 
-                {/* CARD 2: MENTORIA VIP (Premium) - Sólido Escuro para Contraste */}
+                {/* CARD 2: MENTORIA VIP (ATUALIZADO) */}
                 <div className="relative group z-10 md:-my-8"> 
                     
-                    {/* Borda Neon */}
                     <div className="absolute -inset-[3px] bg-gradient-to-r from-blue-600 via-purple-500 to-blue-600 rounded-[3rem] opacity-75 blur-sm group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
                     
-                    {/* Conteúdo Dark */}
                     <div className="relative bg-[#1d1d1f] text-white p-10 rounded-[3rem] shadow-2xl h-full border border-gray-800 flex flex-col justify-between transform transition-transform duration-300 group-hover:scale-[1.02]">
                         
                         <div className="absolute top-6 right-6 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-lg flex items-center gap-1">
@@ -94,11 +90,14 @@ export const Pricing: React.FC<PricingProps> = ({
                                 <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Mentoria VIP</h3>
                                 <p className="text-gray-400 text-sm mt-1">Acompanhamento + Aulas.</p>
                             </div>
+                            
+                            {/* PREÇO ATUALIZADO */}
                             <div className="mb-8">
-                                <span className="text-6xl font-bold">R$ 997</span>
+                                <span className="text-6xl font-bold">R$ 1.500</span>
                                 <span className="text-sm text-gray-400">/à vista</span>
-                                <p className="text-sm text-blue-400 mt-2 font-bold">ou 12x R$ 99,70</p>
+                                <p className="text-sm text-blue-400 mt-2 font-bold">ou 12x R$ 150,00</p>
                             </div>
+
                             <ul className="space-y-5 mb-10 text-sm text-gray-300">
                                 <li className="flex gap-3 text-white"><div className="bg-blue-600/20 p-1 rounded-full"><Check size={14} className="text-blue-400"/></div> <span><strong>Acesso Vitalício</strong></span></li>
                                 <li className="flex gap-3 text-white"><div className="bg-blue-600/20 p-1 rounded-full"><Check size={14} className="text-blue-400"/></div> <span>6 Encontros <strong>Ao Vivo</strong></span></li>
