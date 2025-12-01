@@ -27,9 +27,9 @@ export const StickyCTA: React.FC = () => {
         <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
             <div className="text-right hidden sm:block">
                 {/* Preço "De" (Âncora) */}
-                <p className="text-xs text-slate-400 line-through">R$ 1.997</p>
+                <p className="text-xs text-slate-400 line-through">R$ 1.480</p>
                 {/* Preço "Por" Atualizado */}
-                <p className="text-sm font-bold text-blue-600">12x R$ 150,00</p>
+                <p className="text-sm font-bold text-blue-600">12x R$ 124,00</p>
             </div>
             <a href="#pricing" className="bg-slate-900 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all hover:scale-105 shadow-lg whitespace-nowrap">
               Quero Minha Vaga
