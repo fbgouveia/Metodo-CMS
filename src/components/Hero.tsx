@@ -1,22 +1,27 @@
 import React from 'react';
+import { Play } from 'lucide-react';
 
 export const Hero: React.FC = () => {
-  // Este componente simples NÃO precisa de useRef, 
-  // mas se você tiver código antigo aqui, substitua por este limpo:
-  
   return (
-    <section className="w-full flex justify-center px-4">
-      <div className="relative w-full max-w-5xl aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white bg-black">
+    <div className="w-full relative group cursor-pointer">
+      
+      {/* Moldura Decorativa */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl md:rounded-[2rem] opacity-20 group-hover:opacity-40 blur transition-all duration-500"></div>
+      
+      {/* Container do Vídeo: Força proporção 16:9 (aspect-video) */}
+      <div className="relative w-full aspect-video bg-slate-900 rounded-xl md:rounded-[1.8rem] overflow-hidden shadow-2xl ring-1 ring-white/10">
+        
+        {/* Placeholder ou Iframe */}
+        {/* IMPORTANTE: w-full h-full garante que o vídeo preencha o box */}
         <iframe 
-          width="100%" 
-          height="100%" 
-          src="https://www.youtube.com/embed/NOH-u8bwVS0?rel=0&modestbranding=1" 
-          title="Mentoria CMS" 
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen
+          className="w-full h-full absolute inset-0"
+          src="https://www.youtube.com/embed/A8g2W67_H8M?rel=0&modestbranding=1" 
+          title="Método CMS Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowFullScreen
         ></iframe>
+
       </div>
-    </section>
+    </div>
   );
 };
