@@ -79,10 +79,10 @@ export const About: React.FC = () => {
                 <Award className="w-4 h-4 text-blue-600" />
                 <span className="text-xs font-bold text-blue-600 tracking-wider uppercase">A Mente por Trás do Método</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-serif text-slate-900 mb-6 leading-tight">
+              <h3 className="text-4xl md:text-5xl font-serif text-slate-900 mb-6 leading-tight">
                 Eu não estou aqui para te dar tapinha nas costas.<br />
                 <span className="text-blue-600">Estou aqui para te devolver a vida.</span>
-              </h2>
+              </h3>
             </div>
 
             <div className="about-content space-y-6 text-slate-600 text-lg leading-relaxed font-light">
