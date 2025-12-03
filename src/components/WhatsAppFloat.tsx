@@ -32,7 +32,7 @@ export const WhatsAppFloat: React.FC = () => {
   return (
     <a 
       ref={buttonRef}
-      href="https://api.whatsapp.com/send?phone=5511956185501&text=Ola%20Quiteria%20gostaria%20de%20saber%20mais%20sobre%20o%20curso%20e%20a%20mentoria%20cerebro%20em%20modo%20silencioso"
+      href="https://api.whatsapp.com/send?phone=5511956185501&text=Ola%20Quiteria!%20gostaria%20de%20saber%20mais%20sobre%20o%20curso%20e%20a%20mentoria%20cerebro%20em%20modo%20silencioso"
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-28 right-6 md:bottom-24 md:right-8 z-[60] group flex items-center gap-3"
