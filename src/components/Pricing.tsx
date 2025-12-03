@@ -95,7 +95,7 @@ export const Pricing: React.FC<PricingProps> = ({
                             <div className="mb-8">
                                 <span className="text-6xl font-bold">R$ 1.480</span>
                                 <span className="text-sm text-gray-400">/à vista</span>
-                                <p className="text-sm text-blue-400 mt-2 font-bold">ou 12x R$ 124,00</p>
+                                <p className="text-sm text-blue-400 mt-2 font-bold">ou 12x R$ 153,07</p>
                             </div>
 
                             <ul className="space-y-5 mb-10 text-sm text-gray-300">
