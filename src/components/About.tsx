@@ -80,7 +80,7 @@ export const About: React.FC = () => {
                 <span className="text-xs font-bold text-blue-600 tracking-wider uppercase">A Mente por Trás do Método</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-serif text-slate-900 mb-6 leading-tight">
-                Eu não estou aqui para te dar tapinha nas costas.<br />
+                Eu não estou aqui para te dar tapinha nas&nbsp;costas.<br />
                 <span className="text-blue-600">Estou aqui para te devolver a vida.</span>
               </h2>
             </div>
