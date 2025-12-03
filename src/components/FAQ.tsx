@@ -155,7 +155,7 @@ export const FAQ: React.FC = () => {
         </div>
         
         <div className="mt-12 text-center faq-item opacity-0">
-           <p className="text-slate-400 text-sm">Não deixe a dúvida te paralisar. <a href="https://api.whatsapp.com/send?phone=5511956185501&text=Ola!%2C%20Gostaria%20de%20saber%20mais%20sobre%20as%20consultas" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold underline hover:text-blue-700">Fale comigo no WhatsApp</a></p>
+           <p className="text-slate-400 text-sm">Não deixe a dúvida te paralisar. <a href="https://api.whatsapp.com/send?phone=5511956185501&text=Ola%20Quiteria!%20gostaria%20de%20saber%20mais%20sobre%20o%20curso%20e%20a%20mentoria%20cerebro%20em%20modo%20silencioso" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold underline hover:text-blue-700">Fale comigo no WhatsApp</a></p>
         </div>
       </div>
     </section>
