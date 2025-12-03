@@ -56,7 +56,7 @@ export const About: React.FC = () => {
               {/* Gradiente inferior para legibilidade do texto */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/80 to-transparent p-8 text-white z-20">
                 <p className="font-serif text-2xl">Dra. Quitéria Gouveia</p>
-                <p className="text-blue-300 text-sm font-medium uppercase tracking-wider">Psicóloga CRP 06/XXXXX</p>
+                <p className="text-blue-300 text-sm font-medium uppercase tracking-wider">Psicóloga CRP 06/21065</p>
               </div>
             </div>
             
