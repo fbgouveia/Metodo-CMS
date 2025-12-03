@@ -95,6 +95,9 @@ export const About: React.FC = () => {
               <p>
                 Criei o <strong>Método CMS</strong> porque cansei de ver mulheres incríveis presas em corpos amedrontados. Uni a Terapia Cognitivo-Comportamental (TCC) com técnicas modernas de regulação emocional. É rápido, é prático e é libertador.
               </p>
+               <p>
+                É rápido, é prático e é libertador.
+              </p>
             </div>
 
             {/* Assinatura movida para cá (entre o texto e os selos) */}
