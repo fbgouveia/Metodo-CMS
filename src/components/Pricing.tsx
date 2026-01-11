@@ -18,8 +18,8 @@ export const Pricing: React.FC<PricingProps> = ({
 }) => {
 
   // Links de Compra (Hotmart)
-  const linkCurso = "https://pay.hotmart.com/V101096199I?off=txjwdlvn";
-  const linkMentoria = "https://pay.hotmart.com/V101096199I?off=mjlpu0qq";
+  const linkCurso = "https://pay.kiwify.com.br/cUO2x97";
+  const linkMentoria = "https://pay.kiwify.com.br/7zPIO6z";
 
   // --- MODO BARRA DE OFERTA (Topo) ---
   if (isPreview) {
