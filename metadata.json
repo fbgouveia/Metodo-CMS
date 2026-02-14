@@ -1,0 +1,5 @@
+{
+  "name": "Cérebro em Modo Silencioso - Versão Final Consolidada",
+  "description": "Estrutura final com Vertical Scroll Sticky Nativo. Fluxo: Intro -> Hero -> VerticalScroll -> Features -> Pricing Preview -> About -> Testimonials -> ProgramDetails -> Pricing Final -> FAQ.",
+  "requestFramePermissions": []
+}

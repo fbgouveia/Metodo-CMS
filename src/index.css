@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+}
+
+/* Garante rolagem suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove scrollbar feia no mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
