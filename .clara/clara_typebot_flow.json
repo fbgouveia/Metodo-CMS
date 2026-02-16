@@ -1,0 +1,129 @@
+{
+    "name": "Clara - Estrategista Neural (Método CMS) - v3.0",
+    "description": "Fluxo Oficial da Clara com Módulo Avançado de Finanças Comportamentais (Master Persuader). Inclui roteamento inteligente para objeções de 'Preço' vs 'Tempo' usando técnicas de Contabilidade Mental e Desconto Hiperbólico.",
+    "version": "3.0.0",
+    "variables": [
+        "user_name",
+        "dossier_json",
+        "user_cluster",
+        "user_pain",
+        "gemini_prompt",
+        "gemini_response",
+        "financial_objection_type"
+    ],
+    "flow": [
+        {
+            "id": "start",
+            "type": "trigger",
+            "label": "Início da Conversa",
+            "inputs": {
+                "dossier_url_param": "{{input_dossier}}"
+            },
+            "next_step": "analyze_dossier"
+        },
+        {
+            "id": "analyze_dossier",
+            "type": "code",
+            "label": "Analisar Dossiê Neural",
+            "description": "Extrai gatilhos emocionais do JSON do quiz.",
+            "code": "try { const dossier = JSON.parse(variables.dossier_json); variables.user_cluster = dossier.cluster; variables.user_pain = dossier.pain_point; } catch(e) { variables.user_cluster = 'GERAL'; variables.user_pain = 'Ansiedade'; }",
+            "next_step": "gemini_welcome"
+        },
+        {
+            "id": "gemini_welcome",
+            "type": "http_request",
+            "label": "Gerar Boas-vindas (Gemini)",
+            "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={{VITE_GEMINI_API_KEY}}",
+            "method": "POST",
+            "body": {
+                "contents": [
+                    {
+                        "parts": [
+                            {
+                                "text": "VOCÊ É CLARA. O USUÁRIO ACABOU DE CHEGAR DO QUIZ. \nCONTEXTO: Cluster {{user_cluster}}. Dor: {{user_pain}}.\n\nTAREFA: Gere uma mensagem curta de acolhimento (máx 2 linhas). Use Labeling: 'Vi que você sente {{user_pain}}'. Termine com uma pergunta de SIM ou NÃO."
+                            }
+                        ]
+                    }
+                ]
+            },
+            "save_response": "gemini_response",
+            "next_step": "send_welcome"
+        },
+        {
+            "id": "send_welcome",
+            "type": "text",
+            "content": "{{gemini_response.candidates[0].content.parts[0].text}}",
+            "next_step": "wait_user_reply"
+        },
+        {
+            "id": "wait_user_reply",
+            "type": "input",
+            "label": "Aguardar Resposta",
+            "variable": "user_reply",
+            "next_step": "classify_intent"
+        },
+        {
+            "id": "classify_intent",
+            "type": "ai_classification",
+            "label": "Classificar Intenção & Objeção",
+            "prompt": "O usuário está com dúvida de PREÇO ('caro', 'sem dinheiro'), dúvida de TEMPO ('vou ver depois', 'pensar'), ou dúvida TÉCNICA?",
+            "options": [
+                {
+                    "label": "Objeção: Preço/Dinheiro",
+                    "next_step": "script_mental_accounting"
+                },
+                {
+                    "label": "Objeção: Tempo/Procrastinação",
+                    "next_step": "script_hyperbolic_discounting"
+                },
+                {
+                    "label": "Dúvida Técnica",
+                    "next_step": "technical_support"
+                },
+                {
+                    "label": "Desabafo Emocional",
+                    "next_step": "emotional_validation"
+                }
+            ]
+        },
+        {
+            "id": "script_mental_accounting",
+            "type": "text",
+            "label": "Script: Contabilidade Mental",
+            "description": "Reenquadra o gasto como investimento e usa aversão à perda.",
+            "content": "Entendo perfeitamente a questão financeira. \n\nMas deixe eu te fazer uma pergunta difícil (como estrategista, preciso ser honesta): \n\nQuanto você já gastou em remédios, terapias que não funcionam e dias de trabalho perdidos nos últimos 12 meses? \n\n(No meu cálculo aqui, isso custa 10x mais que o Método CMS). \n\nHoje, o curso não é um gasto extra. É o **fim desse prejuízo oculto**. \n\nPodemos fazer o parcelamento inteligente em 12x para ficar invisível no seu orçamento?",
+            "next_step": "wait_user_reply"
+        },
+        {
+            "id": "script_hyperbolic_discounting",
+            "type": "text",
+            "label": "Script: Desconto Hiperbólico",
+            "description": "Vende o alívio imediato (Manual) para quem quer procrastinar o curso completo.",
+            "content": "Eu entendo que você queira pensar. O cérebro ansioso sempre pede tempo para 'processar'. \n\nO problema é que sua amígdala não vai esperar você decidir. A próxima crise pode ser hoje à noite. \n\nSe o curso completo parece um passo grande agora, comece pelo **Manual de Gestão da Ansiedade**. \n\nCusta apenas R$ 47 (menos que um pedido de farmácia) e te dá a técnica para parar uma crise em 5 minutos. \n\nÉ um 'primeiro socorro' para você não ficar desprotegida enquanto pensa. \n\nPosso liberar o link do Manual para você?",
+            "next_step": "wait_user_reply"
+        },
+        {
+            "id": "technical_support",
+            "type": "text",
+            "content": "Entendido. Sobre essa dúvida técnica: Sim, o acesso é vitalício e você tem garantia incondicional de 7 dias. O risco é todo nosso.",
+            "next_step": "wait_user_reply"
+        },
+        {
+            "id": "emotional_validation",
+            "type": "text",
+            "content": "Sinto muito que você esteja passando por isso. A Dra. Quitéria criou o método justamente para mulheres que sentem exatamente isso. Você não está sozinha.",
+            "next_step": "wait_user_reply"
+        }
+    ],
+    "settings": {
+        "typing_emulation": {
+            "enabled": true,
+            "speed": 60,
+            "stutter": 5
+        },
+        "metadata": {
+            "creator": "Antigravity Agent",
+            "framework": "Master Persuader v3.0 (Behavioral Finance Edition)"
+        }
+    }
+}

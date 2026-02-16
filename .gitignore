@@ -22,3 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Media & Large Files (Ignored for Git)
+audios/
+transcripts/
+public/clara_brain.txt
+*.mp4
+*.mp3
+*.wav
+*.txt

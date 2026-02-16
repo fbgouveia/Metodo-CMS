@@ -115,28 +115,40 @@ export const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay (Fixed Full Screen) */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white backdrop-blur-3xl border-b border-slate-100 p-10 flex flex-col gap-8 md:hidden shadow-2xl animate-in slide-in-from-top-4 duration-500">
-          <a href="#method" className="text-3xl font-serif text-slate-900" onClick={(e) => scrollToSection(e, '#method')}>O Método</a>
-          <a href="#features" className="text-3xl font-serif text-slate-900" onClick={(e) => scrollToSection(e, '#features')}>Benefícios</a>
-          <a href="#pricing" className="text-3xl font-serif text-slate-900" onClick={(e) => scrollToSection(e, '#pricing')}>Jornada</a>
-          <a href="#faq" className="text-3xl font-serif text-slate-900" onClick={(e) => scrollToSection(e, '#faq')}>Dúvidas</a>
+        <div className="fixed inset-0 z-[60] bg-white/95 backdrop-blur-3xl flex flex-col items-center justify-center gap-10 p-8 animate-in fade-in zoom-in-95 duration-300 md:hidden">
+
+          {/* Close Button */}
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="absolute top-8 right-8 p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200"
+            aria-label="Fechar menu"
+          >
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          <a href="#method" className="text-4xl font-serif text-slate-900 active:scale-95 transition-transform" onClick={(e) => scrollToSection(e, '#method')}>O Método</a>
+          <a href="#features" className="text-4xl font-serif text-slate-900 active:scale-95 transition-transform" onClick={(e) => scrollToSection(e, '#features')}>Benefícios</a>
+          <a href="#pricing" className="text-4xl font-serif text-slate-900 active:scale-95 transition-transform" onClick={(e) => scrollToSection(e, '#pricing')}>Jornada</a>
+          <a href="#faq" className="text-4xl font-serif text-slate-900 active:scale-95 transition-transform" onClick={(e) => scrollToSection(e, '#faq')}>Dúvidas</a>
 
           <a
             href="https://api.whatsapp.com/send?phone=5511956185501"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between p-6 bg-green-50 rounded-[2rem] border border-green-100 mt-4 group"
+            className="w-full max-w-xs flex items-center justify-between p-6 bg-green-50 rounded-[2rem] border border-green-100 mt-4 group active:scale-95 transition-transform shadow-lg shadow-green-100/50"
             onClick={() => setMobileMenuOpen(false)}
           >
-            <span className="text-green-700 font-bold">Fale comigo no WhatsApp</span>
-            <div className="w-2 h-2 rounded-full bg-green-500"></div>
+            <span className="text-green-700 font-bold text-lg">Fale com a Dra.</span>
+            <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
           </a>
 
           <a
             href="#pricing"
-            className="relative group w-full py-6 rounded-[2rem] overflow-hidden shadow-2xl text-center mt-4"
+            className="w-full max-w-xs relative group py-6 rounded-[2rem] overflow-hidden shadow-2xl text-center active:scale-95 transition-transform"
             onClick={(e) => scrollToSection(e, '#pricing')}
           >
             <div className="nav-cta-border absolute -inset-[3px] bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 bg-[length:200%_auto]"></div>

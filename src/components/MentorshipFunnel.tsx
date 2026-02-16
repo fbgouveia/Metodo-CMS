@@ -27,7 +27,7 @@ export const MentorshipFunnel: React.FC = () => {
     };
 
     return (
-        <section id="mentorship-funnel" className="py-32 relative overflow-hidden bg-transparent">
+        <section id="pricing" className="py-16 md:py-32 relative overflow-hidden bg-transparent">
             {/* Background elements */}
             <div className="absolute top-20 right-[-10%] w-[40%] h-[40%] bg-blue-200/20 rounded-full blur-[120px] pointer-events-none"></div>
             <div className="absolute bottom-10 left-[-5%] w-[30%] h-[30%] bg-rose-200/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -62,25 +62,25 @@ export const MentorshipFunnel: React.FC = () => {
                     <div className="flex flex-col lg:flex-row gap-12 items-start">
 
                         {/* Features List */}
-                        <div className="flex-1 space-y-6">
+                        <div className="flex-1 space-y-4 md:space-y-6">
                             {[
                                 {
-                                    title: "Análise de Caso Individual",
-                                    desc: "Eu vou olhar para os SEUS gatilhos específicos e te dar o mapa exato para desarmá-los.",
-                                    tag: "Padrão Ouro",
+                                    title: "Diagnóstico Clínico Pessoal",
+                                    desc: "Eu vou analisar seu histórico e desenhar o mapa exato para o seu cérebro parar de lutar.",
+                                    tag: "Exclusivo",
                                     type: "INDIVIDUAL"
                                 },
                                 {
-                                    title: "Suporte VIP via WhatsApp",
-                                    desc: "Acesso direto à minha equipe e orientações personalizadas para que você nunca fique sem resposta.",
-                                    tag: "Suporte Total",
+                                    title: "WhatsApp Pessoal da Dra. Quitéria",
+                                    desc: "Acesso direto a mim durante 2 meses. Quando o medo vier, você não estará sozinha. Eu estarei no seu bolso.",
+                                    tag: "VIP Acesso Total",
                                     type: "HUMANO"
                                 },
                                 {
-                                    title: "GRÁTIS: Manual de Gestão da Ansiedade",
-                                    desc: "O seu guia físico de R$ 47,00 sai de graça ao garantir sua vaga na mentoria.",
-                                    tag: "Bônus Exclusivo",
-                                    type: "PRESENTADO",
+                                    title: "BÔNUS: Acesso Vitalício ao Método CMS",
+                                    desc: "Você ganha o curso completo (R$ 997) e o Manual (R$ 97) inclusos no seu pacote.",
+                                    tag: "Economia Real",
+                                    type: "PRESENTE",
                                     highlight: true
                                 }
                             ].map((feature, idx) => (
@@ -88,21 +88,21 @@ export const MentorshipFunnel: React.FC = () => {
                                     key={idx}
                                     variants={itemVariants}
                                     whileHover={{ y: -5 }}
-                                    className={`p-10 rounded-[2.5rem] border transition-all duration-300 ${feature.highlight
+                                    className={`p-6 md:p-10 rounded-[2rem] md:rounded-[2.5rem] border transition-all duration-300 ${feature.highlight
                                         ? 'bg-rose-50 border-rose-100 shadow-xl shadow-rose-900/5'
                                         : 'bg-white/40 backdrop-blur-xl border-white hover:border-blue-100 hover:shadow-xl'
                                         }`}
                                 >
-                                    <div className="flex justify-between items-center mb-6">
-                                        <span className={`text-[10px] font-black uppercase tracking-[0.3em] ${feature.highlight ? 'text-rose-600' : 'text-blue-600'}`}>
+                                    <div className="flex justify-between items-center mb-4 md:mb-6">
+                                        <span className={`text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] ${feature.highlight ? 'text-rose-600' : 'text-blue-600'}`}>
                                             {feature.type}
                                         </span>
-                                        <span className={`text-[10px] font-bold uppercase tracking-widest ${feature.highlight ? 'text-rose-400' : 'text-slate-400'}`}>
+                                        <span className={`text-[9px] md:text-[10px] font-bold uppercase tracking-widest ${feature.highlight ? 'text-rose-400' : 'text-slate-400'}`}>
                                             {feature.tag}
                                         </span>
                                     </div>
-                                    <h4 className="text-2xl font-serif text-slate-900 mb-4">{feature.title}</h4>
-                                    <p className="text-slate-600 text-lg leading-relaxed font-light italic">{feature.desc}</p>
+                                    <h4 className="text-xl md:text-2xl font-serif text-slate-900 mb-2 md:mb-4 text-balance leading-tight">{feature.title}</h4>
+                                    <p className="text-slate-600 text-base md:text-lg leading-relaxed font-light italic text-pretty">{feature.desc}</p>
                                 </motion.div>
                             ))}
                         </div>
@@ -111,39 +111,48 @@ export const MentorshipFunnel: React.FC = () => {
                         <div className="w-full lg:w-[420px] lg:sticky lg:top-24">
                             <motion.div
                                 variants={itemVariants}
-                                className="bg-slate-900 text-white p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden border border-white/10"
+                                className="bg-slate-900 text-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl relative overflow-hidden border border-white/10"
                             >
                                 <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-600/20 rounded-full blur-[80px] pointer-events-none"></div>
 
-                                <div className="relative z-10">
-                                    <div className="inline-flex items-center gap-2 mb-10">
-                                        <div className="w-1 h-1 rounded-full bg-green-500 animate-pulse"></div>
-                                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-400">Inscrição Segura</span>
+                                <div className="relative z-10 text-center md:text-left">
+                                    <div className="inline-flex items-center gap-2 mb-8 md:mb-10 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></div>
+                                        <span className="text-[9px] font-black uppercase tracking-[0.2em] text-rose-300">Apenas 3 Vagas/Mês</span>
                                     </div>
 
-                                    <div className="mb-12">
-                                        <div className="flex items-baseline gap-2 opacity-30 line-through mb-2 font-serif italic text-lg text-gray-400">
-                                            <span>R$ 2.990</span>
+                                    <div className="mb-10 md:mb-12">
+                                        <div className="flex items-baseline justify-center md:justify-start gap-2 opacity-50 mb-2 font-serif italic text-sm text-gray-400">
+                                            <span>Valor real: R$ 5.000</span>
                                         </div>
-                                        <div className="flex items-baseline gap-2 mb-2">
-                                            <span className="text-6xl md:text-7xl font-bold tracking-tighter">R$ 1.480</span>
+                                        <div className="flex items-baseline justify-center md:justify-start gap-2 mb-2">
+                                            <span className="text-5xl md:text-6xl font-bold tracking-tighter text-white">R$ 1.480</span>
                                         </div>
-                                        <p className="text-lg text-blue-400 font-bold italic">ou 12x R$ 153,10</p>
+                                        <p className="text-sm text-blue-300 font-bold italic mt-4 border-t border-white/10 pt-4">
+                                            ou 12x de R$ 148,00 <br />
+                                            <span className="text-slate-400 font-normal not-italic text-[10px] uppercase tracking-wider block mt-1">(Menos que uma sessão de terapia)</span>
+                                        </p>
                                     </div>
 
                                     <a
                                         href="https://pay.kiwify.com.br/7zPIO6z"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group flex flex-col items-center justify-center gap-4 w-full py-8 bg-blue-600 rounded-full text-white font-bold uppercase tracking-widest text-sm hover:bg-blue-700 transition-all shadow-xl shadow-blue-900/40 relative overflow-hidden"
+                                        className="group w-full flex items-center justify-center py-6 md:py-8 bg-white text-slate-900 rounded-full font-black uppercase tracking-widest text-xs hover:bg-blue-50 transition-all shadow-xl relative overflow-hidden active:scale-95"
                                     >
-                                        <span className="relative z-10">Garantir Minha Paz</span>
-                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer"></div>
+                                        <span className="relative z-10 text-center">Garantir Mentoria VIP</span>
+                                        <div className="absolute inset-0 bg-blue-100/50 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
                                     </a>
 
-                                    <div className="mt-10 pt-8 border-t border-white/10 flex items-center gap-4 text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-relaxed">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
-                                        Garantia Incondicional de 7 Dias <br />Risco Zero para você.
+                                    <div className="mt-8 md:mt-10 pt-6 border-t border-white/10 space-y-3 flex flex-col items-center md:items-start opacity-70">
+                                        <div className="flex items-center gap-3 text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                                            <div className="w-1 h-1 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+                                            Acompanhamento de 60 Dias
+                                        </div>
+                                        <div className="flex items-center gap-3 text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                                            <div className="w-1 h-1 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+                                            Garantia Blindada de 7 Dias
+                                        </div>
                                     </div>
                                 </div>
                             </motion.div>

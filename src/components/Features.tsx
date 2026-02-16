@@ -50,13 +50,13 @@ export const Features: React.FC = () => {
   return (
     <section id="features" className="py-32 relative bg-transparent overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-3xl mb-24">
+        <div className="max-w-4xl mb-24">
           <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 shadow-sm mb-10">
             <div className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></div>
             <span className="text-xs font-bold text-blue-700 tracking-wider uppercase">Por que o Método CMS?</span>
           </div>
           <h2 className="text-5xl md:text-7xl font-serif text-slate-900 mb-8 leading-[1.1] tracking-tight">
-            Não é sobre <span className="text-blue-600 italic">gerenciar</span> a dor. É sobre deixá-la no passado.
+            Não é sobre <span className="text-blue-600 italic">gerenciar</span> a dor. <br className="hidden lg:block" /> É sobre deixá-la no passado.
           </h2>
           <p className="text-slate-500 text-xl font-light leading-relaxed max-w-2xl">
             O pânico se alimenta da sua incerteza. O Método CMS substitui o medo pelo conhecimento clínico e pela ferramenta prática.

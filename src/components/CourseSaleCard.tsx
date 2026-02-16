@@ -30,9 +30,10 @@ export const CourseSaleCard: React.FC = () => {
                                 <img
                                     src="https://quiteriagouveia.com/wp-content/uploads/2026/02/banner-do-curso-1280x720-1.png"
                                     alt="Método CMS: Sua Retomada"
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[6s] ease-out"
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[6s] ease-out object-center md:object-top"
                                 />
-                                <div className="absolute top-8 right-8 bg-blue-600/90 backdrop-blur-md text-white px-8 py-3 rounded-full font-bold text-sm shadow-xl italic font-serif">
+                                {/* Badge reposicionado para a esquerda para não cobrir o rosto */}
+                                <div className="absolute top-4 left-4 md:top-8 md:left-8 bg-blue-600/90 backdrop-blur-md text-white px-4 py-2 md:px-8 md:py-3 rounded-full font-bold text-xs md:text-sm shadow-xl italic font-serif border border-white/20">
                                     Acesso Vitalício
                                 </div>
                             </div>
@@ -44,19 +45,19 @@ export const CourseSaleCard: React.FC = () => {
                             {/* Benefícios */}
                             <div className="lg:col-span-7 space-y-10">
                                 <p className="text-2xl text-slate-600 leading-relaxed font-light italic border-l-4 border-blue-100 pl-8">
-                                    "A autonomia é o seu maior bem. Com o Método CMS, você tem o mapa clínico para silenciar o cérebro desregulado e voltar a ser dona de si."
+                                    "Você não está comprando um curso. Você está pagando o resgate da sua própria vida. O Método CMS é o mapa clínico para silenciar o cérebro e voltar a ser dona de si."
                                 </p>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {[
                                         "7 Módulos de Reativação Neural",
-                                        "Acesso Vitalício ao Protocolo",
+                                        "Protocolo Anti-Crise de 5min",
                                         "Aulas de Alívio Físico Imediato",
-                                        "Comunidade Segura de Alunas",
-                                        "Mapa da Autonomia em PDF",
-                                        "Suporte VIP via WhatsApp"
+                                        "Comunidade de Mães que Silenciam",
+                                        "Mapa da Autonomia (PDF)",
+                                        "Suporte Humanizado Vitalício"
                                     ].map((item, i) => (
-                                        <div key={i} className="flex items-center gap-4 text-slate-700 p-4 bg-slate-50/50 rounded-2xl border border-slate-100">
+                                        <div key={i} className="flex items-center gap-4 text-slate-700 p-4 bg-slate-50/50 rounded-2xl border border-slate-100 hover:border-blue-200 transition-colors">
                                             <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                                             <span className="text-xs font-black uppercase tracking-widest text-slate-500 leading-none">{item}</span>
                                         </div>
@@ -66,17 +67,23 @@ export const CourseSaleCard: React.FC = () => {
 
                             {/* Card de Preço (Sem sobreposição) */}
                             <div className="lg:col-span-5">
-                                <div className="bg-slate-900 rounded-[3rem] p-10 md:p-12 shadow-2xl relative overflow-hidden text-white">
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full blur-3xl"></div>
+                                <div className="bg-slate-900 rounded-[3rem] p-10 md:p-12 shadow-2xl relative overflow-hidden text-white group hover:shadow-[0_20px_80px_-10px_rgba(37,99,235,0.3)] transition-all duration-700">
+                                    <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 rounded-full blur-[80px] group-hover:bg-blue-500/30 transition-all"></div>
 
                                     <div className="relative z-10 space-y-8">
                                         <div className="text-center lg:text-left">
-                                            <span className="text-blue-400 text-[10px] font-black uppercase tracking-[0.3em] block mb-4">Investimento Especial</span>
-                                            <div className="flex items-baseline justify-center lg:justify-start gap-4">
-                                                <span className="text-xl font-serif text-slate-500 italic">12x</span>
-                                                <span className="text-7xl font-black tracking-tighter">49,70</span>
+                                            <div className="flex items-center justify-between mb-4">
+                                                <span className="text-blue-400 text-[10px] font-black uppercase tracking-[0.3em]">Investimento Único</span>
+                                                <span className="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest border border-green-500/30">-50% OFF HOJE</span>
                                             </div>
-                                            <p className="text-slate-400 text-xs mt-2 font-medium">Equivalente a menos de R$ 1,70 por dia</p>
+
+                                            <div className="flex items-baseline justify-center lg:justify-start gap-2">
+                                                <span className="text-xl font-serif text-slate-500 italic">12x de</span>
+                                                <span className="text-7xl font-black tracking-tighter text-white">49,70</span>
+                                            </div>
+                                            <p className="text-slate-400 text-xs mt-3 font-medium flex items-center justify-center lg:justify-start gap-2">
+                                                <span>⚡ Menos que 1 café por dia (R$ 1,65)</span>
+                                            </p>
                                         </div>
 
                                         <a
@@ -85,18 +92,19 @@ export const CourseSaleCard: React.FC = () => {
                                             rel="noopener noreferrer"
                                             className="group relative block w-full py-7 bg-blue-600 text-white rounded-full font-black uppercase tracking-[0.2em] text-center shadow-xl hover:bg-white hover:text-slate-900 transition-all duration-500 text-xs active:scale-95 overflow-hidden"
                                         >
-                                            <span className="relative z-10">Resgatar Minha Paz Hoje</span>
-                                            <div className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                                            <span className="relative z-10 group-hover:hidden">Iniciar Meu Resgate</span>
+                                            <span className="relative z-10 hidden group-hover:inline">Quero Minha Paz de Volta</span>
+                                            <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></div>
                                         </a>
 
-                                        <div className="flex justify-center lg:justify-start gap-8 opacity-60">
+                                        <div className="flex justify-center lg:justify-start gap-6 opacity-60 pt-2">
                                             <div className="flex items-center gap-2">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
-                                                <span className="text-[9px] font-bold uppercase tracking-widest text-slate-300">Seguro</span>
+                                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.5)]"></div>
+                                                <span className="text-[9px] font-bold uppercase tracking-widest text-slate-300">Ambiente Seguro</span>
                                             </div>
                                             <div className="flex items-center gap-2">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
-                                                <span className="text-[9px] font-bold uppercase tracking-widest text-slate-300">Garantido</span>
+                                                <div className="w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.5)]"></div>
+                                                <span className="text-[9px] font-bold uppercase tracking-widest text-slate-300">7 Dias de Garantia</span>
                                             </div>
                                         </div>
                                     </div>

@@ -7,54 +7,54 @@ export const TriplePricing: React.FC = () => {
         {
             id: 'book',
             name: "Manual Gestão da Ansiedade",
-            subtitle: "O Primeiro Passo: Alívio prático para momentos críticos.",
+            subtitle: "Sua Rota de Fuga Imediata: Técnicas práticas para silenciar crises em minutos.",
             price: "47,00",
             originalPrice: "97,00",
             badge: "Início",
             type: "ESSENCIAL",
             features: [
                 "Guia Digital (PDF)",
-                "Técnicas de Respiração",
-                "SOS Crise de Pânico",
-                "Acesso Imediato"
+                "O Alívio da Respiração Neural",
+                "Protocolo SOS Crise de Pânico",
+                "Acesso Imediato no E-mail"
             ],
-            cta: "Começar Agora",
+            cta: "Começar Minha Fuga",
             primary: false
         },
         {
             id: 'course',
             name: "Método CMS Completo",
-            subtitle: "A Solução Definitiva: O mapa real para silenciar o medo.",
+            subtitle: "A Retomada de Identidade: O passo a passo clínico para viver sem medo.",
             price: "497,00",
             originalPrice: "997,00",
-            badge: "Mais Procurado",
-            type: "FORMAÇÃO",
+            badge: "+2.500 Alunas",
+            type: "LIBERDADE",
             features: [
-                "7 Módulos Gravados",
-                "Protocolo de Resgate",
-                "Comunidade de Alunas",
-                "Acesso Vitalício",
-                "Certificado de Conclusão"
+                "Acesso ao Mapeamento Neural",
+                "7 Módulos de Cura Profunda",
+                "Comunidade Mães que Silenciam",
+                "Acesso Vitalício (Para Sempre)",
+                "Bônus: Mentorias Gravadas"
             ],
-            cta: "Garantir Minha Vaga",
+            cta: "Garantir Minha Liberdade",
             primary: true
         },
         {
             id: 'mentorship',
             name: "Mentoria VIP Individual",
-            subtitle: "O Resgate: Acompanhamento individual e profundo.",
+            subtitle: "O Resgate Profundo: Dra. Quitéria pegando na sua mão pessoalmente.",
             price: "1.480,00",
             originalPrice: "2.500,00",
-            badge: "Vagas por Mês",
-            type: "INDIVIDUAL",
+            badge: "Restrito",
+            type: "EXCLUSIVO",
             features: [
-                "Curso CMS Completo",
-                "6 Encontros ao Vivo",
-                "Suporte via WhatsApp",
-                "Análise de Caso Individual",
-                "Manual CMS Grátis"
+                "Tudo do Método CMS Completo",
+                "6 Encontros Individuais (Zoom)",
+                "Suporte Direto (WhatsApp VIP)",
+                "Ajuste de Rota Personalizado",
+                "Prioridade em Novos Cursos"
             ],
-            cta: "Agendar Mentoria",
+            cta: "Agendar Meu Resgate",
             primary: false
         }
     ];

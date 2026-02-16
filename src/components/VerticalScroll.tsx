@@ -77,7 +77,8 @@ export const VerticalScroll: React.FC = () => {
             duration: 0.8,
             scrollTrigger: {
               trigger: card,
-              start: "top 85%",
+              start: "top 95%", // Dispara assim que aponta na tela
+              end: "bottom 20%",
               toggleActions: "play none none reverse"
             }
           }
@@ -89,7 +90,7 @@ export const VerticalScroll: React.FC = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative py-20 px-6 bg-transparent">
+    <section id="method" ref={containerRef} className="relative py-4 md:py-20 px-4 md:px-6 bg-transparent -mt-12 md:mt-0">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
 
@@ -124,7 +125,7 @@ export const VerticalScroll: React.FC = () => {
           </aside>
 
           {/* --- RIGHT COL (Scrolling Cards) --- */}
-          <div ref={rightRef} className="flex-1 space-y-24 lg:space-y-48 py-12">
+          <div ref={rightRef} className="flex-1 space-y-8 lg:space-y-24 py-4 md:py-12">
             {methodSteps.map((step, index) => (
               <div
                 key={index}

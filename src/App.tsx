@@ -22,19 +22,21 @@ import { NeuralCursor } from './components/NeuralCursor';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
+import { ClaraChat } from './components/ClaraChat';
+
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 function App() {
   return (
-    <div className="min-h-screen w-full relative font-sans text-[#1d1d1f]">
+    <div className="min-h-screen w-full relative font-sans text-[#1d1d1f] overflow-x-hidden">
       <NeuralCursor />
 
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#f0f4f8]">
-        <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-300/40 rounded-full blur-[120px] mix-blend-multiply animate-blob opacity-80"></div>
-        <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] bg-blue-200/40 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-2000 opacity-80"></div>
-        <div className="absolute bottom-[-20%] left-[20%] w-[700px] h-[700px] bg-cyan-200/40 rounded-full blur-[120px] mix-blend-multiply animate-blob animation-delay-4000 opacity-80"></div>
+        <div className="absolute top-[-10%] left-[-10%] w-64 h-64 md:w-[800px] md:h-[800px] bg-blue-300/40 rounded-full blur-[80px] md:blur-[120px] mix-blend-multiply animate-blob opacity-80"></div>
+        <div className="absolute top-[20%] right-[-10%] w-56 h-56 md:w-[600px] md:h-[600px] bg-blue-200/40 rounded-full blur-[80px] md:blur-[120px] mix-blend-multiply animate-blob animation-delay-2000 opacity-80"></div>
+        <div className="absolute bottom-[-20%] left-[20%] w-72 h-72 md:w-[700px] md:h-[700px] bg-cyan-200/40 rounded-full blur-[80px] md:blur-[120px] mix-blend-multiply animate-blob animation-delay-4000 opacity-80"></div>
       </div>
 
       <Navbar />
@@ -86,6 +88,7 @@ function App() {
       <Footer />
       <StickyCTA />
       <WhatsAppFloat />
+      <ClaraChat />
 
     </div>
   );

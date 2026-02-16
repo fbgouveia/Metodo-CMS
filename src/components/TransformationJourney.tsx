@@ -96,50 +96,46 @@ export const TransformationJourney: React.FC = () => {
                 </div>
 
                 <div className="relative max-w-5xl mx-auto">
-                    {/* Linha Neural Central - Scoped to this section */}
-                    <div className="absolute left-1/2 top-0 bottom-0 w-[2px] md:w-[4px] -translate-x-1/2 hidden md:block">
+                    {/* Linha Neural Central (Desktop) / Lateral (Mobile) */}
+                    <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] md:w-[4px] md:-translate-x-1/2 block">
                         {/* Trilho Base */}
                         <div className="absolute inset-0 bg-slate-100/50 rounded-full"></div>
 
                         {/* Linha de Energia Dinâmica */}
                         <div
-                            ref={lineRef}
-                            className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-slate-900 via-blue-600 to-emerald-400 origin-top rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)] scale-y-0"
+                            ref={(el) => { lineRef.current = el; }}
+                            className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-slate-900 via-blue-600 to-emerald-400 origin-top rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)]"
                         >
                             {/* Ponta de Brilho (Neural Head) */}
                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-32 bg-gradient-to-t from-white via-blue-300 to-transparent blur-md rounded-full opacity-80"></div>
                         </div>
                     </div>
 
-                    <div className="space-y-24 md:space-y-32">
+                    <div className="space-y-16 md:space-y-32">
                         {journeySteps.map((step, index) => (
                             <div
                                 key={index}
-                                className={`journey-item flex flex-col md:flex-row items-center gap-8 md:gap-16 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                                className={`journey-item flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-16 relative pl-20 md:pl-0 ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                                     }`}
                             >
                                 {/* Lado do Conteúdo */}
-                                <div className={`flex-1 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
-                                    <div className={`p-8 rounded-[2.5rem] bg-white shadow-xl border border-slate-50 transition-transform duration-500 hover:-translate-y-2`}>
-                                        <h3 className="text-2xl font-serif text-slate-900 mb-4">{step.title}</h3>
-                                        <p className="text-slate-600 font-light leading-relaxed">
+                                <div className={`flex-1 w-full ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
+                                    <div className={`p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] bg-white shadow-lg md:shadow-xl border border-slate-50 transition-transform duration-500 hover:-translate-y-1 md:hover:-translate-y-2 group hover:border-blue-100`}>
+                                        <h3 className="text-xl md:text-2xl font-serif text-slate-900 mb-3 md:mb-4 text-balance leading-tight group-hover:text-blue-700 transition-colors">{step.title}</h3>
+                                        <p className="text-slate-600 text-sm md:text-base font-light leading-relaxed text-pretty">
                                             {step.description}
                                         </p>
                                     </div>
                                 </div>
 
-                                {/* Marcador Tipográfico Central */}
-                                <div className="relative z-10">
-                                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-lg ring-8 ring-white rotate-45 group-hover:rotate-0 transition-transform duration-700`}>
-                                        <span className="text-3xl font-serif font-black -rotate-45 group-hover:rotate-0 transition-transform duration-700">{step.roman}</span>
+                                {/* Marcador Tipográfico (Mobile: Lateral Absoluto / Desktop: Central Estático) */}
+                                <div className="absolute left-4 top-0 md:static md:left-auto md:top-auto z-10 flex-shrink-0">
+                                    <div className={`w-12 h-12 md:w-20 md:h-20 rounded-xl md:rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center text-white shadow-lg ring-4 md:ring-8 ring-white rotate-45 transform transition-transform duration-700 hover:rotate-0 hover:scale-110`}>
+                                        <span className="text-xl md:text-3xl font-serif font-black -rotate-45">{step.roman}</span>
                                     </div>
-                                    {/* Numero auxiliar sutil */}
-                                    <span className="absolute -top-4 -right-4 bg-slate-900 text-white text-[8px] p-2 rounded-full font-bold w-6 h-6 flex items-center justify-center">
-                                        0{index + 1}
-                                    </span>
                                 </div>
 
-                                {/* Lado Vazio (para equilíbrio no grid) */}
+                                {/* Lado Vazio (para equilíbrio no grid desktop) */}
                                 <div className="flex-1 hidden md:block"></div>
                             </div>
                         ))}

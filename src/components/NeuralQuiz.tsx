@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
-// Lucide icons removed to follow "Non-Obvious Persuasive Design" protocol
+import { generateClaraDossier } from '../services/gemini';
 
 export const NeuralQuiz: React.FC = () => {
     const [step, setStep] = useState(0);
     const [answers, setAnswers] = useState<string[]>([]);
     const [progress, setProgress] = useState(0);
+    const [dossier, setDossier] = useState<string | null>(null);
 
     const questions = [
         {
@@ -147,7 +147,28 @@ export const NeuralQuiz: React.FC = () => {
 
     useEffect(() => {
         setProgress((step / questions.length) * 100);
-    }, [step]);
+
+        if (step === questions.length && !dossier) {
+            // Lógica de cluster real baseada nas respostas
+            const counts = { PHYSICAL: 0, MIND: 0, LIFE: 0 };
+            questions.forEach((q, idx) => {
+                if (answers[idx]) counts[q.cluster]++;
+            });
+
+            let dominant: 'FISICO' | 'MENTAL' | 'VIDA' = 'FISICO';
+            if (counts.MIND >= counts.PHYSICAL && counts.MIND >= counts.LIFE) dominant = 'MENTAL';
+            else if (counts.LIFE >= counts.PHYSICAL && counts.LIFE >= counts.MIND) dominant = 'VIDA';
+
+            generateClaraDossier({ answers, cluster: dominant }).then(res => setDossier(res));
+        }
+    }, [step, answers, questions.length, dossier]);
+
+    const handleWhatsApp = () => {
+        const baseMsg = "Olá Clara! Acabei de fazer o Mapeamento no site e quero meu silêncio de volta.";
+        const aiContext = dossier ? `\n\nMEU DOSSIÊ NEURAL:\n${dossier}` : "";
+        const encodedMsg = encodeURIComponent(baseMsg + aiContext);
+        window.open(`https://api.whatsapp.com/send?phone=5511956185501&text=${encodedMsg}`, '_blank');
+    };
 
     return (
         <section className="py-24 px-4 bg-slate-900 relative overflow-hidden">
@@ -156,7 +177,6 @@ export const NeuralQuiz: React.FC = () => {
             </div>
 
             <div className="max-w-3xl mx-auto relative z-10">
-
                 <div className="text-center mb-16 space-y-6">
                     <span className="text-blue-500 font-black tracking-[0.4em] text-[10px] uppercase block">Resgate sua Identidade</span>
                     <h2 className="text-4xl md:text-6xl font-serif text-white leading-[1.1] max-w-3xl mx-auto">
@@ -170,7 +190,6 @@ export const NeuralQuiz: React.FC = () => {
 
                 {step < questions.length ? (
                     <div className="bg-white/5 backdrop-blur-2xl p-8 md:p-14 rounded-[3rem] shadow-2xl border border-white/10 animate-fade-in transition-all duration-500">
-                        {/* Quiz Progress and Questions (Keep existing logic) */}
                         <div className="w-full h-1 bg-white/5 rounded-full mb-12 overflow-hidden">
                             <div
                                 className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 transition-all duration-700 ease-out"
@@ -188,103 +207,87 @@ export const NeuralQuiz: React.FC = () => {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-4">
+                        <div className="grid grid-cols-1 gap-3 md:gap-4">
                             {questions[step].options.map((opt, i) => (
                                 <button
                                     key={i}
                                     onClick={() => handleOption(opt)}
-                                    className="group flex items-center justify-between p-6 rounded-2xl border border-white/5 bg-white/5 hover:border-blue-500/50 hover:bg-blue-600/5 transition-all text-left"
+                                    className="group relative w-full flex items-center justify-between p-5 md:p-6 rounded-2xl border border-white/10 bg-white/5 active:bg-blue-600/20 active:border-blue-500/50 hover:border-blue-500/30 transition-all text-left touch-manipulation min-h-[72px] active:scale-[0.98] duration-200"
                                 >
-                                    <span className="text-slate-300 group-hover:text-white transition-colors text-sm md:text-base font-light italic">
+                                    <span className="text-slate-200 group-active:text-white transition-colors text-base md:text-lg font-light leading-snug w-[90%]">
                                         {opt.split(') ')[1]}
                                     </span>
-                                    <div className="w-1.5 h-1.5 rounded-full bg-slate-700 group-hover:bg-blue-400 group-hover:scale-150 transition-all" />
+                                    <div className="w-4 h-4 rounded-full border border-slate-600 group-active:bg-blue-500 group-active:border-blue-400 transition-all flex-shrink-0" />
                                 </button>
                             ))}
                         </div>
                     </div>
                 ) : (
-                    <div className="bg-white p-8 md:p-16 rounded-[4rem] shadow-2xl text-center animate-fade-in-up border-4 border-blue-500/5">
-                        <div className="mb-10">
-                            <span className="text-[11px] font-black text-blue-600 uppercase tracking-[0.4em] block mb-2 font-sans">Mapeamento de Autonomia Concluído</span>
-                            <div className="w-16 h-[1px] bg-blue-100 mx-auto"></div>
+                    <div className="bg-white p-6 md:p-16 rounded-[2.5rem] md:rounded-[4rem] shadow-2xl text-center animate-fade-in-up border-4 border-blue-500/5 max-w-[95vw] mx-auto">
+                        <div className="mb-8 md:mb-10">
+                            <span className="text-[10px] md:text-[11px] font-black text-blue-600 uppercase tracking-[0.3em] block mb-2 font-sans">Mapeamento Concluído</span>
+                            <div className="w-12 h-[1px] bg-blue-100 mx-auto"></div>
                         </div>
 
-                        <h3 className="text-3xl md:text-5xl font-serif text-slate-900 mb-8 tracking-tight">
-                            Querida, o seu <span className="text-blue-600 italic">silêncio</span> começou.
+                        <h3 className="text-3xl md:text-5xl font-serif text-slate-900 mb-6 md:mb-8 tracking-tight text-center leading-tight">
+                            Querida, o seu <br /><span className="text-blue-600 italic">silêncio</span> começou agora.
                         </h3>
 
-                        <p className="text-slate-500 text-lg mb-12 font-light leading-relaxed italic border-l-2 border-blue-100 pl-8 text-left max-w-2xl mx-auto">
-                            Eu li cada uma das suas <span className="text-blue-600 font-bold">10 escolhas</span>. Eu senti a sua dor através delas, e agora entendo exatamente onde o seu medo está escondido. Veja abaixo a análise detalhada baseada no seu perfil:
+                        <p className="text-slate-500 text-base md:text-lg mb-8 md:mb-12 font-light leading-relaxed italic border-l-2 border-blue-100 pl-6 md:pl-8 text-left max-w-2xl mx-auto">
+                            Eu li cada uma das suas <span className="text-blue-600 font-bold">10 escolhas</span>. Eu senti a sua dor através delas, e agora entendo onde o medo se esconde.
                         </p>
 
-                        <div className="max-w-2xl mx-auto space-y-12 text-left mb-16">
+                        <div className="max-w-2xl mx-auto space-y-8 md:space-y-12 text-left mb-10 md:mb-16">
 
-                            {/* CLUSTER 1: SENSORIAL/FÍSICO (Análise de Q1, Q3, Q5) */}
-                            <div className="relative group">
-                                <div className="absolute -inset-4 bg-blue-50/50 rounded-[3rem] -z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <div className="flex items-start gap-6">
-                                    <span className="text-5xl font-serif text-blue-100">01</span>
-                                    <div className="space-y-4">
-                                        <h4 className="font-serif text-2xl text-slate-900 italic">O Alarme do seu Corpo</h4>
-                                        <p className="text-slate-600 text-base leading-relaxed font-light">
-                                            Seus sintomas físicos de <span className="text-blue-600 font-medium">"{answers[0]}"</span> e a sensação de <span className="text-blue-600 font-medium">"{answers[2]}"</span> indicam um sistema nervoso em hiper-vigilância constante. Você sente que <span className="text-slate-900 font-medium">"{answers[4]}"</span>, o que é o sinal mais claro de que seu corpo não é mais um porto seguro. No <strong className="text-blue-600">Módulo 3</strong>, vamos desativar esse alarme biológico para que você volte a habitar seu corpo com paz.
+                            {/* Card 1 */}
+                            <div className="relative group p-4 md:p-0">
+                                <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6">
+                                    <span className="text-4xl md:text-5xl font-serif text-blue-100 leading-none">01</span>
+                                    <div className="space-y-2 md:space-y-4">
+                                        <h4 className="font-serif text-xl md:text-2xl text-slate-900 italic">Seu corpo pede socorro</h4>
+                                        <p className="text-slate-600 text-sm md:text-base leading-relaxed font-light bg-slate-50 md:bg-transparent p-4 md:p-0 rounded-2xl">
+                                            Sintomas como <span className="text-blue-600 font-bold">"{answers[0]}"</span> não são defeitos. São pedidos de ajuda do seu sistema nervoso exausto.
                                         </p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="h-[1px] w-full bg-slate-100"></div>
-
-                            {/* CLUSTER 2: MENTAL/PROJETIVO (Análise de Q2, Q6, Q9) */}
-                            <div className="relative group">
-                                <div className="absolute -inset-4 bg-cyan-50/50 rounded-[3rem] -z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <div className="flex items-start gap-6">
-                                    <span className="text-5xl font-serif text-cyan-100">02</span>
-                                    <div className="space-y-4">
-                                        <h4 className="font-serif text-2xl text-slate-900 italic">O Labirinto dos Pensamentos</h4>
-                                        <p className="text-slate-600 text-base leading-relaxed font-light">
-                                            Quando você precisa sair de casa, o pensamento de <span className="text-cyan-600 font-medium">"{answers[1]}"</span> domina sua mente. Isso se agrava no silêncio da noite, onde <span className="text-cyan-600 font-medium">"{answers[5]}"</span>. O seu maior temor para o futuro, que é <span className="text-slate-900 font-medium">"{answers[8]}"</span>, é o centro do nosso <strong className="text-cyan-600">Protocolo de Reativação Neural</strong>. Vamos reconstruir sua rota de fuga mental.
+                            {/* Card 2 */}
+                            <div className="relative group p-4 md:p-0">
+                                <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6">
+                                    <span className="text-4xl md:text-5xl font-serif text-cyan-100 leading-none">02</span>
+                                    <div className="space-y-2 md:space-y-4">
+                                        <h4 className="font-serif text-xl md:text-2xl text-slate-900 italic">O roubo da liberdade</h4>
+                                        <p className="text-slate-600 text-sm md:text-base leading-relaxed font-light bg-slate-50 md:bg-transparent p-4 md:p-0 rounded-2xl">
+                                            Quando <span className="text-cyan-600 font-bold">"{answers[1]?.substring(0, 40)}..."</span> acontece, sua autonomia é sequestrada. É hora de pagar o resgate.
                                         </p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="h-[1px] w-full bg-slate-100"></div>
-
-                            {/* CLUSTER 3: IMPACTO DE VIDA/LIBERDADE (Análise de Q4, Q7, Q8, Q10) */}
-                            <div className="p-10 rounded-[3rem] bg-slate-900 text-white shadow-2xl relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-[80px]"></div>
-                                <div className="relative z-10 space-y-6">
-                                    <h4 className="font-serif text-3xl italic">Sua Retomada</h4>
-                                    <p className="text-slate-300 text-base leading-relaxed font-light italic">
-                                        O preço que você pagou — <span className="text-blue-300 font-medium">"{answers[6]}"</span> — foi alto demais, e ter que <span className="text-blue-300 font-medium">"{answers[3]}"</span> é uma ferida que precisa ser curada. O seu desejo profundo de <span className="text-blue-300 font-medium">"{answers[7]}"</span> é a meta do nosso trabalho. Ao escolher que <span className="text-white font-bold italic">"{answers[9]}"</span>, você acaba de dar o passo mais importante da sua vida nos últimos anos.
+                            <div className="p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] bg-slate-900 text-white shadow-2xl relative overflow-hidden mx-[-10px] md:mx-0">
+                                <div className="relative z-10 space-y-4 md:space-y-6">
+                                    <h4 className="font-serif text-2xl md:text-3xl italic">Sua Nova Rota</h4>
+                                    <p className="text-slate-300 text-sm md:text-base leading-relaxed font-light italic">
+                                        Você disse que deseja <span className="text-blue-300 font-bold">"{answers[7]}"</span>. A Clara já tem o mapa para isso.
                                     </p>
-
-                                    <div className="pt-6 border-t border-white/10">
-                                        <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-3">Plano de Ação Sugerido:</p>
-                                        <p className="text-slate-400 text-sm leading-relaxed">
-                                            A <strong className="text-white">Mentoria VIP</strong> é a minha recomendação direta para o seu caso. Lá, eu mesma cuidarei de cada detalhe para que o silêncio que você busca se torne permanente.
-                                        </p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex flex-col gap-6">
+                        <div className="flex flex-col gap-4 md:gap-6 px-2 md:px-0">
+                            <button
+                                onClick={handleWhatsApp}
+                                className="group relative w-full flex items-center justify-center gap-4 px-6 py-5 md:py-8 bg-green-600 text-white rounded-full transition-all shadow-xl active:scale-[0.98] overflow-hidden"
+                            >
+                                <span className="relative z-10 uppercase tracking-[0.2em] text-xs md:text-sm font-sans font-black">Resgatar Minha Vida no WhatsApp</span>
+                            </button>
                             <a
                                 href="#pricing"
-                                className="group relative inline-flex items-center justify-center gap-10 px-14 py-8 bg-blue-600 text-white rounded-full font-bold text-xl transition-all shadow-2xl hover:scale-105 active:scale-95 overflow-hidden"
+                                className="text-slate-400 hover:text-blue-600 transition-colors text-[10px] md:text-xs uppercase tracking-widest text-center font-bold py-4 block"
                             >
-                                <span className="relative z-10 uppercase tracking-[0.3em] text-sm">Iniciar Minha Cura Agora</span>
-                                <div className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-500 opacity-20"></div>
+                                Ver opções de tratamento no site
                             </a>
-
-                            <div className="max-w-md mx-auto py-4">
-                                <p className="text-[9px] text-slate-400 font-medium uppercase tracking-[0.1em] leading-relaxed">
-                                    Atenção: Este mapeamento é uma ferramenta educacional baseada em sua auto-avaliação. Sua vida é preciosa. Para suporte imediato, ligue 188 (CVV).
-                                </p>
-                            </div>
                         </div>
                     </div>
                 )}
@@ -294,7 +297,6 @@ export const NeuralQuiz: React.FC = () => {
                         {step < questions.length ? "Mapeando sua rota de fuga..." : "Sua Rota de Liberdade está pronta."}
                     </p>
                 </div>
-
             </div>
         </section>
     );
