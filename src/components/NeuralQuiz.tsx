@@ -170,7 +170,7 @@ export const NeuralQuiz: React.FC = () => {
 
                 {step < questions.length ? (
                     <div className="bg-white/5 backdrop-blur-2xl p-8 md:p-14 rounded-[3rem] shadow-2xl border border-white/10 animate-fade-in transition-all duration-500">
-
+                        {/* Quiz Progress and Questions (Keep existing logic) */}
                         <div className="w-full h-1 bg-white/5 rounded-full mb-12 overflow-hidden">
                             <div
                                 className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 transition-all duration-700 ease-out"
@@ -206,59 +206,67 @@ export const NeuralQuiz: React.FC = () => {
                 ) : (
                     <div className="bg-white p-8 md:p-16 rounded-[4rem] shadow-2xl text-center animate-fade-in-up border-4 border-blue-500/5">
                         <div className="mb-10">
-                            <span className="text-[11px] font-black text-blue-600 uppercase tracking-[0.4em] block mb-2">Análise de Acolhimento</span>
+                            <span className="text-[11px] font-black text-blue-600 uppercase tracking-[0.4em] block mb-2 font-sans">Diagnóstico de Autonomia Concluído</span>
                             <div className="w-16 h-[1px] bg-blue-100 mx-auto"></div>
                         </div>
 
-                        <h3 className="text-3xl md:text-4xl font-serif text-slate-900 mb-6 tracking-tight">
+                        <h3 className="text-3xl md:text-5xl font-serif text-slate-900 mb-8 tracking-tight">
                             Querida, o seu <span className="text-blue-600 italic">silêncio</span> começou.
                         </h3>
 
                         <p className="text-slate-500 text-lg mb-12 font-light leading-relaxed italic border-l-2 border-blue-100 pl-8 text-left max-w-2xl mx-auto">
-                            Eu li cada uma das suas respostas. Eu senti a sua dor através delas, e quero que saiba: você não está mais sozinha nessa luta. Veja como o Método CMS vai cuidar de você:
+                            Eu li cada uma das suas <span className="text-blue-600 font-bold">10 escolhas</span>. Eu senti a sua dor através delas, e agora entendo exatamente onde o seu medo está escondido. Veja abaixo a análise detalhada baseada no seu perfil:
                         </p>
 
-                        <div className="max-w-2xl mx-auto space-y-8 text-left mb-16">
-                            {/* Bloco 1: O Alarme do Corpo */}
-                            <div className="p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 relative group overflow-hidden">
-                                <span className="absolute -top-4 -right-4 text-8xl font-serif text-slate-200/40 select-none">I</span>
-                                <h4 className="font-serif text-xl text-slate-900 mb-4 flex items-center gap-3 relative z-10">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-600"></div>
-                                    Para o seu Alarme Físico
-                                </h4>
-                                <p className="text-slate-600 text-sm leading-relaxed font-light relative z-10">
-                                    Ao me contar que sente <strong className="text-blue-600 italic">"{answers[0]}"</strong> e <strong className="text-blue-600 italic">"{answers[2]}"</strong>, você confirma que seu sistema de sobrevivência está 'travado' no modo de ataque. No <strong className="text-slate-900">Módulo 3</strong>, vamos desativar fisicamente esse alarme através do Nervo Vago, devolvendo a calma que seu corpo esqueceu como ter.
-                                </p>
+                        <div className="max-w-2xl mx-auto space-y-12 text-left mb-16">
+
+                            {/* CLUSTER 1: SENSORIAL/FÍSICO (Análise de Q1, Q3, Q5) */}
+                            <div className="relative group">
+                                <div className="absolute -inset-4 bg-blue-50/50 rounded-[3rem] -z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="flex items-start gap-6">
+                                    <span className="text-5xl font-serif text-blue-100">01</span>
+                                    <div className="space-y-4">
+                                        <h4 className="font-serif text-2xl text-slate-900 italic">O Alarme do seu Corpo</h4>
+                                        <p className="text-slate-600 text-base leading-relaxed font-light">
+                                            Seus sintomas físicos de <span className="text-blue-600 font-medium">"{answers[0]}"</span> e a sensação de <span className="text-blue-600 font-medium">"{answers[2]}"</span> indicam um sistema nervoso em hiper-vigilância constante. Você sente que <span className="text-slate-900 font-medium">"{answers[4]}"</span>, o que é o sinal mais claro de que seu corpo não é mais um porto seguro. No <strong className="text-blue-600">Módulo 3</strong>, vamos desativar esse alarme biológico para que você volte a habitar seu corpo com paz.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
 
-                            {/* Bloco 2: O Silêncio da Mente */}
-                            <div className="p-10 rounded-[2.5rem] bg-blue-50/30 border border-blue-100/50 relative group overflow-hidden">
-                                <span className="absolute -top-4 -right-4 text-8xl font-serif text-blue-100/40 select-none">II</span>
-                                <h4 className="font-serif text-xl text-slate-900 mb-4 flex items-center gap-3 relative z-10">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-500"></div>
-                                    Para o Silêncio dos Pensamentos
-                                </h4>
-                                <p className="text-slate-600 text-sm leading-relaxed font-light relative z-10">
-                                    Aquelas noites onde você sente <strong className="text-blue-700 italic">"{answers[5]}"</strong> e teme <strong className="text-blue-700 italic">"{answers[8]}"</strong> são o foco do nosso <strong className="text-slate-900">Módulo 4</strong>. Você vai aprender a 'educar' sua mente para que ela pare de arquitetar tragédias e volte a ser o seu lugar de descanso.
-                                </p>
+                            <div className="h-[1px] w-full bg-slate-100"></div>
+
+                            {/* CLUSTER 2: MENTAL/PROJETIVO (Análise de Q2, Q6, Q9) */}
+                            <div className="relative group">
+                                <div className="absolute -inset-4 bg-cyan-50/50 rounded-[3rem] -z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="flex items-start gap-6">
+                                    <span className="text-5xl font-serif text-cyan-100">02</span>
+                                    <div className="space-y-4">
+                                        <h4 className="font-serif text-2xl text-slate-900 italic">O Labirinto dos Pensamentos</h4>
+                                        <p className="text-slate-600 text-base leading-relaxed font-light">
+                                            Quando você precisa sair de casa, o pensamento de <span className="text-cyan-600 font-medium">"{answers[1]}"</span> domina sua mente. Isso se agrava no silêncio da noite, onde <span className="text-cyan-600 font-medium">"{answers[5]}"</span>. O seu maior temor para o futuro, que é <span className="text-slate-900 font-medium">"{answers[8]}"</span>, é o centro do nosso <strong className="text-cyan-600">Protocolo de Reativação Neural</strong>. Vamos reconstruir sua rota de fuga mental.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
 
-                            {/* Bloco 3: O Resgate da Vida */}
-                            <div className="p-10 rounded-[2.5rem] bg-slate-900 text-white relative group overflow-hidden shadow-2xl">
-                                <span className="absolute -top-4 -right-4 text-8xl font-serif text-white/5 select-none">III</span>
-                                <h4 className="font-serif text-xl text-white mb-4 flex items-center gap-3 relative z-10">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
-                                    O Seu Ponto de Virada
-                                </h4>
-                                <p className="text-slate-400 text-sm leading-relaxed font-light relative z-10 italic">
-                                    Você me disse que o preço real foi <strong className="text-blue-300">"{answers[6]}"</strong>. Saiba que o Método CMS foi feito para que o seu desejo de <strong className="text-blue-300">"{answers[7]}"</strong> se torne a sua nova realidade amanhã.
-                                </p>
+                            <div className="h-[1px] w-full bg-slate-100"></div>
 
-                                <div className="mt-8 pt-6 border-t border-white/10 relative z-10">
-                                    <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest mb-2 font-sans">Recomendação Profissional:</p>
-                                    <p className="text-xs text-slate-300 leading-relaxed font-light">
-                                        Dada a profundidade da sua dor, a <strong className="text-white">Mentoria VIP</strong> é o caminho onde eu estarei ao seu lado, 'segurando sua mão' em cada descoberta, para garantir que você não desista até estar livre.
+                            {/* CLUSTER 3: IMPACTO DE VIDA/LIBERDADE (Análise de Q4, Q7, Q8, Q10) */}
+                            <div className="p-10 rounded-[3rem] bg-slate-900 text-white shadow-2xl relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-[80px]"></div>
+                                <div className="relative z-10 space-y-6">
+                                    <h4 className="font-serif text-3xl italic">Sua Retomada</h4>
+                                    <p className="text-slate-300 text-base leading-relaxed font-light italic">
+                                        O preço que você pagou — <span className="text-blue-300 font-medium">"{answers[6]}"</span> — foi alto demais, e ter que <span className="text-blue-300 font-medium">"{answers[3]}"</span> é uma ferida que precisa ser curada. O seu desejo profundo de <span className="text-blue-300 font-medium">"{answers[7]}"</span> é a meta do nosso trabalho. Ao escolher que <span className="text-white font-bold italic">"{answers[9]}"</span>, você acaba de dar o passo mais importante da sua vida nos últimos anos.
                                     </p>
+
+                                    <div className="pt-6 border-t border-white/10">
+                                        <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-3">Plano de Ação Sugerido:</p>
+                                        <p className="text-slate-400 text-sm leading-relaxed">
+                                            A <strong className="text-white">Mentoria VIP</strong> é a minha recomendação direta para o seu caso. Lá, eu mesma cuidarei de cada detalhe para que o silêncio que você busca se torne permanente.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -266,19 +274,15 @@ export const NeuralQuiz: React.FC = () => {
                         <div className="flex flex-col gap-6">
                             <a
                                 href="#pricing"
-                                className="group relative inline-flex items-center justify-center gap-10 px-14 py-6 bg-slate-900 text-white rounded-full font-bold text-xl transition-all shadow-2xl hover:scale-105 active:scale-95 overflow-hidden"
+                                className="group relative inline-flex items-center justify-center gap-10 px-14 py-8 bg-blue-600 text-white rounded-full font-bold text-xl transition-all shadow-2xl hover:scale-105 active:scale-95 overflow-hidden"
                             >
-                                <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                                <span className="relative z-10 uppercase tracking-widest text-sm">Iniciar Minha Retomada</span>
-                                <div className="w-12 h-[1px] bg-white relative overflow-hidden z-10 group-hover:bg-cyan-100">
-                                    <div className="absolute inset-0 bg-blue-200 -translate-x-full group-hover:animate-shimmer"></div>
-                                </div>
+                                <span className="relative z-10 uppercase tracking-[0.3em] text-sm">Iniciar Minha Cura Agora</span>
+                                <div className="absolute inset-0 bg-white -translate-x-full group-hover:translate-x-0 transition-transform duration-500 opacity-20"></div>
                             </a>
 
-                            {/* Safety Notice */}
-                            <div className="max-w-md mx-auto py-4 border-t border-slate-100 mt-4">
-                                <p className="text-[10px] text-slate-400 font-medium uppercase tracking-tight leading-relaxed">
-                                    Atenção: Este quiz é uma ferramenta educacional. Se você encontra-se em uma situação de perigo imediato, por favor, acesse <a href="https://cvv.org.br/" target="_blank" className="text-blue-500 underline">cvv.org.br</a> ou ligue para <strong className="text-slate-600">188</strong>. Sua vida é preciosa.
+                            <div className="max-w-md mx-auto py-4">
+                                <p className="text-[9px] text-slate-400 font-medium uppercase tracking-[0.1em] leading-relaxed">
+                                    Atenção: Este diagnóstico é uma ferramenta educacional baseada em sua auto-avaliação. Sua vida é preciosa. Para suporte imediato, ligue 188 (CVV).
                                 </p>
                             </div>
                         </div>
