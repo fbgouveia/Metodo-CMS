@@ -10,9 +10,9 @@ export const NeuralGuide: React.FC = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const orb = orbRef.current;
-      
-      // Configuração Inicial: Começa visível para teste
-      gsap.set(orb, { xPercent: -50, yPercent: -50, opacity: 0.8, scale: 0.8 });
+
+      // Start hidden/subtle
+      gsap.set(orb, { xPercent: -50, yPercent: -50, opacity: 0.4, scale: 0.6 });
 
       const triggerElement = document.body;
 
@@ -21,86 +21,63 @@ export const NeuralGuide: React.FC = () => {
           trigger: triggerElement,
           start: "top top",
           end: "bottom bottom",
-          scrub: 1, // Resposta mais rápida
+          scrub: 2,
         }
       });
 
-      // 1. INTRO (Foco na Headline)
+      // 1. INTRO
       tl.to(orb, {
         top: "15vh",
         left: "50%",
-        scale: 1.2,
-        backgroundColor: "#60A5FA", // Azul Claro
-        opacity: 0.6,
+        scale: 1,
+        backgroundColor: "#60A5FA",
+        opacity: 0.4,
         duration: 1,
       })
-      // 2. HERO (Desce para o Vídeo)
-      .to(orb, {
-        top: "85vh",
-        left: "50%",
-        scale: 0.8,
-        backgroundColor: "#3B82F6", // Azul Vibrante
-        boxShadow: "0 0 80px 30px rgba(59, 130, 246, 0.5)",
-        opacity: 0.8,
-        duration: 2,
-      })
-      // 3. FAST TRACK (Seção de Preço Rápido)
-      .to(orb, {
-        top: "130vh",
-        scale: 2,
-        opacity: 0.4,
-        duration: 1.5,
-      })
-      // 4. HORIZONTAL SCROLL (Segue o fluxo)
-      .to(orb, {
-        top: "250vh",
-        left: "90%",
-        scale: 1,
-        backgroundColor: "#A855F7", // Roxo
-        opacity: 0.8,
-        duration: 4,
-      })
-      // 5. PROGRAM DETAILS (Movimento Z)
-      .to(orb, {
-        top: "350vh",
-        left: "10%",
-        scale: 1.5,
-        backgroundColor: "#3B82F6",
-        duration: 2,
-      })
-      .to(orb, {
-        top: "380vh",
-        left: "90%",
-        backgroundColor: "#1E293B", // Azul Escuro
-        duration: 2,
-      })
-      // 6. FEATURES (Explosão de Luz)
-      .to(orb, {
-        top: "450vh",
-        left: "50%",
-        scale: 4,
-        opacity: 0.2, // Mais transparente para não cobrir texto
-        backgroundColor: "#60A5FA",
-        filter: "blur(80px)",
-        duration: 3,
-      })
-      // 7. PRICING FINAL (Foco Central Verde)
-      .to(orb, {
-        top: "bottom", // Final da página
-        left: "50%",
-        scale: 1.5,
-        opacity: 0.6,
-        backgroundColor: "#22C55E", // Verde Venda
-        filter: "blur(40px)",
-        boxShadow: "0 0 100px 50px rgba(34, 197, 94, 0.3)",
-        duration: 4,
-      });
+        // 2. HERO
+        .to(orb, {
+          top: "85vh",
+          left: "10%",
+          scale: 0.8,
+          backgroundColor: "#3B82F6",
+          boxShadow: "0 0 100px 40px rgba(59, 130, 246, 0.3)",
+          opacity: 0.6,
+          duration: 2,
+        })
+        // 4. TRANSFORMATION
+        .to(orb, {
+          top: "200vh",
+          left: "90%",
+          scale: 1.2,
+          backgroundColor: "#0EA5E9", // Cyan 500 (No purple)
+          opacity: 0.5,
+          duration: 3,
+        })
+        // 5. PROGRAM DETAILS
+        .to(orb, {
+          top: "400vh",
+          left: "50%",
+          scale: 2,
+          backgroundColor: "#1E40AF", // Deep Blue
+          opacity: 0.3,
+          duration: 4,
+        })
+        // 7. PRICING FINAL
+        .to(orb, {
+          top: "95vh", // Back to sticky-like position at the end
+          left: "50%",
+          scale: 1,
+          opacity: 0.4,
+          backgroundColor: "#22C55E", // Success Green
+          filter: "blur(60px)",
+          duration: 4,
+        });
 
-      // Respiração Constante
+      // Breathing
       gsap.to(orb, {
-        scale: "+=0.2",
-        opacity: "+=0.1",
-        duration: 2,
+        scale: "+=0.1",
+        opacity: "+=0.05",
+        duration: 3,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
@@ -112,11 +89,10 @@ export const NeuralGuide: React.FC = () => {
   }, []);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[30] overflow-hidden">
-      {/* Orbe Guia com z-index alto e blend mode normal para garantir visibilidade */}
-      <div 
+    <div className="pointer-events-none fixed inset-0 z-[5] overflow-hidden">
+      <div
         ref={orbRef}
-        className="absolute w-32 h-32 rounded-full blur-[40px] will-change-transform"
+        className="absolute w-48 h-48 rounded-full blur-[60px] will-change-transform"
         style={{ backgroundColor: '#3B82F6' }}
       ></div>
     </div>

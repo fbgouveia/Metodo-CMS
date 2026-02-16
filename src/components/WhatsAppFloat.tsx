@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { MessageCircle } from 'lucide-react';
+// Lucide icons removed to follow "Non-Obvious Persuasive Design" protocol
 import gsap from 'gsap';
 
 export const WhatsAppFloat: React.FC = () => {
@@ -12,11 +12,11 @@ export const WhatsAppFloat: React.FC = () => {
         scale: 0,
         opacity: 0,
         duration: 0.8,
-        delay: 2, // Espera o site carregar um pouco
+        delay: 2,
         ease: "elastic.out(1, 0.5)"
       });
 
-      // Animação de "Respiração" para chamar atenção sem ser irritante
+      // Animação de "Respiração"
       gsap.to(".wa-pulse", {
         scale: 1.5,
         opacity: 0,
@@ -38,21 +38,25 @@ export const WhatsAppFloat: React.FC = () => {
       className="fixed bottom-28 right-6 md:bottom-24 md:right-8 z-[60] group flex items-center gap-3"
       aria-label="Falar no WhatsApp"
     >
-      <span className="hidden md:block bg-white/90 backdrop-blur-md text-slate-800 text-xs font-bold py-2 px-4 rounded-xl shadow-lg border border-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-x-2">
-        Parece que você ainda tem uma dúvida... vamos conversar?
-      </span>
+      <div className="hidden md:block bg-white/95 backdrop-blur-md text-slate-800 text-[10px] font-black uppercase tracking-widest py-3 px-6 rounded-2xl shadow-2xl border border-white opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-x-4 group-hover:translate-x-0">
+        Dúvidas? <span className="text-green-600">Pergunte agora.</span>
+      </div>
 
-      <div className="relative w-14 h-14 flex items-center justify-center">
+      <div className="relative w-16 h-16 flex items-center justify-center">
         {/* Pulse Effect */}
         <div className="wa-pulse absolute inset-0 bg-green-500 rounded-full opacity-50 z-0"></div>
 
-        {/* Button */}
-        <div className="relative z-10 w-full h-full bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-xl shadow-green-500/40 border border-white/20 transition-transform duration-300 group-hover:scale-110">
-          <MessageCircle className="w-7 h-7 text-white fill-white" />
+        {/* Button - Typographic Version */}
+        <div className="relative z-10 w-full h-full bg-slate-900 rounded-full flex flex-col items-center justify-center shadow-2xl transition-all duration-500 group-hover:bg-green-600 group-hover:scale-110 border border-white/20">
+          <span className="text-white text-[10px] font-black tracking-tighter leading-none">WA</span>
+          <div className="w-4 h-[1px] bg-white/30 my-1 group-hover:bg-white/60"></div>
+          <span className="text-white text-[8px] font-bold tracking-widest leading-none">CHAT</span>
         </div>
 
         {/* Notification Dot */}
-        <div className="absolute top-0 right-0 w-4 h-4 bg-red-500 border-2 border-white rounded-full z-20"></div>
+        <div className="absolute top-1 right-1 w-4 h-4 bg-rose-500 border-2 border-white rounded-full z-20 flex items-center justify-center">
+          <span className="text-white text-[8px] font-black">1</span>
+        </div>
       </div>
     </a>
   );

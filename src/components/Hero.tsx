@@ -39,7 +39,7 @@ export const Hero: React.FC = () => {
 
         <iframe
           className="absolute top-0 left-0 w-full h-full"
-          src="https://www.youtube.com/embed/nU6V2wlyzQ4?autoplay=1&mute=1&controls=0&loop=1&playlist=nU6V2wlyzQ4"
+          src={videoSrc}
           title="Apresentação do Método CMS"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

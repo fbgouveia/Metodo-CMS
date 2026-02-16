@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Plus, Minus, HelpCircle } from 'lucide-react';
+// Lucide icons removed to follow "Non-Obvious Persuasive Design" protocol
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
@@ -75,7 +75,7 @@ export const FAQ: React.FC = () => {
           duration: 0.8,
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 90%", // Triggers earlier to ensure visibility
+            start: "top 90%",
           }
         }
       );
@@ -103,14 +103,14 @@ export const FAQ: React.FC = () => {
     <section id="faq" className="py-24 relative z-10">
       <div ref={containerRef} className="container mx-auto px-6 max-w-3xl">
         <div className="faq-header text-center mb-16 opacity-0">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-6">
-            <HelpCircle className="w-4 h-4 text-blue-600" />
+          <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-6">
+            <div className="w-1 h-1 rounded-full bg-blue-600 animate-pulse"></div>
             <span className="text-xs font-bold text-blue-600 tracking-wider uppercase">Tire suas Dúvidas</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-serif text-slate-900 mb-4">
             Ainda com medo de tentar?
           </h2>
-          <p className="text-slate-500">
+          <p className="text-slate-500 font-light">
             Eu entendo seu ceticismo. Aqui estão as respostas honestas que você precisa.
           </p>
         </div>
@@ -120,29 +120,32 @@ export const FAQ: React.FC = () => {
             <div
               key={index}
               className={`faq-item opacity-0 rounded-2xl overflow-hidden transition-all duration-300 ${openIndex === index
-                ? 'bg-white shadow-lg shadow-blue-900/5 ring-1 ring-blue-100'
+                ? 'bg-white shadow-lg shadow-blue-900/5 ring-1 ring-blue-100 border border-blue-50'
                 : 'bg-white/40 hover:bg-white/60'
                 }`}
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex items-center justify-between p-5 text-left focus:outline-none group"
+                className="w-full flex items-center justify-between p-6 text-left focus:outline-none group"
               >
-                <span className={`font-medium pr-4 transition-colors ${openIndex === index ? 'text-blue-600' : 'text-slate-800 group-hover:text-blue-600'}`}>
-                  {faq.question}
-                </span>
-                <div className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-colors ${openIndex === index ? 'bg-blue-100 text-blue-600' : 'bg-slate-200 text-slate-500 group-hover:bg-blue-100 group-hover:text-blue-600'
+                <div className="flex items-center gap-4">
+                  <span className={`text-[10px] font-bold tracking-widest ${openIndex === index ? 'text-blue-600' : 'text-slate-300'}`}>0{index + 1}</span>
+                  <span className={`font-serif text-lg pr-4 transition-colors ${openIndex === index ? 'text-blue-600' : 'text-slate-800 group-hover:text-blue-600'}`}>
+                    {faq.question}
+                  </span>
+                </div>
+                <div className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 border ${openIndex === index ? 'bg-blue-600 border-blue-600 text-white rotate-180' : 'bg-transparent border-slate-200 text-slate-400 group-hover:border-blue-300 group-hover:text-blue-600'
                   }`}>
-                  {openIndex === index ? <Minus className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
+                  <span className="text-xl leading-none font-light mb-0.5">{openIndex === index ? '−' : '+'}</span>
                 </div>
               </button>
 
               <div
-                className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${openIndex === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                className={`grid transition-[grid-template-rows] duration-500 ease-in-out ${openIndex === index ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
                   }`}
               >
                 <div className="overflow-hidden">
-                  <div className="p-5 pt-0 text-slate-600 leading-relaxed border-t border-dashed border-blue-100/50 mt-2 text-sm">
+                  <div className="p-8 pt-0 text-slate-600 leading-relaxed border-t border-dashed border-blue-100/50 mt-4 text-base font-light italic">
                     {faq.answer}
                   </div>
                 </div>
@@ -152,7 +155,7 @@ export const FAQ: React.FC = () => {
         </div>
 
         <div className="mt-12 text-center faq-item opacity-0">
-          <p className="text-slate-400 text-sm">Não deixe a dúvida te paralisar. <a href="https://api.whatsapp.com/send?phone=5511956185501&text=Ola%20Quiteria!%20gostaria%20de%20saber%20mais%20sobre%20o%20curso%20e%20a%20mentoria%20cerebro%20em%20modo%20silencioso" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold underline hover:text-blue-700">Fale comigo no WhatsApp</a></p>
+          <p className="text-slate-400 text-sm">Não deixe a dúvida te paralisar. <br className="md:hidden" /> <a href="https://api.whatsapp.com/send?phone=5511956185501&text=Ola%20Quiteria!%20gostaria%20de%20saber%20mais%20sobre%20o%20curso%20e%20a%20mentoria%20cerebro%20em%20modo%20silencioso" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-bold underline hover:text-blue-700 ml-1">Fale comigo no WhatsApp</a></p>
         </div>
       </div>
     </section>

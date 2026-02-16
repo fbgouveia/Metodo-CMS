@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { Award, Users, Heart, Brain } from 'lucide-react';
+// Lucide icons removed to follow "Non-Obvious Persuasive Design" protocol
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,43 +60,36 @@ export const About: React.FC = () => {
               </div>
             </div>
 
-            {/* Badge Flutuante */}
-            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3 animate-bounce duration-[3000ms] z-30">
-              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                <Brain className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 font-bold uppercase">Experiência</p>
-                <p className="text-slate-900 font-bold text-sm">+40 Anos de Clínica</p>
-              </div>
+            {/* Badge Flutuante - Agora puramente tipográfica e editorial */}
+            <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl flex flex-col items-center justify-center border border-slate-100 animate-bounce duration-[3000ms] z-30">
+              <span className="text-4xl font-serif text-blue-600 leading-none mb-1">+40</span>
+              <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest text-center whitespace-nowrap">Anos de Clínica</p>
+              <div className="w-8 h-[1px] bg-blue-200 mt-2"></div>
             </div>
           </div>
 
           {/* Coluna de Texto */}
           <div className="flex-1 space-y-8">
             <div className="about-content">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-6">
-                <Award className="w-4 h-4 text-blue-600" />
+              <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 mb-6">
+                <div className="w-1 h-1 rounded-full bg-blue-600 animate-pulse"></div>
                 <span className="text-xs font-bold text-blue-600 tracking-wider uppercase">A Mente por Trás do Método</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-serif text-slate-900 mb-6 leading-tight">
-                Não vou passar a mão na sua&nbsp;cabeça.<br />
-                <span className="text-blue-600">Estou aqui para te devolver a vida.</span>
+                Eu estive exatamente onde você está hoje.<br />
+                <span className="text-blue-600">E eu sei o caminho de volta para a paz.</span>
               </h2>
             </div>
 
             <div className="about-content space-y-6 text-slate-600 text-lg leading-relaxed font-light">
               <p>
-                Olá. Eu sou a Dra. Quitéria. Eu sei que o mundo parece estar desabando e que seu corpo se tornou seu pior inimigo. Eu vejo esse olhar de cansaço profundo todos os dias no meu consultório há 40 anos. O olhar de quem sente que está morrendo por dentro enquanto o mundo lá fora continua girando.
+                Olá. Eu sou a Dra. Quitéria. Se você chegou até aqui, é porque o mundo parece estar desabando e o seu corpo — ou o corpo de alguém que você ama muito — se tornou um território de medo constante. Eu vejo esse olhar de cansaço profundo todos os dias, mas não falo apenas como psicóloga com 40 anos de prática. Falo como alguém que <strong>já sentiu o que você sente agora.</strong>
               </p>
               <p>
-                Vou te falar o que ninguém teve coragem: <strong>Você não é louca e não tem culpa.</strong> Eu te entendo porque eu mesma já estive no seu lugar antes de ser psicóloga. Eu já senti o coração disparar sem motivo e o medo de não voltar pra casa. Criei o <strong>Método CMS</strong> primeiro para me salvar, e depois para salvar outras 5.000 mulheres.
+                No início da minha carreira clínica, eu também senti o coração disparar sem motivo e o receio de não conseguir voltar para casa. Foi essa dor que me levou a buscar a raiz biológica do problema. E o que você mais precisa ouvir hoje é: <strong>Isso não é falta de fé, não é frescura e não é loucura.</strong>
               </p>
               <p>
-                Criei o <strong>Método CMS</strong> para ser o interruptor que desliga esse alarme. Uni o rigor da TCC (Terapia Cognitivo-Comportamental) com o que há de mais avançado na neurociência da regulação emocional.
-              </p>
-              <p>
-                Não é apenas um curso. É o seu retorno seguro para casa. Para o seu próprio&nbsp;silêncio.
+                A ansiedade é apenas um sistema de alarme cerebral que esqueceu como desligar devido aos traumas e perigos da vida. Eu criei o <strong>Método CMS</strong> para ser esse interruptor, unindo o acolhimento maternal de quem já esteve lá com o rigor da neurociência para ajudar você (ou o seu familiar) a silenciar o pânico definitivamente.
               </p>
             </div>
 
@@ -110,19 +103,19 @@ export const About: React.FC = () => {
             </div>
 
             <div className="about-content grid grid-cols-2 gap-6 pt-6 border-t border-slate-200">
-              <div className="bg-white/60 p-4 rounded-2xl border border-white shadow-sm">
-                <div className="flex items-center gap-2 text-blue-600 mb-2">
-                  <Users className="w-5 h-5" />
-                  <span className="font-bold text-2xl text-slate-900">+5.000</span>
+              <div className="bg-white/60 p-6 rounded-2xl border border-white shadow-sm flex flex-col justify-between">
+                <div>
+                  <span className="block text-3xl font-serif text-slate-900 mb-1">+5.000</span>
+                  <p className="text-[10px] text-blue-600 font-bold uppercase tracking-widest mb-3">Vidas Transformadas</p>
                 </div>
-                <p className="text-sm text-slate-500 leading-tight">Alunos que pararam de sobreviver e começaram a&nbsp;viver.</p>
+                <p className="text-xs text-slate-500 leading-relaxed font-medium">Alunos que pararam de sobreviver e começaram a viver.</p>
               </div>
-              <div className="bg-white/60 p-4 rounded-2xl border border-white shadow-sm">
-                <div className="flex items-center gap-2 text-rose-600 mb-2">
-                  <Heart className="w-5 h-5" />
-                  <span className="font-bold text-2xl text-slate-900">Acolhimento</span>
+              <div className="bg-white/60 p-6 rounded-2xl border border-white shadow-sm flex flex-col justify-between">
+                <div>
+                  <span className="block text-3xl font-serif text-slate-900 mb-1">Acolhimento</span>
+                  <p className="text-[10px] text-rose-600 font-bold uppercase tracking-widest mb-3">Protocolo Humano</p>
                 </div>
-                <p className="text-sm text-slate-500 leading-tight">Eu serei a voz firme e carinhosa que vai te&nbsp;guiar.</p>
+                <p className="text-xs text-slate-500 leading-relaxed font-medium">Eu serei a voz firme e carinhosa que vai te guiar.</p>
               </div>
             </div>
 

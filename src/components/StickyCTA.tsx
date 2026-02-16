@@ -5,7 +5,8 @@ export const StickyCTA: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsVisible(window.scrollY > 300);
+      // Aparece após 400px de scroll
+      setIsVisible(window.scrollY > 400);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -14,27 +15,38 @@ export const StickyCTA: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 w-full z-50 px-4 pb-4 animate-fade-in-up">
-      <div className="max-w-4xl mx-auto bg-white/70 backdrop-blur-xl border border-white/50 rounded-full p-3 pl-6 shadow-2xl flex items-center justify-between transition-[background-color] duration-300 hover:bg-white/90">
+    <div className="fixed bottom-0 left-0 w-full z-[100] px-4 pb-6 animate-in slide-in-from-bottom-10 duration-700 pointer-events-none">
+      <div className="max-w-5xl mx-auto bg-slate-900/90 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-4 pl-10 shadow-2xl flex items-center justify-between pointer-events-auto shadow-blue-900/20">
 
+        {/* Lado Informativo/Urgência */}
         <div className="hidden md:flex flex-col">
-          <span className="text-[10px] font-bold text-red-500 uppercase tracking-wider flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> Alívio Imediato: Módulo 3 Liberado
+          <div className="flex items-center gap-3 mb-1">
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+            <span className="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em]">Status: Inscrição Liberada</span>
+          </div>
+          <span className="text-sm font-serif text-white/90 italic">
+            "Sua paz não pode mais esperar por amanhã."
           </span>
-          <span className="text-sm font-bold text-slate-900">A sua nova vida começa agora</span>
         </div>
 
-        <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+        {/* Lado de Conversão */}
+        <div className="flex items-center gap-10 w-full md:w-auto justify-between md:justify-end">
           <div className="text-right hidden sm:block">
-            {/* Preço Ancorado: Focalizando no valor diário para reduzir dor do pagamento */}
-            <p className="text-[10px] text-slate-400 font-medium">Menos de R$ 1,70 por dia</p>
-            <p className="text-sm font-black text-blue-600">12x R$ 49,90</p>
+            <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest mb-1">Investimento na sua liberdade</p>
+            <div className="flex items-baseline gap-2">
+              <span className="text-[10px] text-slate-400 font-medium">12x</span>
+              <span className="text-xl font-black text-white tracking-tighter">R$ 49,90</span>
+            </div>
           </div>
+
           <a
             href="#pricing"
-            className="bg-slate-900 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-sm font-black transition-[background-color,transform] duration-300 motion-safe:hover:scale-105 active:scale-95 shadow-xl whitespace-nowrap uppercase tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="group relative bg-white text-slate-900 px-10 py-4 rounded-full overflow-hidden transition-all duration-500 hover:scale-105 active:scale-95 shadow-xl"
           >
-            Garantir Minha Paz
+            <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+            <span className="relative z-10 text-[11px] font-black uppercase tracking-widest group-hover:text-white transition-colors">
+              Iniciar Minha Cura
+            </span>
           </a>
         </div>
       </div>
