@@ -159,11 +159,11 @@ export const NeuralQuiz: React.FC = () => {
 
                 <div className="text-center mb-16 space-y-6">
                     <span className="text-blue-500 font-black tracking-[0.4em] text-[10px] uppercase block">Resgate sua Identidade</span>
-                    <h2 className="text-4xl md:text-6xl font-serif text-white leading-tight max-w-2xl mx-auto">
-                        Descubra o nível de <span className="text-blue-500 italic">aprisionamento</span> da sua mente.
+                    <h2 className="text-4xl md:text-6xl font-serif text-white leading-[1.1] max-w-3xl mx-auto">
+                        Descubra o nível de <span className="text-blue-500 italic text-nowrap">aprisionamento da sua&nbsp;mente.</span>
                     </h2>
-                    <p className="text-slate-400 text-sm md:text-base font-light italic max-w-xl mx-auto leading-relaxed">
-                        Este não é um teste comum. É o primeiro passo do seu diagnóstico clínico para mapear os gatilhos que travam sua vida e silenciar o medo.
+                    <p className="text-slate-400 text-sm md:text-base font-light italic max-w-2xl mx-auto leading-relaxed">
+                        Este não é um teste comum. É o primeiro passo do seu diagnóstico clínico para mapear os gatilhos que travam sua vida e silenciar o&nbsp;medo.
                     </p>
                     <div className="w-12 h-[1px] bg-blue-500/30 mx-auto"></div>
                 </div>
