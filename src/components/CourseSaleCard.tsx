@@ -17,11 +17,11 @@ export const CourseSaleCard: React.FC = () => {
                     <div className="flex flex-col md:flex-row gap-12 items-center">
                         {/* Visual do Produto */}
                         <div className="w-full md:w-1/2 relative space-y-6">
-                            <div className="relative aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl">
+                            <div className="relative aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl border border-blue-50">
                                 <img
-                                    src="https://quiteriagouveia.com/wp-content/uploads/2025/11/mockup-curso.jpg"
+                                    src="https://quiteriagouveia.com/wp-content/uploads/2026/02/banner-do-curso-1280x720-1.png"
                                     alt="Método CMS: Sua Retomada"
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[3s]"
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[4s]"
                                 />
                                 <div className="absolute top-6 right-6 bg-blue-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-xl italic font-serif">
                                     Acesso Vitalício
