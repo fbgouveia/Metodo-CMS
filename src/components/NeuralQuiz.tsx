@@ -157,6 +157,17 @@ export const NeuralQuiz: React.FC = () => {
 
             <div className="max-w-3xl mx-auto relative z-10">
 
+                <div className="text-center mb-16 space-y-6">
+                    <span className="text-blue-500 font-black tracking-[0.4em] text-[10px] uppercase block">Resgate sua Identidade</span>
+                    <h2 className="text-4xl md:text-6xl font-serif text-white leading-tight max-w-2xl mx-auto">
+                        Descubra o nível de <span className="text-blue-500 italic">aprisionamento</span> da sua mente.
+                    </h2>
+                    <p className="text-slate-400 text-sm md:text-base font-light italic max-w-xl mx-auto leading-relaxed">
+                        Este não é um teste comum. É o primeiro passo do seu diagnóstico clínico para mapear os gatilhos que travam sua vida e silenciar o medo.
+                    </p>
+                    <div className="w-12 h-[1px] bg-blue-500/30 mx-auto"></div>
+                </div>
+
                 {step < questions.length ? (
                     <div className="bg-white/5 backdrop-blur-2xl p-8 md:p-14 rounded-[3rem] shadow-2xl border border-white/10 animate-fade-in transition-all duration-500">
 
