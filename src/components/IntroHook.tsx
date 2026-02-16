@@ -1,19 +1,40 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // Lucide icons removed to follow "Non-Obvious Persuasive Design" protocol
 
 export const IntroHook: React.FC = () => {
+  const bgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!bgRef.current) return;
+
+    gsap.to(bgRef.current, {
+      yPercent: 20,
+      ease: "none",
+      scrollTrigger: {
+        trigger: bgRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+  }, []);
+
   return (
     <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-slate-900 text-white">
-      {/* --- IMAGEM DE FUNDO (Estática) --- */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/40 z-10"></div> {/* Escurece a foto para ler o texto */}
-        <img
-          src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg"
-          alt="Background Neural"
-          className="w-full h-full object-cover object-center"
-          onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1515023115689-589c33041d3c?q=80&w=2400" }}
-        />
+      {/* --- IMAGEM DE FUNDO (Parallax) --- */}
+      <div className="absolute inset-0 z-0 scale-110">
+        <div ref={bgRef} className="absolute inset-0">
+          <div className="absolute inset-0 bg-black/50 z-10"></div> {/* Escurece a foto para ler o texto */}
+          <img
+            src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg"
+            alt="Background Neural"
+            className="w-full h-full object-cover object-center"
+            onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1515023115689-589c33041d3c?q=80&w=2400" }}
+          />
+        </div>
       </div>
 
       {/* --- CONTEÚDO (Centralizado) --- */}

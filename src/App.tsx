@@ -18,6 +18,7 @@ import { CourseSaleCard } from './components/CourseSaleCard';
 import { TriplePricing } from './components/TriplePricing';
 import { FAQ } from './components/FAQ';
 import { GuaranteeSection } from './components/GuaranteeSection';
+import { NeuralCursor } from './components/NeuralCursor';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
@@ -28,6 +29,7 @@ if (typeof window !== 'undefined') {
 function App() {
   return (
     <div className="min-h-screen w-full relative font-sans text-[#1d1d1f]">
+      <NeuralCursor />
 
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#f0f4f8]">
         <div className="absolute top-[-10%] left-[-10%] w-[800px] h-[800px] bg-blue-300/40 rounded-full blur-[120px] mix-blend-multiply animate-blob opacity-80"></div>
