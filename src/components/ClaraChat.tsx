@@ -3,6 +3,10 @@ import React, { useState, useRef, useEffect } from 'react';
 // Chave da API (hardcoded para MVP, em produção deve ir para .env)
 const API_KEY = "AIzaSyCBP8fazffYUFoJQAcaCLRYkMVu78osq7w";
 
+// LINKS OFICIAIS DE CHECKOUT
+const LINK_CURSO = "https://pay.kiwify.com.br/cUO2x97";
+const LINK_MENTORIA_WHATSAPP = "https://api.whatsapp.com/send?phone=5511956185501&text=Ola%20Clara!%20Passei%20pela%20triagem%20e%20quero%20minha%20vaga%20na%20MENTORIA%20VIP.";
+
 interface QuickReply {
     label: string;
     action: string;
@@ -77,12 +81,12 @@ export const ClaraChat: React.FC = () => {
                 }
             ]);
         } else if (action === "whatsapp_vip") {
-            window.open("https://api.whatsapp.com/send?phone=5511956185501&text=Ola%20Clara!%20Passei%20pela%20triagem%20e%20quero%20minha%20vaga%20na%20MENTORIA%20VIP.", "_blank");
+            window.open(LINK_MENTORIA_WHATSAPP, "_blank");
             setMessages(prev => [...prev, { role: 'user', text: "Sim, quero garantir!" }, { role: 'model', text: "Ótimo! 🎉 Abri seu WhatsApp para finalizarmos sua reserva com prioridade. Te espero lá!" }]);
         } else if (action === "link_course") {
-            // Rola para a seção de preços ou abre checkout
-            document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
-            setMessages(prev => [...prev, { role: 'user', text: "Sim, quero começar!" }, { role: 'model', text: "A melhor decisão da sua vida! ✨ Rolei a página para você ver os planos e se inscrever. Estou torcendo por você!" }]);
+            // AÇÃO CORRIGIDA: Abre o Link de Checkout DIRETO
+            window.open(LINK_CURSO, "_blank");
+            setMessages(prev => [...prev, { role: 'user', text: "Sim, quero começar!" }, { role: 'model', text: "A melhor decisão da sua vida! ✨ Abri a página oficial de pagamento em uma nova aba para você finalizar sua inscrição com segurança. Estou torcendo por você!" }]);
         } else {
             // Dúvida ou Explain: Manda para a IA resolver
             handleSend(action === "doubt" ? "Tenho uma dúvida específica." : action === "explain_vip" ? "Como funciona a mentoria?" : "Tenho medo de não funcionar");
@@ -95,7 +99,7 @@ export const ClaraChat: React.FC = () => {
         const userMsg = overrideText || input.trim();
         setInput('');
 
-        // Só adiciona a msg do user se não for um override interno que já adicionou
+        // Só adiciona a msg do user se não for um override interno
         if (!overrideText) {
             setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
         }
@@ -116,15 +120,15 @@ export const ClaraChat: React.FC = () => {
                 - Se o usuário falar em SUICÍDIO, MORTE ou "ACABAR COM TUDO": PARE A VENDA.
                 - Mande ele ligar para o CVV (188) imediatamente.
 
-                🚨 REGRA DE DETECÇÃO DE LINKS:
+                🚨 REGRA DE AÇÃO (LINKS REAIS):
                 - SE O USUÁRIO PEDIR "LINK", "COMPRAR", "GARANTIR" ou perguntar "ONDE PAGO":
-                - VOCÊ DEVE RESPONDER COM UMA DESSAS TAGS ESPECIAIS NO FINAL DO TEXTO:
-                - {{BUTTON_MENTORSHIP}} -> Para Mentoria.
-                - {{BUTTON_COURSE}} -> Para Curso.
-                - Nunca escreva "[Link aqui]". Use a tag {{BUTTON...}} ou ofereça para abrir o WhatsApp.
+                - NÃO DIGA "Role a página".
+                - USE A TAG {{BUTTON_COURSE}} para criar o botão de checkout imediato.
+                - USE A TAG {{BUTTON_MENTORSHIP}} para criar o botão de WhatsApp.
+                - SEJA CLARA: "Aqui está o botão para você finalizar:"
 
                 🚨 REGRA DE NOME (SEM LOOP):
-                - Pergunte o nome APENAS UMA VEZ. Se o usuário ignorar e perguntar sobre o produto, RESPONDA SOBRE O PRODUTO e esqueça o nome. Não seja chata.
+                - Pergunte o nome APENAS UMA VEZ. Se o usuário ignorar, ESQUEÇA O NOME.
                 
                 ESTRATÉGIA DE VENDA (OBJEÇÃO DE PREÇO):
                 - Se falar que é caro, FALE DE GANHO (STACKING): "Você ganha Curso (R$997) + Ebook (R$97) de graça."
@@ -141,7 +145,7 @@ export const ClaraChat: React.FC = () => {
                 
                 USER: ${userMsg}
                 
-                AGORA RESPONDA (MÁXIMO 2 PARÁGRAFOS CURTOS). SEJA DIRETA.
+                AGORA RESPONDA (MÁXIMO 2 PARÁGRAFOS CURTOS). SEJA DIRETA E ORIENTADA A AÇÃO.
               `
                         }]
                     }]
@@ -165,8 +169,8 @@ export const ClaraChat: React.FC = () => {
             }
 
             // Se a IA não mandou botão mas falou de "dúvida", sugere quiz ou contato
-            if (newQuickReplies.length === 0 && (aiResponse.includes("quiz") || aiResponse.includes("perfil"))) {
-                newQuickReplies.push({ label: "🧠 Fazer Quiz Gratuito", action: "link_quiz" }); // Ação futura
+            if (newQuickReplies.length === 0 && (aiResponse.toLowerCase().includes("quiz") || aiResponse.toLowerCase().includes("perfil"))) {
+                newQuickReplies.push({ label: "🧠 Fazer Quiz Gratuito", action: "link_quiz" });
             }
 
             setMessages(prev => [...prev, { role: 'model', text: aiResponse, quickReplies: newQuickReplies.length > 0 ? newQuickReplies : undefined }]);
@@ -188,14 +192,14 @@ export const ClaraChat: React.FC = () => {
         if (e.key === 'Enter') handleSend();
     };
 
-    // Debug de Produção
-    console.log("🚀 CLARA CHAT RENDERIZANDO...");
+    // Debug de Produção (Manter até confirmar visibilidade)
+    console.log("🚀 CLARA CHAT V6 RENDERIZANDO...");
 
     return (
         <>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                style={{ zIndex: 2147483647 }} // Força Bruta de Z-Index para garantir visibilidade
+                style={{ zIndex: 2147483647 }}
                 className="fixed bottom-64 right-6 group flex items-center gap-3 transition-all hover:scale-105"
             >
                 <div className="relative">
@@ -216,7 +220,6 @@ export const ClaraChat: React.FC = () => {
                 <div className="fixed bottom-24 right-6 w-[90vw] md:w-[380px] h-[550px] bg-white rounded-2xl shadow-2xl border border-slate-100 z-[9999] flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 zoom-in-95 origin-bottom-right font-sans">
                     <div className="bg-gradient-to-r from-blue-600 to-blue-500 p-4 flex items-center justify-between text-white">
                         <div className="flex items-center gap-3">
-                            {/* Header IGUAL (Mantido) */}
                             <div><h3 className="font-bold">Clara</h3><span className="text-xs opacity-90">Triagem Inteligente</span></div>
                         </div>
                         <button onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">✕</button>
