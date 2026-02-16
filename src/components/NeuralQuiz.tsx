@@ -163,7 +163,7 @@ export const NeuralQuiz: React.FC = () => {
                         Descubra o nível de <span className="text-blue-500 italic text-nowrap">aprisionamento da sua&nbsp;mente.</span>
                     </h2>
                     <p className="text-slate-400 text-sm md:text-base font-light italic max-w-2xl mx-auto leading-relaxed">
-                        Este não é um teste comum. É o primeiro passo do seu diagnóstico clínico para mapear os gatilhos que travam sua vida e silenciar o&nbsp;medo.
+                        Este não é um teste comum. É o primeiro passo do seu mapeamento de autonomia para identificar os gatilhos que travam sua vida e silenciar o&nbsp;medo.
                     </p>
                     <div className="w-12 h-[1px] bg-blue-500/30 mx-auto"></div>
                 </div>
@@ -206,7 +206,7 @@ export const NeuralQuiz: React.FC = () => {
                 ) : (
                     <div className="bg-white p-8 md:p-16 rounded-[4rem] shadow-2xl text-center animate-fade-in-up border-4 border-blue-500/5">
                         <div className="mb-10">
-                            <span className="text-[11px] font-black text-blue-600 uppercase tracking-[0.4em] block mb-2 font-sans">Diagnóstico de Autonomia Concluído</span>
+                            <span className="text-[11px] font-black text-blue-600 uppercase tracking-[0.4em] block mb-2 font-sans">Mapeamento de Autonomia Concluído</span>
                             <div className="w-16 h-[1px] bg-blue-100 mx-auto"></div>
                         </div>
 
@@ -282,7 +282,7 @@ export const NeuralQuiz: React.FC = () => {
 
                             <div className="max-w-md mx-auto py-4">
                                 <p className="text-[9px] text-slate-400 font-medium uppercase tracking-[0.1em] leading-relaxed">
-                                    Atenção: Este diagnóstico é uma ferramenta educacional baseada em sua auto-avaliação. Sua vida é preciosa. Para suporte imediato, ligue 188 (CVV).
+                                    Atenção: Este mapeamento é uma ferramenta educacional baseada em sua auto-avaliação. Sua vida é preciosa. Para suporte imediato, ligue 188 (CVV).
                                 </p>
                             </div>
                         </div>
@@ -291,7 +291,7 @@ export const NeuralQuiz: React.FC = () => {
 
                 <div className="mt-12 text-center">
                     <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.4em] italic">
-                        {step < questions.length ? "Mapeando sua rota de fuga..." : "Seu Diagnóstico de Liberdade está pronto."}
+                        {step < questions.length ? "Mapeando sua rota de fuga..." : "Sua Rota de Liberdade está pronta."}
                     </p>
                 </div>
 
