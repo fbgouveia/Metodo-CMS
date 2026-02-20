@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-// Chave da API lida do ambiente
+// Chave da API lida do ambiente - Garantindo que o Vite carregue corretamente
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+
+if (!API_KEY) {
+    console.warn("⚠️ [CLARA] VITE_GEMINI_API_KEY não encontrada no processo. O Chat funcionará apenas em modo de simulação ou falhará.");
+}
 
 // LINKS OFICIAIS DE CHECKOUT
 const LINK_CURSO = "https://pay.kiwify.com.br/cUO2x97";
@@ -93,8 +97,11 @@ export const ClaraChat: React.FC = () => {
         setIsLoading(true);
 
         try {
-            console.log("📡 Conectando ao cérebro da Clara (2.0 Flash)...");
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`, {
+            if (!API_KEY) throw new Error("API_KEY_MISSING");
+
+            console.log("📡 [CLARA] Conectando ao cérebro (Gemini 1.5 Flash)...");
+
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -143,17 +150,20 @@ export const ClaraChat: React.FC = () => {
             });
 
             if (!response.ok) {
-                const errorData = await response.json();
-                console.error("❌ Erro detalhado da API:", errorData);
-                throw new Error(`Falha API: ${response.status} - ${errorData.error?.message || ''}`);
+                const errorBody = await response.json().catch(() => ({}));
+                console.error("❌ [CLARA API ERROR]", response.status, errorBody);
+                throw new Error(errorBody.error?.message || "Erro na conexão com o Google");
             }
+
             const data = await response.json();
-            let aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, bloqueio criativo.";
+            console.log("✅ [CLARA] Resposta recebida com sucesso.");
+
+            let aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, tive um bloqueio criativo agora. Podemos continuar?";
 
             // 🚨 DETECÇÃO DE EMERGÊNCIA
             if (aiResponse.includes("{{EMERGENCY_CVV}}")) {
                 setIsEmergency(true);
-                return; // Para tudo e trava a tela
+                return;
             }
 
             // Lógica para transformar TAGS da IA em Botões Reais
@@ -212,34 +222,36 @@ export const ClaraChat: React.FC = () => {
                 className="fixed bottom-10 right-10 group flex items-center gap-3 transition-all active:scale-95 translate-y-[-20px] md:translate-y-0"
             >
                 <div className="relative">
-                    <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-5 group-hover:opacity-15"></div>
-                    <div className="w-14 h-14 bg-white rounded-full shadow-[0_4px_20px_rgb(0,0,0,0.08)] border border-slate-100 overflow-hidden flex items-center justify-center p-0.5 group-hover:shadow-blue-500/10 transition-all duration-300">
+                    <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                    <div className="w-16 h-16 bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 backdrop-blur-sm overflow-hidden flex items-center justify-center p-0.5 group-hover:shadow-blue-500/20 group-hover:scale-105 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
                         <img src="https://img.freepik.com/free-photo/portrait-beautiful-young-woman-standing-grey-wall_231208-10760.jpg" alt="Clara" className="w-full h-full rounded-full object-cover" />
                     </div>
                 </div>
                 {!isOpen && (
-                    <div className="bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-slate-100/50 text-sm font-medium text-slate-600 animate-in slide-in-from-right-4">
-                        Dúvidas? <span className="text-blue-600 font-bold">Fale comigo 🌿</span>
+                    <div className="bg-white/90 backdrop-blur-xl px-5 py-3 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] border border-white/20 text-sm font-semibold text-slate-700 animate-in slide-in-from-right-8 fade-in-0 duration-700 delay-300">
+                        Sente sua mente acelerada? <span className="text-blue-600 block text-[11px] uppercase tracking-wider font-extrabold mt-0.5">Conversar com a Clara 🌿</span>
                     </div>
                 )}
             </button>
 
             {isOpen && (
-                <div className="fixed bottom-24 right-6 w-[92vw] md:w-[400px] h-[600px] bg-white rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100 z-[9999] flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 zoom-in-95 origin-bottom-right font-sans">
-                    <div className={`p-5 flex items-center justify-between text-slate-800 ${isEmergency ? 'bg-red-50 text-red-600' : 'bg-white border-b border-slate-50'}`}>
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full border border-slate-200 overflow-hidden">
-                                <img src="https://img.freepik.com/free-photo/portrait-beautiful-young-woman-standing-grey-wall_231208-10760.jpg" alt="Clara" className="w-full h-full object-cover" />
+                <div className="fixed bottom-24 right-6 w-[94vw] md:w-[420px] h-[650px] max-h-[85vh] bg-white rounded-[2.5rem] shadow-[0_32px_80px_-20px_rgba(0,0,0,0.15)] border border-slate-100/50 z-[9999] flex flex-col overflow-hidden animate-in slide-in-from-bottom-12 zoom-in-95 fade-in duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] origin-bottom-right font-sans">
+                    <div className={`p-6 flex items-center justify-between text-slate-800 transition-colors duration-500 ${isEmergency ? 'bg-red-50 text-red-600' : 'bg-white/80 backdrop-blur-md border-b border-slate-50'}`}>
+                        <div className="flex items-center gap-4">
+                            <div className="relative">
+                                <div className="w-12 h-12 rounded-full border-2 border-slate-100 overflow-hidden shadow-inner">
+                                    <img src="https://img.freepik.com/free-photo/portrait-beautiful-young-woman-standing-grey-wall_231208-10760.jpg" alt="Clara" className="w-full h-full object-cover" />
+                                </div>
+                                {!isEmergency && <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full animate-pulse shadow-sm"></span>}
                             </div>
                             <div>
-                                <h3 className="font-bold text-sm leading-none flex items-center gap-2">
+                                <h3 className="font-bold text-base tracking-tight flex items-center gap-2">
                                     {isEmergency ? 'Apoio Emergencial' : 'Clara'}
-                                    {!isEmergency && <span className="w-2 h-2 bg-green-500 rounded-full"></span>}
                                 </h3>
-                                <span className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">Assistente CMS</span>
+                                <span className="text-[10px] text-slate-400 uppercase tracking-[0.1em] font-black opacity-80">Assistente CMS • Online</span>
                             </div>
                         </div>
-                        <button onClick={() => setIsOpen(false)} className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-all">✕</button>
+                        <button onClick={() => setIsOpen(false)} className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:text-slate-600 hover:rotate-90 transition-all duration-300">✕</button>
                     </div>
 
                     {isEmergency ? (
