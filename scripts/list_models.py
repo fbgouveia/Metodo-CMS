@@ -1,7 +1,7 @@
 import requests
 import json
 
-API_KEY = "AIzaSyCBP8fazffYUFoJQAcaCLRYkMVu78osq7w"
+API_KEY = "AIzaSyDcuAQ8A8c1DuujmKFYlbxaNaUKZqb29S8"
 URL = f"https://generativelanguage.googleapis.com/v1beta/models?key={API_KEY}"
 
 print(f"🔍 Buscando modelos disponíveis para a chave {API_KEY[:10]}...")

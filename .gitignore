@@ -27,6 +27,8 @@ dist-ssr
 audios/
 transcripts/
 public/clara_brain.txt
+scripts/test_*.py
+scripts/list_models.py
 *.mp4
 *.mp3
 *.wav

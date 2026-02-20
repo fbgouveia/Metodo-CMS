@@ -141,8 +141,18 @@ export const NeuralQuiz: React.FC = () => {
     ];
 
     const handleOption = (option: string) => {
-        setAnswers(prev => [...prev, option.split(') ')[1]]);
-        setStep(prev => prev + 1);
+        const answer = option.split(') ')[1];
+        setAnswers(prev => [...prev, answer]);
+        setStep(prev => {
+            const nextStep = prev + 1;
+            // Reportar progresso para a Clara de forma sutil
+            if (nextStep === 3) {
+                (window as any).sendClaraMessage?.(`ESTOU NO MEIO DO QUIZ. Pergunta 3: Respondi que sinto "${answer}". O que isso diz sobre mim? (Responda com a tag {{QUIZ_OBSERVER}})`);
+            } else if (nextStep === 7) {
+                (window as any).sendClaraMessage?.(`ESTOU AVANÇANDO NO QUIZ. Pergunta 7: O preço mais alto que paguei foi "${answer}". (Responda com a tag {{QUIZ_OBSERVER}})`);
+            }
+            return nextStep;
+        });
     };
 
     useEffect(() => {
@@ -159,7 +169,11 @@ export const NeuralQuiz: React.FC = () => {
             if (counts.MIND >= counts.PHYSICAL && counts.MIND >= counts.LIFE) dominant = 'MENTAL';
             else if (counts.LIFE >= counts.PHYSICAL && counts.LIFE >= counts.MIND) dominant = 'VIDA';
 
-            generateClaraDossier({ answers, cluster: dominant }).then(res => setDossier(res));
+            generateClaraDossier({ answers, cluster: dominant }).then(res => {
+                setDossier(res);
+                // Notificar Clara sobre a conclusão
+                (window as any).sendClaraMessage?.(`FINALIZEI O MAPEAMENTO. Meu perfil dominante é ${dominant}. Aqui está meu dossiê: ${res}. (Responda com acolhimento final e use {{BUTTON_MENTORSHIP}} ou {{BUTTON_COURSE}})`);
+            });
         }
     }, [step, answers, questions.length, dossier]);
 
