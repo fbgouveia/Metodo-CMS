@@ -80,17 +80,10 @@ export const ClaraChat: React.FC = () => {
         }
     };
 
-    const lastMessageRef = useRef<string>('');
-
     const handleSend = async (overrideText?: string) => {
         if ((!input.trim() && !overrideText) || isLoading || isEmergency) return;
 
         const userMsg = overrideText || input.trim();
-
-        // Anti-Loop: Evita enviar a mesma mensagem automática seguida
-        if (overrideText && userMsg === lastMessageRef.current) return;
-        if (overrideText) lastMessageRef.current = userMsg;
-
         setInput('');
 
         if (!overrideText) {
@@ -178,7 +171,14 @@ export const ClaraChat: React.FC = () => {
 
         } catch (error) {
             console.error(error);
-            // Removido fallback estático repetitivo para evitar loops visuais
+            setMessages(prev => [...prev, {
+                role: 'model',
+                text: "Sinto muito, tive uma pequena instabilidade na minha conexão neural. Pode repetir o que disse ou escolher uma das opções abaixo?",
+                quickReplies: [
+                    { label: "💎 Falar com Dra. Quitéria", action: "whatsapp_vip" },
+                    { label: "🧠 Reiniciar Diagnatóstico", action: "link_quiz" }
+                ]
+            }]);
         } finally {
             setIsLoading(false);
         }

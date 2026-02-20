@@ -1,7 +1,8 @@
 import requests
 import json
 
-API_KEY = "AIzaSyDcuAQ8A8c1DuujmKFYlbxaNaUKZqb29S8"
+import os
+API_KEY = os.getenv("VITE_GEMINI_API_KEY")
 URL = f"https://generativelanguage.googleapis.com/v1beta/models?key={API_KEY}"
 
 print(f"🔍 Buscando modelos disponíveis para a chave {API_KEY[:10]}...")
