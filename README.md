@@ -2,20 +2,26 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# 🧠 Método CMS V2 — Ecossistema Clara V3
 
-This contains everything you need to run your app locally.
+Este projeto é uma plataforma de alta conversão e suporte emocional para o **Método Cérebro em Modo Silencioso (CMS)** da Dra. Quitéria Gouveia.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1JzdwSYSG1IxFJaKhcf8DFsoLoBXc37Mi
+## 🚀 Diferenciais da V2
+- **Clara V3:** Assistente de neuropersuasão integrada com IA (Gemini 2.0-Flash).
+- **Neural Quiz:** Mapeamento de sintomas em tempo real com geração de dossiê.
+- **Neuroestética:** Design otimizado para reduzir a ansiedade e aumentar a confiança.
+- **Segurança Blindada:** Proteção contra vazamento de chaves e detecção de riscos.
 
-## Run Locally
+## 📁 Documentações Importantes
+- [Documentação Técnica Completa](./DOCUMENTAÇÃO_OFICIAL_METODO_CMS.md)
+- [Cérebro Mestre da Clara](./public/clara_master_brain.md)
+- [Scripts de Resgate WhatsApp](./SCRIPT_WHATSAPP_CLARA_V3.md)
 
-**Prerequisites:**  Node.js
+## 🛠️ Configuração Rápida
+1. Instale: `npm install`
+2. Configure a API: Insira sua chave no `.env.local`
+3. Inicie: `npm run dev`
 
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+---
+*Desenvolvido com foco em transformação e persuasão sensata.*
       

@@ -119,6 +119,13 @@ export const ClaraChat: React.FC = () => {
                 - USE A TAG {{BUTTON_COURSE}} para o Curso.
                 - USE A TAG {{BUTTON_MENTORSHIP}} para a Mentoria VIP.
 
+                🚨 PROTOCOLO DE TRANSIÇÃO HUMANA (DRA. QUITÉRIA):
+                - Se o usuário quiser falar com "alguém real", "Dra. Quitéria", "humano" ou demonstrar impaciência/ceticismo com você:
+                - Você DEVE concordar imediatamente.
+                - EXPLIQUE que está enviando uma cópia da conversa/diagnóstico para a Dra. (integridade dos dados).
+                - ENFATIZE que a Dra. Quitéria pode demorar a responder pois está em atendimentos clínicos (gestão de expectativa).
+                - Use a tag {{BUTTON_MENTORSHIP}} com o rótulo "Falar com a Dra. Quitéria (Prioridade)".
+
                 CONTEXTO ESTRUTURADO (CÉREBRO MESTRE):
                 ${brainContent.substring(0, 30000)}
 
@@ -149,7 +156,7 @@ export const ClaraChat: React.FC = () => {
 
             if (aiResponse.includes("{{BUTTON_MENTORSHIP}}")) {
                 aiResponse = aiResponse.replace("{{BUTTON_MENTORSHIP}}", "");
-                newQuickReplies.push({ label: "💎 Garantir Mentoria VIP", action: "whatsapp_vip" });
+                newQuickReplies.push({ label: "👩‍⚕️ Falar com a Dra. Quitéria", action: "whatsapp_vip" });
             }
             if (aiResponse.includes("{{BUTTON_COURSE}}")) {
                 aiResponse = aiResponse.replace("{{BUTTON_COURSE}}", "");
@@ -198,24 +205,36 @@ export const ClaraChat: React.FC = () => {
             >
                 <div className="relative">
                     <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-20 group-hover:opacity-40"></div>
-                    <div className="w-14 h-14 bg-white rounded-full shadow-xl border-2 border-blue-500 overflow-hidden flex items-center justify-center p-1">
+                    <div className="w-16 h-16 bg-white rounded-full shadow-xl border-2 border-blue-500/10 overflow-hidden flex items-center justify-center p-0.5 group-hover:scale-110 transition-all duration-500">
                         <img src="https://img.freepik.com/free-photo/portrait-beautiful-young-woman-standing-grey-wall_231208-10760.jpg" alt="Clara" className="w-full h-full rounded-full object-cover" />
                     </div>
                 </div>
                 {!isOpen && (
-                    <div className="bg-white px-4 py-2 rounded-xl shadow-lg border border-blue-50 text-sm font-bold text-slate-700 max-w-[150px] animate-in slide-in-from-right-4">
-                        Posso ajudar? 👋
+                    <div className="bg-white/90 backdrop-blur-md px-5 py-3 rounded-2xl shadow-[0_10px_40px_-10px_rgba(59,130,246,0.3)] border border-blue-100/50 text-sm font-medium text-slate-700 max-w-[200px] animate-in slide-in-from-right-8 fade-in relative group-hover:translate-x-[-8px] transition-transform duration-500">
+                        <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white/90 rotate-45 border-l border-b border-blue-100/50"></div>
+                        <span className="relative z-10 block leading-tight">
+                            Quer silenciar o medo agora? <span className="text-blue-500 font-bold block">Fale comigo. 🌿</span>
+                        </span>
                     </div>
                 )}
             </button>
 
             {isOpen && (
-                <div className="fixed bottom-24 right-6 w-[90vw] md:w-[380px] h-[550px] bg-white rounded-2xl shadow-2xl border border-slate-100 z-[9999] flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 zoom-in-95 origin-bottom-right font-sans">
-                    <div className={`p-4 flex items-center justify-between text-white ${isEmergency ? 'bg-red-600' : 'bg-gradient-to-r from-blue-600 to-blue-500'}`}>
-                        <div className="flex items-center gap-3">
-                            <div><h3 className="font-bold">{isEmergency ? '⚠️ ATENÇÃO' : 'Clara'}</h3><span className="text-xs opacity-90">{isEmergency ? 'Protocolo de Ajuda' : 'Triagem Inteligente'}</span></div>
+                <div className="fixed bottom-24 right-6 w-[92vw] md:w-[400px] h-[600px] bg-white rounded-[3rem] shadow-[0_20px_60px_-15px_rgba(15,23,42,0.2)] border border-blue-50/50 z-[9999] flex flex-col overflow-hidden animate-in slide-in-from-bottom-12 zoom-in-95 origin-bottom-right font-sans">
+                    <div className={`p-6 flex items-center justify-between text-white ${isEmergency ? 'bg-red-600' : 'bg-gradient-to-r from-blue-700 to-blue-500'}`}>
+                        <div className="flex items-center gap-4">
+                            <div className="w-11 h-11 rounded-full border-2 border-white/20 overflow-hidden">
+                                <img src="https://img.freepik.com/free-photo/portrait-beautiful-young-woman-standing-grey-wall_231208-10760.jpg" alt="Clara" className="w-full h-full object-cover" />
+                            </div>
+                            <div>
+                                <h3 className="font-serif text-lg leading-none mb-1">{isEmergency ? '⚠️ Ajuda Imediata' : 'Clara'}</h3>
+                                <div className="flex items-center gap-1.5">
+                                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                                    <span className="text-[10px] uppercase tracking-widest opacity-80 font-bold">{isEmergency ? 'Protocolo Ativado' : 'Online para te ouvir'}</span>
+                                </div>
+                            </div>
                         </div>
-                        <button onClick={() => setIsOpen(false)} className="text-white/80 hover:text-white">✕</button>
+                        <button onClick={() => setIsOpen(false)} className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/20 transition-all">✕</button>
                     </div>
 
                     {isEmergency ? (
@@ -267,13 +286,37 @@ export const ClaraChat: React.FC = () => {
                                         )}
                                     </div>
                                 ))}
-                                {isLoading && <div className="text-slate-400 text-xs p-2">Digitando...</div>}
+                                {isLoading && (
+                                    <div className="flex items-start gap-2 animate-in fade-in duration-300">
+                                        <div className="bg-white border border-slate-100 p-4 rounded-2xl rounded-bl-none shadow-sm flex gap-1">
+                                            <span className="w-1.5 h-1.5 bg-blue-500/40 rounded-full animate-bounce"></span>
+                                            <span className="w-1.5 h-1.5 bg-blue-500/60 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+                                            <span className="w-1.5 h-1.5 bg-blue-500/80 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+                                        </div>
+                                    </div>
+                                )}
                                 <div ref={messagesEndRef} />
                             </div>
 
-                            <div className="p-3 bg-white border-t border-slate-100 flex gap-2">
-                                <input type="text" value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyPress} placeholder="Digite sua dúvida..." className="flex-1 px-4 py-2.5 bg-slate-100 rounded-full text-sm focus:outline-none" disabled={isLoading} />
-                                <button onClick={() => handleSend()} disabled={isLoading} className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700">➜</button>
+                            <div className="p-5 bg-white border-t border-slate-50 flex gap-3 items-center">
+                                <div className="flex-1 relative">
+                                    <input
+                                        type="text"
+                                        value={input}
+                                        onChange={(e) => setInput(e.target.value)}
+                                        onKeyDown={handleKeyPress}
+                                        placeholder="Desabafe ou tire uma dúvida..."
+                                        className="w-full pl-5 pr-12 py-4 bg-slate-50 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all placeholder:text-slate-400"
+                                        disabled={isLoading}
+                                    />
+                                    <button
+                                        onClick={() => handleSend()}
+                                        disabled={isLoading || !input.trim()}
+                                        className={`absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl flex items-center justify-center transition-all ${input.trim() ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'bg-slate-200 text-slate-400'}`}
+                                    >
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                                    </button>
+                                </div>
                             </div>
                         </>
                     )}

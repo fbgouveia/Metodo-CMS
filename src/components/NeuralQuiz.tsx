@@ -140,6 +140,8 @@ export const NeuralQuiz: React.FC = () => {
         }
     ];
 
+    const [isReporting, setIsReporting] = useState(false);
+
     const handleOption = (option: string) => {
         const answer = option.split(') ')[1];
         setAnswers(prev => [...prev, answer]);
@@ -158,7 +160,8 @@ export const NeuralQuiz: React.FC = () => {
     useEffect(() => {
         setProgress((step / questions.length) * 100);
 
-        if (step === questions.length && !dossier) {
+        if (step === questions.length && !dossier && !isReporting) {
+            setIsReporting(true);
             // Lógica de cluster real baseada nas respostas
             const counts = { PHYSICAL: 0, MIND: 0, LIFE: 0 };
             questions.forEach((q, idx) => {
@@ -169,13 +172,18 @@ export const NeuralQuiz: React.FC = () => {
             if (counts.MIND >= counts.PHYSICAL && counts.MIND >= counts.LIFE) dominant = 'MENTAL';
             else if (counts.LIFE >= counts.PHYSICAL && counts.LIFE >= counts.MIND) dominant = 'VIDA';
 
-            generateClaraDossier({ answers, cluster: dominant }).then(res => {
-                setDossier(res);
-                // Notificar Clara sobre a conclusão
-                (window as any).sendClaraMessage?.(`FINALIZEI O MAPEAMENTO. Meu perfil dominante é ${dominant}. Aqui está meu dossiê: ${res}. (Responda com acolhimento final e use {{BUTTON_MENTORSHIP}} ou {{BUTTON_COURSE}})`);
-            });
+            generateClaraDossier({ answers, cluster: dominant })
+                .then(res => {
+                    setDossier(res);
+                    // Notificar Clara sobre a conclusão
+                    (window as any).sendClaraMessage?.(`FINALIZEI O MAPEAMENTO. Meu perfil dominante é ${dominant}. Aqui está meu dossiê: ${res}.`);
+                })
+                .catch(err => {
+                    console.error("Erro no dossiê:", err);
+                    setDossier("Dossiê indisponível no momento.");
+                });
         }
-    }, [step, answers, questions.length, dossier]);
+    }, [step, answers, questions.length, dossier, isReporting]);
 
     const handleWhatsApp = () => {
         const baseMsg = "Olá Clara! Acabei de fazer o Mapeamento no site e quero meu silêncio de volta.";
