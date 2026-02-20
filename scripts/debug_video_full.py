@@ -4,7 +4,7 @@ import os
 import time
 
 print("2. Configuring API...", flush=True)
-API_KEY = "AIzaSyCBP8fazffYUFoJQAcaCLRYkMVu78osq7w"
+API_KEY = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=API_KEY)
 
 print("3. Searching for video...", flush=True)

@@ -2,7 +2,7 @@ import google.generativeai as genai
 import os
 import time
 
-API_KEY = "AIzaSyCBP8fazffYUFoJQAcaCLRYkMVu78osq7w"
+API_KEY = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=API_KEY)
 
 def debug_video():

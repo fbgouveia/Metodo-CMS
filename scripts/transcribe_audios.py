@@ -3,7 +3,7 @@ import os
 import time
 
 # CONFIGURAÇÃO: Pegue sua chave grátis em https://aistudio.google.com/
-API_KEY = "AIzaSyCBP8fazffYUFoJQAcaCLRYkMVu78osq7w"
+API_KEY = os.getenv("GEMINI_API_KEY") # Recomenda-se usar variável de ambiente
 genai.configure(api_key=API_KEY)
 
 def transcribe_audio(file_path):
