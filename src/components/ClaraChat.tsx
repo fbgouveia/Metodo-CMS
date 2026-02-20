@@ -80,10 +80,17 @@ export const ClaraChat: React.FC = () => {
         }
     };
 
+    const lastMessageRef = useRef<string>('');
+
     const handleSend = async (overrideText?: string) => {
-        if ((!input.trim() && !overrideText) || isLoading || isEmergency) return; // Bloqueia envio se for emergência
+        if ((!input.trim() && !overrideText) || isLoading || isEmergency) return;
 
         const userMsg = overrideText || input.trim();
+
+        // Anti-Loop: Evita enviar a mesma mensagem automática seguida
+        if (overrideText && userMsg === lastMessageRef.current) return;
+        if (overrideText) lastMessageRef.current = userMsg;
+
         setInput('');
 
         if (!overrideText) {
@@ -201,40 +208,37 @@ export const ClaraChat: React.FC = () => {
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 style={{ zIndex: 2147483647 }}
-                className="fixed bottom-64 right-6 group flex items-center gap-3 transition-all hover:scale-105"
+                className="fixed bottom-64 right-6 group flex items-center gap-3 transition-all active:scale-95"
             >
                 <div className="relative">
-                    <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-20 group-hover:opacity-40"></div>
-                    <div className="w-16 h-16 bg-white rounded-full shadow-xl border-2 border-blue-500/10 overflow-hidden flex items-center justify-center p-0.5 group-hover:scale-110 transition-all duration-500">
+                    <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-10 group-hover:opacity-25"></div>
+                    <div className="w-16 h-16 bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-slate-100 overflow-hidden flex items-center justify-center p-1 group-hover:shadow-blue-500/20 transition-all duration-300">
                         <img src="https://img.freepik.com/free-photo/portrait-beautiful-young-woman-standing-grey-wall_231208-10760.jpg" alt="Clara" className="w-full h-full rounded-full object-cover" />
                     </div>
                 </div>
                 {!isOpen && (
-                    <div className="bg-white/90 backdrop-blur-md px-5 py-3 rounded-2xl shadow-[0_10px_40px_-10px_rgba(59,130,246,0.3)] border border-blue-100/50 text-sm font-medium text-slate-700 max-w-[200px] animate-in slide-in-from-right-8 fade-in relative group-hover:translate-x-[-8px] transition-transform duration-500">
-                        <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white/90 rotate-45 border-l border-b border-blue-100/50"></div>
-                        <span className="relative z-10 block leading-tight">
-                            Quer silenciar o medo agora? <span className="text-blue-500 font-bold block">Fale comigo. 🌿</span>
-                        </span>
+                    <div className="bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-slate-100/50 text-sm font-medium text-slate-600 animate-in slide-in-from-right-4">
+                        Dúvidas? <span className="text-blue-600 font-bold">Fale comigo 🌿</span>
                     </div>
                 )}
             </button>
 
             {isOpen && (
-                <div className="fixed bottom-24 right-6 w-[92vw] md:w-[400px] h-[600px] bg-white rounded-[3rem] shadow-[0_20px_60px_-15px_rgba(15,23,42,0.2)] border border-blue-50/50 z-[9999] flex flex-col overflow-hidden animate-in slide-in-from-bottom-12 zoom-in-95 origin-bottom-right font-sans">
-                    <div className={`p-6 flex items-center justify-between text-white ${isEmergency ? 'bg-red-600' : 'bg-gradient-to-r from-blue-700 to-blue-500'}`}>
-                        <div className="flex items-center gap-4">
-                            <div className="w-11 h-11 rounded-full border-2 border-white/20 overflow-hidden">
+                <div className="fixed bottom-24 right-6 w-[92vw] md:w-[400px] h-[600px] bg-white rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100 z-[9999] flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 zoom-in-95 origin-bottom-right font-sans">
+                    <div className={`p-5 flex items-center justify-between text-slate-800 ${isEmergency ? 'bg-red-50 text-red-600' : 'bg-white border-b border-slate-50'}`}>
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full border border-slate-200 overflow-hidden">
                                 <img src="https://img.freepik.com/free-photo/portrait-beautiful-young-woman-standing-grey-wall_231208-10760.jpg" alt="Clara" className="w-full h-full object-cover" />
                             </div>
                             <div>
-                                <h3 className="font-serif text-lg leading-none mb-1">{isEmergency ? '⚠️ Ajuda Imediata' : 'Clara'}</h3>
-                                <div className="flex items-center gap-1.5">
-                                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                                    <span className="text-[10px] uppercase tracking-widest opacity-80 font-bold">{isEmergency ? 'Protocolo Ativado' : 'Online para te ouvir'}</span>
-                                </div>
+                                <h3 className="font-bold text-sm leading-none flex items-center gap-2">
+                                    {isEmergency ? 'Apoio Emergencial' : 'Clara'}
+                                    {!isEmergency && <span className="w-2 h-2 bg-green-500 rounded-full"></span>}
+                                </h3>
+                                <span className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">Assistente CMS</span>
                             </div>
                         </div>
-                        <button onClick={() => setIsOpen(false)} className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center text-white/80 hover:text-white hover:bg-black/20 transition-all">✕</button>
+                        <button onClick={() => setIsOpen(false)} className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:text-slate-600 transition-all">✕</button>
                     </div>
 
                     {isEmergency ? (
