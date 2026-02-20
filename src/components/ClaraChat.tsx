@@ -93,7 +93,7 @@ export const ClaraChat: React.FC = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`, {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -141,7 +141,7 @@ export const ClaraChat: React.FC = () => {
                 })
             });
 
-            if (!response.ok) throw new Error("Falha API");
+            if (!response.ok) throw new Error(`Falha API: ${response.status}`);
             const data = await response.json();
             let aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, bloqueio criativo.";
 
