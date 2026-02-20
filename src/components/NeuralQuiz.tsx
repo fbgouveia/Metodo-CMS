@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { generateClaraDossier } from '../services/gemini';
 
 export const NeuralQuiz: React.FC = () => {
@@ -140,7 +140,7 @@ export const NeuralQuiz: React.FC = () => {
         }
     ];
 
-    const [isReporting, setIsReporting] = useState(false);
+    const reportedRef = useRef(false);
 
     const handleOption = (option: string) => {
         const answer = option.split(') ')[1];
@@ -160,9 +160,10 @@ export const NeuralQuiz: React.FC = () => {
     useEffect(() => {
         setProgress((step / questions.length) * 100);
 
-        if (step === questions.length && !dossier && !isReporting) {
-            setIsReporting(true);
-            // Lógica de cluster real baseada nas respostas
+        if (step === questions.length && !reportedRef.current) {
+            reportedRef.current = true;
+
+            // Lógica de cluster
             const counts = { PHYSICAL: 0, MIND: 0, LIFE: 0 };
             questions.forEach((q, idx) => {
                 if (answers[idx]) counts[q.cluster]++;
@@ -175,15 +176,15 @@ export const NeuralQuiz: React.FC = () => {
             generateClaraDossier({ answers, cluster: dominant })
                 .then(res => {
                     setDossier(res);
-                    // Notificar Clara sobre a conclusão
-                    (window as any).sendClaraMessage?.(`FINALIZEI O MAPEAMENTO. Meu perfil dominante é ${dominant}. Aqui está meu dossiê: ${res}.`);
+                    // Força a Clara a abrir e falar
+                    (window as any).sendClaraMessage?.(`FINALIZEI O MAPEAMENTO. Meu perfil é ${dominant}. Aqui está meu dossiê: ${res}.`, true);
                 })
                 .catch(err => {
-                    console.error("Erro no dossiê:", err);
-                    setDossier("Dossiê indisponível no momento.");
+                    setDossier("Dossiê processado.");
+                    (window as any).sendClaraMessage?.(`FINALIZEI O MAPEAMENTO. Meu perfil é ${dominant}. Por favor, me acolha.`, true);
                 });
         }
-    }, [step, answers, questions.length, dossier, isReporting]);
+    }, [step, answers, questions.length]);
 
     const handleWhatsApp = () => {
         const baseMsg = "Olá Clara! Acabei de fazer o Mapeamento no site e quero meu silêncio de volta.";

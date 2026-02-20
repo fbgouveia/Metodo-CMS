@@ -191,10 +191,11 @@ export const ClaraChat: React.FC = () => {
 
     // Expor handleSend globalmente (com cautela) para permitir que o Quiz envie o progresso
     useEffect(() => {
-        (window as any).sendClaraMessage = (text: string) => {
-            if (isOpen) handleSend(text);
+        (window as any).sendClaraMessage = (text: string, forceOpen: boolean = false) => {
+            if (forceOpen) setIsOpen(true);
+            handleSend(text);
         };
-    }, [isOpen, brainContent, messages]);
+    }, [brainContent, messages]);
 
     const handleKeyPress = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter') handleSend();
