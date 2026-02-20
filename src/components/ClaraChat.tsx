@@ -178,12 +178,7 @@ export const ClaraChat: React.FC = () => {
 
         } catch (error) {
             console.error(error);
-            setMessages(prev => [...prev, {
-                role: 'model', text: "Posso te ajudar com algo mais específico? Selecione abaixo:", quickReplies: [
-                    { label: "💎 Mentoria VIP", action: "mentorship" },
-                    { label: "🟢 Curso Completo", action: "course" }
-                ]
-            }]);
+            // Removido fallback estático repetitivo para evitar loops visuais
         } finally {
             setIsLoading(false);
         }
@@ -209,11 +204,11 @@ export const ClaraChat: React.FC = () => {
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 style={{ zIndex: 2147483647 }}
-                className="fixed bottom-64 right-6 group flex items-center gap-3 transition-all active:scale-95"
+                className="fixed bottom-10 right-10 group flex items-center gap-3 transition-all active:scale-95 translate-y-[-20px] md:translate-y-0"
             >
                 <div className="relative">
-                    <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-10 group-hover:opacity-25"></div>
-                    <div className="w-16 h-16 bg-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-slate-100 overflow-hidden flex items-center justify-center p-1 group-hover:shadow-blue-500/20 transition-all duration-300">
+                    <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-5 group-hover:opacity-15"></div>
+                    <div className="w-14 h-14 bg-white rounded-full shadow-[0_4px_20px_rgb(0,0,0,0.08)] border border-slate-100 overflow-hidden flex items-center justify-center p-0.5 group-hover:shadow-blue-500/10 transition-all duration-300">
                         <img src="https://img.freepik.com/free-photo/portrait-beautiful-young-woman-standing-grey-wall_231208-10760.jpg" alt="Clara" className="w-full h-full rounded-full object-cover" />
                     </div>
                 </div>
