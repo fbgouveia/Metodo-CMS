@@ -87,6 +87,15 @@ export const ClaraChat: React.FC = () => {
     const handleSend = async (overrideText?: string) => {
         if ((!input.trim() && !overrideText) || isLoading || isEmergency) return;
 
+        // VERIFICAÇÃO DE CHAVE NO VERCEL
+        if (!API_KEY) {
+            setMessages(prev => [...prev, { 
+                role: 'model', 
+                text: "Dra., notei que a chave 'VITE_GEMINI_API_KEY' não foi configurada no painel da Vercel. Por favor, adicione-a em Settings > Environment Variables para que eu possa falar com os leads." 
+            }]);
+            return;
+        }
+
         const userMsg = overrideText || input.trim();
         setInput('');
 
@@ -97,9 +106,10 @@ export const ClaraChat: React.FC = () => {
         setIsLoading(true);
 
         try {
-            if (!API_KEY) throw new Error("API_KEY_MISSING");
-
             console.log("📡 [CLARA] Conectando ao cérebro (Gemini 1.5 Flash)...");
+
+            // Fallback caso o arquivo do cérebro não carregue (404)
+            const safeBrain = brainContent.length > 100 ? brainContent.substring(0, 8000) : "Dra. Quitéria Gouveia (CRP 06/21065), +40 anos de clínica, especialista em ansiedade e pânico. Método CMS (Cérebro em Modo Silencioso).";
 
             const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
                 method: "POST",
@@ -137,7 +147,7 @@ export const ClaraChat: React.FC = () => {
                 - Use a tag {{BUTTON_MENTORSHIP}} com o rótulo "Falar com a Dra. Quitéria (Prioridade)".
 
                 CONTEXTO ESTRUTURADO (CÉREBRO MESTRE):
-                ${brainContent.substring(0, 10000)}
+                ${safeBrain}
 
                 HISTÓRICO DA CONVERSA:
                 ${messages.slice(-6).map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\n')}
