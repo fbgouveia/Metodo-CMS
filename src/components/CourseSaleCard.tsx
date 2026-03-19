@@ -45,17 +45,17 @@ export const CourseSaleCard: React.FC = () => {
                             {/* Benefícios */}
                             <div className="lg:col-span-7 space-y-10">
                                 <p className="text-2xl text-slate-600 leading-relaxed font-light italic border-l-4 border-blue-100 pl-8">
-                                    "Você não está comprando um curso. Você está pagando o resgate da sua própria vida. O Método CMS é o mapa clínico para silenciar o cérebro e voltar a ser dona de si."
+                                    "O Método CMS é o mapa clínico seguro que desenhei em <strong>4 décadas de clínica</strong> para ajudar você a voltar a respirar em paz. É biológico, não é apenas conversa."
                                 </p>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {[
-                                        "7 Módulos de Reativação Neural",
-                                        "Protocolo Anti-Crise de 5min",
-                                        "Aulas de Alívio Físico Imediato",
-                                        "Comunidade de Mães que Silenciam",
-                                        "Mapa da Autonomia (PDF)",
-                                        "Suporte Humanizado Vitalício"
+                                        "Protocolo Clínico Dra. Quitéria",
+                                        "CRP 06/21065 Ativo",
+                                        "O PROTOCOLO DE 5 MINUTOS",
+                                        "7 Módulos de Reestruturação Neural",
+                                        "Comunidade Mães que Silenciam",
+                                        "Garantia Incondicional de 7 Dias"
                                     ].map((item, i) => (
                                         <div key={i} className="flex items-center gap-4 text-slate-700 p-4 bg-slate-50/50 rounded-2xl border border-slate-100 hover:border-blue-200 transition-colors">
                                             <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />

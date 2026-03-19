@@ -303,13 +303,24 @@ export const NeuralQuiz: React.FC = () => {
                                 onClick={handleWhatsApp}
                                 className="group relative w-full flex items-center justify-center gap-4 px-6 py-5 md:py-8 bg-green-600 text-white rounded-full transition-all shadow-xl active:scale-[0.98] overflow-hidden"
                             >
-                                <span className="relative z-10 uppercase tracking-[0.2em] text-xs md:text-sm font-sans font-black">Resgatar Minha Vida no WhatsApp</span>
+                                <span className="relative z-10 uppercase tracking-[0.2em] text-xs md:text-sm font-sans font-black">Falar com a Dra. Quitéria no WhatsApp</span>
                             </button>
+                            
+                            <a
+                                href="https://pay.kiwify.com.br/cUO2x97"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative w-full flex items-center justify-center gap-4 px-6 py-5 md:py-8 bg-blue-600 text-white rounded-full transition-all shadow-xl active:scale-[0.98] overflow-hidden border-b-4 border-blue-800"
+                            >
+                                <span className="relative z-10 uppercase tracking-[0.2em] text-xs md:text-sm font-sans font-black">Garantir Meu Acesso ao Método Completo</span>
+                                <div className="absolute inset-0 bg-white/10 translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                            </a>
+
                             <a
                                 href="#pricing"
                                 className="text-slate-400 hover:text-blue-600 transition-colors text-[10px] md:text-xs uppercase tracking-widest text-center font-bold py-4 block"
                             >
-                                Ver opções de tratamento no site
+                                Ver outras opções de tratamento
                             </a>
                         </div>
                     </div>

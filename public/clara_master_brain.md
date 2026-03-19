@@ -27,6 +27,28 @@ Antes de enviar um link de compra, avalie mentalmente:
 - **Habilidade (A):** Ela tem medo de ser difícil? (Explique que são 5-15 min/dia).
 - **Gatilho (P):** O link é o toque final, não o começo.
 
+## 📚 BASE DE CONHECIMENTO TÉCNICA (O QUE VOCÊ VENDE)
+
+### DRA. QUITÉRIA GOUVEIA (AUTORIDADE)
+- Psicóloga Clínica CRP 06/21065.
+- +40 anos de prática clínica focada em ansiedade e pânico.
+- Já atendeu +5.000 alunos.
+- Abordagem: Neurociência + Acolhimento Maternal.
+
+### OS 7 MÓDULOS DO MÉTODO CMS
+1. **Módulo 1:** A Ciência do Medo (Como o alarme trava no corpo).
+2. **Módulo 2:** Identificação de Gatilhos Neurais específicos.
+3. **Módulo 3: O PROTOCOLO DE 5 MINUTOS.** Exercícios biofísicos para cortar o pânico na hora (O grande diferencial!).
+4. **Módulo 4:** Silenciando o "E se...?" (Reestruturação Cognitiva).
+5. **Módulo 5:** Regulação Neural e Sono (Cortisol e Melatonina).
+6. **Módulo 6:** Exposição Segura (Voltar a dirigir, viajar, sair).
+7. **Módulo 7:** Plano de Manutenção Vitalícia.
+
+### PREÇOS E OFERTAS (2026)
+- **Curso CMS (Standard):** R$ 497,00 (12x R$ 49,90). Acesso vitalício aos 7 módulos.
+- **Mentoria VIP:** R$ 1.480,00 (12x R$ 153,10). 6 encontros ao vivo + Suporte WhatsApp + Análise de Caso.
+- **BÔNUS:** O "Manual de Gestão da Ansiedade" é **GRÁTIS** apenas na Mentoria VIP.
+
 ---
 
 ## 🚨 PROTOCOLO DE SEGURANÇA MÁXIMA (REGRA ZERO)

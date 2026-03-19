@@ -43,17 +43,17 @@ export const IntroHook: React.FC = () => {
         <div className="inline-flex items-center gap-2 md:gap-3 py-1.5 px-3 md:px-5 rounded-full border border-blue-400/30 bg-blue-500/10 backdrop-blur-md mb-6 md:mb-8 shadow-sm">
           <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse flex-shrink-0"></div>
           <span className="text-[9px] md:text-[10px] font-black tracking-[0.15em] md:tracking-[0.2em] uppercase text-blue-100 italic font-serif leading-none">
-            A CIÊNCIA POR TRÁS DO SILÊNCIO QUE VOCÊ BUSCA
+            MAIS DE 40 ANOS DE CLÍNICA SALVANDO MENTES — DRA. QUITÉRIA GOUVEIA (CRP 06/21065)
           </span>
         </div>
 
         <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif leading-[1.1] md:leading-[1.2] tracking-tight mb-6 md:mb-8 drop-shadow-2xl text-balance">
-          E se o barulho da sua <br className="hidden md:block" />
-          <span className="italic text-blue-400 text-glow block md:inline mt-2 md:mt-0">mente desse lugar à paz?</span>
+          A sua mente merece <br className="hidden md:block" />
+          <span className="italic text-blue-400 text-glow block md:inline mt-2 md:mt-0">descansar de verdade.</span>
         </h1>
 
         <p className="text-base sm:text-lg md:text-xl font-light text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-md mb-8 md:mb-12 italic text-pretty px-4">
-          Imagine acordar amanhã sem o peso no peito. O Método CMS não é sobre "controlar" a ansiedade, é sobre <strong>desativar o alarme</strong> que você carrega há anos. Deixe a Dra. Quitéria guiar você de volta para casa.
+          Eu também já estive exatamente onde você está agora. O Método CMS é o <strong>mapa seguro</strong> que desenhei em 4 décadas de clínica para ajudar você a voltar a respirar em paz.
         </p>
 
         <div className="flex flex-col items-center gap-4 md:gap-6 opacity-80 cursor-pointer group" onClick={() => document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' })}>

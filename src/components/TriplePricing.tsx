@@ -138,7 +138,9 @@ export const TriplePricing: React.FC = () => {
                             </div>
 
                             <a
-                                href={`https://pay.kiwify.com.br/cUO2x97?plan=${product.id}`}
+                                href={product.id === 'mentorship' ? 'https://pay.kiwify.com.br/7zPIO6z' : product.id === 'course' ? 'https://pay.kiwify.com.br/cUO2x97' : 'https://pay.kiwify.com.br/valorde47'}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className={`w-full py-5 rounded-full font-bold flex items-center justify-center gap-6 transition-all group/btn ${product.primary
                                     ? 'bg-white text-slate-900 hover:bg-blue-50'
                                     : 'bg-blue-600 text-white hover:bg-blue-700 shadow-xl'
