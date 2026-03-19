@@ -101,7 +101,7 @@ export const ClaraChat: React.FC = () => {
 
             console.log("📡 [CLARA] Conectando ao cérebro (Gemini 1.5 Flash)...");
 
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -137,10 +137,10 @@ export const ClaraChat: React.FC = () => {
                 - Use a tag {{BUTTON_MENTORSHIP}} com o rótulo "Falar com a Dra. Quitéria (Prioridade)".
 
                 CONTEXTO ESTRUTURADO (CÉREBRO MESTRE):
-                ${brainContent.substring(0, 30000)}
+                ${brainContent.substring(0, 10000)}
 
                 HISTÓRICO DA CONVERSA:
-                ${messages.map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\n')}
+                ${messages.slice(-6).map(m => `${m.role.toUpperCase()}: ${m.text}`).join('\n')}
                 
                 USER: ${userMsg}
                 
@@ -152,18 +152,27 @@ export const ClaraChat: React.FC = () => {
             });
 
             if (!response.ok) {
-                const errorBody = await response.json().catch(() => ({}));
-                console.error("❌ [CLARA API ERROR]", response.status, errorBody);
-                throw new Error(errorBody.error?.message || "Erro na conexão com o Google");
+                const errorData = await response.json().catch(() => ({}));
+                console.error("❌ [CLARA API ERROR]", response.status, errorData);
+                throw new Error(`Erro API: ${response.status}`);
             }
 
             const data = await response.json();
-            console.log("✅ [CLARA] Resposta recebida com sucesso.");
+            
+            // Verificação Robusta de Resposta
+            const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
+            
+            if (!aiResponse) {
+                console.warn("⚠️ [CLARA] Resposta vazia ou bloqueada por segurança.", data);
+                throw new Error("EMPTY_RESPONSE");
+            }
 
-            let aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "Desculpe, tive um bloqueio criativo agora. Podemos continuar?";
+            console.log("✅ [CLARA] Resposta recebida.");
+
+            let filteredResponse = aiResponse;
 
             // 🚨 DETECÇÃO DE EMERGÊNCIA
-            if (aiResponse.includes("{{EMERGENCY_CVV}}")) {
+            if (filteredResponse.includes("{{EMERGENCY_CVV}}")) {
                 setIsEmergency(true);
                 return;
             }
@@ -171,29 +180,29 @@ export const ClaraChat: React.FC = () => {
             // Lógica para transformar TAGS da IA em Botões Reais
             const newQuickReplies: QuickReply[] = [];
 
-            if (aiResponse.includes("{{BUTTON_MENTORSHIP}}")) {
-                aiResponse = aiResponse.replace("{{BUTTON_MENTORSHIP}}", "");
+            if (filteredResponse.includes("{{BUTTON_MENTORSHIP}}")) {
+                filteredResponse = filteredResponse.replace("{{BUTTON_MENTORSHIP}}", "");
                 newQuickReplies.push({ label: "👩‍⚕️ Falar com a Dra. Quitéria", action: "whatsapp_vip" });
             }
-            if (aiResponse.includes("{{BUTTON_COURSE}}")) {
-                aiResponse = aiResponse.replace("{{BUTTON_COURSE}}", "");
+            if (filteredResponse.includes("{{BUTTON_COURSE}}")) {
+                filteredResponse = filteredResponse.replace("{{BUTTON_COURSE}}", "");
                 newQuickReplies.push({ label: "🚀 Garantir Curso Completo", action: "link_course" });
             }
             // Quiz Fallback
-            if (newQuickReplies.length === 0 && (aiResponse.toLowerCase().includes("quiz") || aiResponse.toLowerCase().includes("perfil"))) {
+            if (newQuickReplies.length === 0 && (filteredResponse.toLowerCase().includes("quiz") || filteredResponse.toLowerCase().includes("perfil"))) {
                 newQuickReplies.push({ label: "🧠 Fazer Quiz Gratuito", action: "link_quiz" });
             }
 
-            setMessages(prev => [...prev, { role: 'model', text: aiResponse, quickReplies: newQuickReplies.length > 0 ? newQuickReplies : undefined }]);
+            setMessages(prev => [...prev, { role: 'model', text: filteredResponse, quickReplies: newQuickReplies.length > 0 ? newQuickReplies : undefined }]);
 
         } catch (error) {
-            console.error(error);
+            console.error("🚨 [CLARA FALLBACK]", error);
             setMessages(prev => [...prev, {
                 role: 'model',
-                text: "Sinto muito, tive uma pequena instabilidade na minha conexão neural. Pode repetir o que disse ou escolher uma das opções abaixo?",
+                text: "Peço desculpas, tive uma oscilação na minha conexão neural agora. 🌿 Para não te deixar esperando, você prefere falar direto com a Dra. Quitéria ou tentar o Quiz de diagnóstico?",
                 quickReplies: [
                     { label: "💎 Falar com Dra. Quitéria", action: "whatsapp_vip" },
-                    { label: "🧠 Reiniciar Diagnatóstico", action: "link_quiz" }
+                    { label: "🧠 Fazer Quiz Gratuito", action: "link_quiz" }
                 ]
             }]);
         } finally {
