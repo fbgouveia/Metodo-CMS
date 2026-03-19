@@ -87,7 +87,6 @@ function App() {
 
       <Footer />
       <StickyCTA />
-      <WhatsAppFloat />
       <ClaraChat />
 
     </div>
