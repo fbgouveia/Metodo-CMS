@@ -22,7 +22,7 @@ import { NeuralCursor } from './components/NeuralCursor';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
-import { ClaraChat } from './components/ClaraChat';
+
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -87,7 +87,7 @@ function App() {
 
       <Footer />
       <StickyCTA />
-      <ClaraChat />
+
 
     </div>
   );

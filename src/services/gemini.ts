@@ -1,9 +1,9 @@
 /**
- * CLARA INTELLIGENCE BRIDGE (GEMINI 1.5 FLASH - FREE TIER)
+ * CMS INTELLIGENCE BRIDGE (GEMINI 1.5 FLASH - FREE TIER)
  * 
  * Este serviço integra os resultados do Quiz com a Inteligência Artificial do Google.
- * Ele transforma as 10 respostas brutas em um "Dossier da Clara" que será enviado
- * para o WhatsApp, permitindo que a Clara saiba tudo sobre a usuária.
+ * Ele transforma as 10 respostas brutas em um "Dossier CMS" que será enviado
+ * para o WhatsApp, permitindo que a Dra. Quitéria saiba tudo sobre a usuária.
  */
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
@@ -14,14 +14,14 @@ export interface QuizResult {
     cluster: 'FISICO' | 'MENTAL' | 'VIDA';
 }
 
-export const generateClaraDossier = async (quizData: QuizResult) => {
+export const generateCMSDossier = async (quizData: QuizResult) => {
     if (!GEMINI_API_KEY) {
         console.warn("VITE_GEMINI_API_KEY não configurada. Usando fallback estático.");
         return null;
     }
 
     const prompt = `
-    VOCÊ É A CLARA, ESTRATEGISTA NEURAL DA DRA. QUITÉRIA GOUVEIA.
+    VOCÊ É A ESTRATEGISTA NEURAL DA DRA. QUITÉRIA GOUVEIA.
     
     CONTEXTO: Acabamos de receber um Mapeamento de Autonomia. Sua tarefa é analisar as respostas brutas e gerar um DOSSIÊ ESTRATÉGICO para o WhatsApp.
     
@@ -55,7 +55,7 @@ export const generateClaraDossier = async (quizData: QuizResult) => {
         const data = await response.json();
         return data.candidates[0].content.parts[0].text;
     } catch (error) {
-        console.error("Erro ao falar com o cérebro da Clara:", error);
+        console.error("Erro ao processar dossiê CMS:", error);
         return null;
     }
 };

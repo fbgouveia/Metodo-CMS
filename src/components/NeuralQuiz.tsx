@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { generateClaraDossier } from '../services/gemini';
+import { generateCMSDossier } from '../services/gemini';
 
 export const NeuralQuiz: React.FC = () => {
     const [step, setStep] = useState(0);
@@ -147,12 +147,7 @@ export const NeuralQuiz: React.FC = () => {
         setAnswers(prev => [...prev, answer]);
         setStep(prev => {
             const nextStep = prev + 1;
-            // Reportar progresso para a Clara de forma sutil
-            if (nextStep === 3) {
-                (window as any).sendClaraMessage?.(`ESTOU NO MEIO DO QUIZ. Pergunta 3: Respondi que sinto "${answer}". O que isso diz sobre mim? (Responda com a tag {{QUIZ_OBSERVER}})`);
-            } else if (nextStep === 7) {
-                (window as any).sendClaraMessage?.(`ESTOU AVANÇANDO NO QUIZ. Pergunta 7: O preço mais alto que paguei foi "${answer}". (Responda com a tag {{QUIZ_OBSERVER}})`);
-            }
+
             return nextStep;
         });
     };
@@ -173,21 +168,18 @@ export const NeuralQuiz: React.FC = () => {
             if (counts.MIND >= counts.PHYSICAL && counts.MIND >= counts.LIFE) dominant = 'MENTAL';
             else if (counts.LIFE >= counts.PHYSICAL && counts.LIFE >= counts.MIND) dominant = 'VIDA';
 
-            generateClaraDossier({ answers, cluster: dominant })
+            generateCMSDossier({ answers, cluster: dominant })
                 .then(res => {
                     setDossier(res);
-                    // Força a Clara a abrir e falar
-                    (window as any).sendClaraMessage?.(`FINALIZEI O MAPEAMENTO. Meu perfil é ${dominant}. Aqui está meu dossiê: ${res}.`, true);
                 })
                 .catch(err => {
                     setDossier("Dossiê processado.");
-                    (window as any).sendClaraMessage?.(`FINALIZEI O MAPEAMENTO. Meu perfil é ${dominant}. Por favor, me acolha.`, true);
                 });
         }
     }, [step, answers, questions.length]);
 
     const handleWhatsApp = () => {
-        const baseMsg = "Olá Clara! Acabei de fazer o Mapeamento no site e quero meu silêncio de volta.";
+        const baseMsg = "Olá Dra. Quitéria! Acabei de fazer o Mapeamento no site e quero meu silêncio de volta.";
         const aiContext = dossier ? `\n\nMEU DOSSIÊ NEURAL:\n${dossier}` : "";
         const encodedMsg = encodeURIComponent(baseMsg + aiContext);
         window.open(`https://api.whatsapp.com/send?phone=5511956185501&text=${encodedMsg}`, '_blank');
@@ -292,7 +284,7 @@ export const NeuralQuiz: React.FC = () => {
                                 <div className="relative z-10 space-y-4 md:space-y-6">
                                     <h4 className="font-serif text-2xl md:text-3xl italic">Sua Nova Rota</h4>
                                     <p className="text-slate-300 text-sm md:text-base leading-relaxed font-light italic">
-                                        Você disse que deseja <span className="text-blue-300 font-bold">"{answers[7]}"</span>. A Clara já tem o mapa para isso.
+                                        Você disse que deseja <span className="text-blue-300 font-bold">"{answers[7]}"</span>. A Dra. Quitéria já tem o mapa para isso.
                                     </p>
                                 </div>
                             </div>
