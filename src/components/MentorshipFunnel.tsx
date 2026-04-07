@@ -44,17 +44,17 @@ export const MentorshipFunnel: React.FC = () => {
                     <div className="text-center mb-20">
                         <motion.div variants={itemVariants} className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-rose-50 border border-rose-100 mb-8 shadow-sm">
                             <div className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></div>
-                            <span className="text-xs font-bold text-rose-600 tracking-wider uppercase">Vagas Extremamente Limitadas</span>
+                            <span className="text-xs font-bold text-rose-600 tracking-wider uppercase">Apenas 3 Vagas Disponíveis Este Mês</span>
                         </motion.div>
 
                         <motion.h2 variants={itemVariants} className="text-5xl md:text-7xl font-serif text-slate-900 mb-8 tracking-tight leading-tight">
                             Mentoria VIP: <br />
-                            <span className="text-blue-600 italic">O Amparo que sua Mente Merece.</span>
+                            <span className="text-blue-600 italic">A Dra. Quitéria pegando na sua mão.</span>
                         </motion.h2>
 
                         <motion.p variants={itemVariants} className="max-w-3xl mx-auto text-slate-600 text-xl font-light leading-relaxed">
-                            Algumas histórias de dor exigem mais do que apenas aulas gravadas. Elas exigem um
-                            <strong className="text-slate-900 font-bold italic"> olhar atento</strong>, um diagnóstico cuidadoso e a certeza absoluta de que você nunca mais caminhará sozinha.
+                            Algumas mães precisam de mais do que um método. Elas precisam de
+                            <strong className="text-slate-900 font-bold italic"> alguém que conheça o nome delas</strong>, que saiba a história dos filhos e que esteja lá quando o ataque vier na terça-feira à noite.
                         </motion.p>
                     </div>
 
@@ -77,9 +77,9 @@ export const MentorshipFunnel: React.FC = () => {
                                     type: "HUMANO"
                                 },
                                 {
-                                    title: "BÔNUS: Acesso Vitalício ao Método CMS",
-                                    desc: "Você ganha o curso completo (R$ 997) e o Manual (R$ 97) inclusos no seu pacote.",
-                                    tag: "Economia Real",
+                                    title: "BÔNUS: Guia 'Como Falar com Seus Filhos'",
+                                    desc: "Um guia exclusivo para você explicar a sua ansiedade para seus filhos de forma segura, sem assustá-los e sem se sentir culpada.",
+                                    tag: "Exclusivo Mentes",
                                     type: "PRESENTE",
                                     highlight: true
                                 }
@@ -134,15 +134,24 @@ export const MentorshipFunnel: React.FC = () => {
                                         </p>
                                     </div>
 
-                                    <a
-                                        href="https://pay.kiwify.com.br/7zPIO6z"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="group w-full flex items-center justify-center py-6 md:py-8 bg-white text-slate-900 rounded-full font-black uppercase tracking-widest text-xs hover:bg-blue-50 transition-all shadow-xl relative overflow-hidden active:scale-95"
-                                    >
-                                        <span className="relative z-10 text-center">Garantir Mentoria VIP</span>
-                                        <div className="absolute inset-0 bg-blue-100/50 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
-                                    </a>
+                                        <a
+                                            href="https://pay.kiwify.com.br/7zPIO6z"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            onClick={() => {
+                                                if (typeof window !== 'undefined' && (window as any).fbq) {
+                                                    (window as any).fbq('track', 'InitiateCheckout', {
+                                                        content_name: 'Mentoria VIP',
+                                                        currency: 'BRL',
+                                                        value: 1480.00
+                                                    });
+                                                }
+                                            }}
+                                            className="group w-full flex items-center justify-center py-6 md:py-8 bg-white text-slate-900 rounded-full font-black uppercase tracking-widest text-xs hover:bg-blue-50 transition-all shadow-xl relative overflow-hidden active:scale-95"
+                                        >
+                                            <span className="relative z-10 text-center">Garantir Minha Vaga VIP Agora</span>
+                                            <div className="absolute inset-0 bg-blue-100/50 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                                        </a>
 
                                     <div className="mt-8 md:mt-10 pt-6 border-t border-white/10 space-y-3 flex flex-col items-center md:items-start opacity-70">
                                         <div className="flex items-center gap-3 text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-widest">

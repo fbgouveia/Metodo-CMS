@@ -37,8 +37,7 @@ export const IntroHook: React.FC = () => {
         </div>
       </div>
 
-      {/* --- CONTEÚDO (Centralizado) --- */}
-      <div className="relative z-20 text-center px-4 max-w-5xl mx-auto animate-fade-in-up">
+        <div className="relative z-20 text-center px-4 max-w-5xl mx-auto animate-fade-in-up">
 
         <div className="inline-flex items-center gap-2 md:gap-3 py-1.5 px-3 md:px-5 rounded-full border border-blue-400/30 bg-blue-500/10 backdrop-blur-md mb-6 md:mb-8 shadow-sm">
           <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse flex-shrink-0"></div>
@@ -48,16 +47,16 @@ export const IntroHook: React.FC = () => {
         </div>
 
         <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif leading-[1.1] md:leading-[1.2] tracking-tight mb-6 md:mb-8 drop-shadow-2xl text-balance">
-          A sua mente merece <br className="hidden md:block" />
-          <span className="italic text-blue-400 text-glow block md:inline mt-2 md:mt-0">descansar de verdade.</span>
+          Silencie o pânico e <br className="hidden md:block" />
+          <span className="italic text-blue-400 text-glow block md:inline mt-2 md:mt-0">volte a ser a base da sua família.</span>
         </h1>
 
         <p className="text-base sm:text-lg md:text-xl font-light text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-md mb-8 md:mb-12 italic text-pretty px-4">
-          Eu também já estive exatamente onde você está agora. O Método CMS é o <strong>mapa seguro</strong> que desenhei em 4 décadas de clínica para ajudar você a voltar a respirar em paz.
+          Chega de fingir que está bem para não assustar seus filhos. O Método CMS é o <strong>protocolo clínico que desliga o alarme quebrado do seu cérebro</strong> — sem depender de remédio para sempre.
         </p>
 
         <div className="flex flex-col items-center gap-4 md:gap-6 opacity-80 cursor-pointer group" onClick={() => document.getElementById('journey')?.scrollIntoView({ behavior: 'smooth' })}>
-          <span className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] font-black group-hover:text-blue-400 transition-colors text-center max-w-[200px] md:max-w-none">Abra sua Rota de Liberdade</span>
+          <span className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] md:tracking-[0.4em] font-black group-hover:text-blue-400 transition-colors text-center max-w-[200px] md:max-w-none">Quero minha rota de fuga</span>
           <div className="w-[1px] h-8 md:h-12 bg-gradient-to-b from-blue-400 to-transparent animate-bounce"></div>
         </div>
 

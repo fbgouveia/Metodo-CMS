@@ -138,7 +138,7 @@ export const TriplePricing: React.FC = () => {
                             </div>
 
                             <a
-                                href={product.id === 'mentorship' ? 'https://pay.kiwify.com.br/7zPIO6z' : product.id === 'course' ? 'https://pay.kiwify.com.br/cUO2x97' : 'https://pay.kiwify.com.br/729630026852622'}
+                                href={product.id === 'mentorship' ? 'https://pay.kiwify.com.br/7zPIO6z' : product.id === 'course' ? 'https://pay.kiwify.com.br/cUO2x97' : 'https://pay.kiwify.com.br/OZD5KB0'}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={() => {

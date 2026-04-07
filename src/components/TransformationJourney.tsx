@@ -7,38 +7,38 @@ gsap.registerPlugin(ScrollTrigger);
 
 const journeySteps = [
     {
-        title: "O Pântano da Solidão",
-        description: "Você sente que o mundo ficou grande demais e seu quarto parece ser o único refúgio. Cada 'não' que você diz para a vida dói, mas o seu cérebro entende que o isolamento é o único escudo de proteção que lhe restou.",
+        title: "O Medo de Falhar com Eles",
+        description: "Você cancela a festa da escola, não consegue dirigir com os filhos no carro, finge que está bem na frente deles. Mas por dentro, o peito aperta e a voz na sua cabeça diz: 'Que tipo de mãe eu sou?'. Esse peso invisível é a sua dor mais profunda.",
         roman: "I",
         color: "from-slate-700 to-slate-950"
     },
     {
-        title: "O Basta Interno",
-        description: "O cansaço de apenas 'tentar passar o dia' finalmente superou o medo de buscar ajuda. No fundo, você sente que sua identidade ainda está lá guardada e decide que não quer mais apenas sobreviver.",
+        title: "O Basta que Vem do Amor",
+        description: "Não é por você que você decide agir — é por eles. Você se recusa a deixar que seus filhos cresçam com a memória de uma mãe com medo. Esse 'basta' movido pelo amor é o acionador mais poderoso de mudança que existe.",
         roman: "II",
         color: "from-blue-600 to-indigo-900"
     },
     {
-        title: "A Voz da Experiência",
-        description: "Você encontra na Dra. Quitéria não apenas uma técnica, mas 40 anos de casos reais resolvidos. Ela estende a mão com um mapa clínico validado por milhares de mulheres que recuperaram a autonomia.",
+        title: "O Mecanismo que Faltava",
+        description: "Você já tentou respiração, terapia, florais e remédio. O que faltava era entender por que o alarme do seu cérebro está quebrado. A Dra. Quitéria não te dá mais uma técnica — ela te ensina a desligar o interruptor neural que aciona o pânico.",
         roman: "III",
         color: "from-blue-500 to-blue-700"
     },
     {
-        title: "O Silêncio dos Sintomas",
-        description: "Ao iniciar o Método CMS, o seu sistema nervoso finalmente começa a entender que o perigo passou. O volume do medo baixa, o peito relaxa e você volta a ouvir a sua própria voz em vez do pânico.",
+        title: "O Silêncio de 5 Minutos",
+        description: "A primeira vez que você usa o Protocolo SOS do Método CMS e o ataque para em 5 minutos, algo muda para sempre. Você percebe: 'Não estava louca. Meu cérebro aprendeu um padrão errado e agora eu sei como reescrevê-lo.'",
         roman: "IV",
         color: "from-blue-700 to-slate-900"
     },
     {
-        title: "A Reconquista do Espaço",
-        description: "A quebra do ciclo de fuga. Você volta a dirigir, volta a frequentar lugares e a planejar o futuro. O 'E se eu passar mal?' é substituído pela certeza de que você tem as ferramentas para se autorregular.",
+        title: "De Volta à Direção",
+        description: "Você volta a levar seus filhos na escola. Assiste à peça de teatro do final de ano sem sair correndo no meio. Entra num supermercado sem o coração disparado. Cada ação pequena é uma vitória enorme — e eles percebem a mãe que você está se tornando novamente.",
         roman: "V",
         color: "from-emerald-600 to-teal-700"
     },
     {
-        title: "Dona do Próprio Destino",
-        description: "A liberdade é devolvida. O medo agora é apenas um sinal distante que você sabe gerenciar. Você está livre para respirar fundo, sorrir e ser exatamente a mulher que foi feita para ser.",
+        title: "A Mãe que Eles Merecem",
+        description: "O medo não desaparece da vida, mas perde o poder sobre você. Você tem as ferramentas. Você tem o mapa. Você voltou a ser a base — aquela que abraça sem tremuras, que faz planos e que dorme a noite inteira. Seus filhos têm a mãe que sempre mereceram.",
         roman: "VI",
         color: "from-amber-600 to-orange-700"
     }
@@ -88,10 +88,10 @@ export const TransformationJourney: React.FC = () => {
             <div className="container mx-auto px-6">
 
                 <div className="text-center mb-24">
-                    <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">O Protocolo de Retomada</span>
+                    <span className="text-blue-600 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">A Jornada Clínica de Recuperação</span>
                     <h2 className="text-4xl md:text-6xl font-serif text-slate-900 leading-tight">
-                        De Prisioneira do Medo <br />
-                        <span className="text-blue-600 italic">à Dona de Si Mesma</span>
+                        De Mãe com Medo <br />
+                        <span className="text-blue-600 italic">à Base da Família</span>
                     </h2>
                 </div>
 
@@ -145,14 +145,15 @@ export const TransformationJourney: React.FC = () => {
                         <div className="inline-block p-12 rounded-[3.5rem] bg-slate-50 border border-slate-200 relative group overflow-hidden">
                             <div className="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
                             <div className="relative z-10">
-                                <h3 className="text-3xl font-serif text-slate-900 group-hover:text-white mb-6 transition-colors tracking-tight">
-                                    O final dessa jornada <br />é você livre.
+                                <h3 className="text-3xl font-serif text-slate-900 group-hover:text-white mb-4 transition-colors tracking-tight">
+                                    Cada dia de espera é um dia a menos <br />com os seus filhos.
                                 </h3>
+                                <p className="text-slate-500 group-hover:text-white/70 text-sm mb-6 transition-colors font-light italic">O Método CMS começou a funcionar para mais de 2.500 mulheres. Você pode ser a próxima.</p>
                                 <a
                                     href="#pricing"
                                     className="inline-flex items-center gap-6 px-10 py-5 bg-blue-600 text-white group-hover:bg-white group-hover:text-blue-600 rounded-full font-bold transition-all shadow-xl group"
                                 >
-                                    Quero meu Silêncio de Volta
+                                    Quero ser essa mãe de novo
                                     <div className="w-8 h-[1px] bg-white group-hover:bg-blue-600 relative overflow-hidden">
                                         <div className="absolute inset-0 bg-blue-200 -translate-x-full group-hover:animate-shimmer"></div>
                                     </div>

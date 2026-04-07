@@ -43,16 +43,16 @@ export const GuaranteeSection: React.FC = () => {
                         </div>
 
                         <h2 className="text-4xl md:text-5xl font-serif text-slate-900 mb-8 leading-tight">
-                            "Eu tiro o peso da <br />
-                            <span className="text-blue-600 italic">decisão dos seus ombros."</span>
+                            "Se em 7 dias você não dormir melhor, <br />
+                            <span className="text-blue-600 italic">eu devolvo cada centavo."</span>
                         </h2>
 
                         <div className="space-y-6 text-slate-600 text-lg font-light leading-relaxed italic border-l-4 border-blue-200 pl-8 bg-white/50 p-6 rounded-r-3xl mb-10">
                             <p>
-                                Eu confio tanto que o Método CMS vai silenciar sua mente que assumo todo o risco.
+                                Eu confio tanto no Método CMS que assumo todo o risco por você.
                             </p>
                             <p>
-                                Entre, assista às aulas, use os áudios de reprogramação. Se em <strong>7 dias</strong> você não sentir que sua vida está mudando, eu devolvo 100% do seu dinheiro. Sem letras miúdas. Basta um e-mail.
+                                Entre, assista às aulas, use o Protocolo SOS. Se em <strong>7 dias</strong> você não sentir que seu peito está mais leve, que é possível estar presente para seus filhos sem aquele medo constante — eu devolvo 100% do seu dinheiro. Sem letras miúdas. Basta um e-mail.
                             </p>
                         </div>
 
