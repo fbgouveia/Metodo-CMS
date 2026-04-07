@@ -4,10 +4,15 @@
  * Este serviço integra os resultados do Quiz com a Inteligência Artificial do Google.
  * Ele transforma as 10 respostas brutas em um "Dossier CMS" que será enviado
  * para o WhatsApp, permitindo que a Dra. Quitéria saiba tudo sobre a usuária.
+ * 
+ * ATUALIZAÇÃO DE SEGURANÇA: As chamadas agora são roteadas
+ * através de uma Vercel Serverless Function (/api/gemini)
+ * para esconder a chave de API do Front-end.
  */
 
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+// Se estivermos em dev local e quiser testar direto, pode manter fallback, 
+// senão aponte sempre para /api/gemini
+const IS_DEV = import.meta.env.DEV;
 
 export interface QuizResult {
     answers: string[];
@@ -15,11 +20,6 @@ export interface QuizResult {
 }
 
 export const generateCMSDossier = async (quizData: QuizResult) => {
-    if (!GEMINI_API_KEY) {
-        console.warn("VITE_GEMINI_API_KEY não configurada. Usando fallback estático.");
-        return null;
-    }
-
     const prompt = `
     VOCÊ É A ESTRATEGISTA NEURAL DA DRA. QUITÉRIA GOUVEIA.
     
@@ -44,7 +44,7 @@ export const generateCMSDossier = async (quizData: QuizResult) => {
   `;
 
     try {
-        const response = await fetch(GEMINI_URL, {
+        const response = await fetch('/api/gemini', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -52,10 +52,20 @@ export const generateCMSDossier = async (quizData: QuizResult) => {
             })
         });
 
+        if (!response.ok) {
+           throw new Error(`API Endpoint returned status ${response.status}`);
+        }
+
         const data = await response.json();
+        
+        if (data.error) {
+            console.error("Vercel API Erro:", data.error);
+            return null;
+        }
+
         return data.candidates[0].content.parts[0].text;
     } catch (error) {
-        console.error("Erro ao processar dossiê CMS:", error);
+        console.error("Erro ao processar dossiê CMS via Serverless:", error);
         return null;
     }
 };

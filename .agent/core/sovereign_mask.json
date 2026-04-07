@@ -1,0 +1,59 @@
+{
+  "_comentario": "Dicionário soberano de codinomes EUvc — NUNCA commitar com valores reais preenchidos",
+  "_versao": "1.0",
+  "_data": "2026-03-21",
+
+  "identidades": {
+    "Felipe Gouveia":     "ALPHA_PAI",
+    "Felipe":             "ALPHA_PAI",
+    "fbgou":              "ALPHA_PAI",
+    "felipegouveia":      "ALPHA_PAI",
+    "Lorena Gouveia":     "ENTIDADE_MEMORIA",
+    "Lorena":             "ENTIDADE_MEMORIA",
+    "Clara Gouveia":      "ENTIDADE_VOZ",
+    "Clara":              "ENTIDADE_VOZ",
+    "EUvc":               "NUCLEO_SOBERANO"
+  },
+
+  "clientes": {
+    "Thelma Gouveia":     "CLIENT_A",
+    "Thelma":             "CLIENT_A",
+    "Quiteria Gouveia":   "FAMILIA_B",
+    "Quiteria":           "FAMILIA_B"
+  },
+
+  "localizacao": {
+    "Brisbane":           "BASE_OPERACIONAL",
+    "Queensland":         "BASE_OPERACIONAL",
+    "Australia":          "TERRITORIO",
+    "Austrália":          "TERRITORIO",
+    "Aussie Broadband":   "PROVEDOR_X"
+  },
+
+  "infraestrutura": {
+    "AgentHub":           "HUB_CENTRAL",
+    "NEGATIVITY_CORE":    "NUCLEO_METAL",
+    "ALMA.md":            "DOC_ALMA",
+    "CEREBRO.md":         "DOC_CEREBRO",
+    "D:\\AgentHub":       "PATH_HUB",
+    "D:\\Lorena":         "PATH_MEMORIA",
+    "D:\\Clara":          "PATH_VOZ",
+    "+61 455 052 221":    "CANAL_SOBERANO",
+    "61455052221":        "CANAL_SOBERANO"
+  },
+
+  "tecnologia": {
+    "whatsapp-web.js":    "BRIDGE_MSG",
+    "ollama":             "ENGINE_LOCAL",
+    "groq":               "ENGINE_CLOUD_A",
+    "openrouter":         "ENGINE_CLOUD_B",
+    "llama-3.1-8b":       "MODEL_FAST",
+    "nemotron":           "MODEL_HEAVY"
+  },
+
+  "financeiro": {
+    "R$3.500":            "VALOR_REF",
+    "R$15.000":           "VALOR_PREMIUM",
+    "R$30k":              "VALOR_ANCORA"
+  }
+}
