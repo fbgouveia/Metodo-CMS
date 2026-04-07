@@ -168,6 +168,14 @@ export const NeuralQuiz: React.FC = () => {
             if (counts.MIND >= counts.PHYSICAL && counts.MIND >= counts.LIFE) dominant = 'MENTAL';
             else if (counts.LIFE >= counts.PHYSICAL && counts.LIFE >= counts.MIND) dominant = 'VIDA';
 
+            // Facebook Lead Event
+            if (typeof window !== 'undefined' && (window as any).fbq) {
+                (window as any).fbq('track', 'Lead', {
+                    content_category: 'Quiz',
+                    content_name: 'Mapeamento de Autonomia'
+                });
+            }
+
             generateCMSDossier({ answers, cluster: dominant })
                 .then(res => {
                     setDossier(res);

@@ -90,6 +90,15 @@ export const CourseSaleCard: React.FC = () => {
                                             href={KIWIFY_URL}
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            onClick={() => {
+                                                if (typeof window !== 'undefined' && (window as any).fbq) {
+                                                    (window as any).fbq('track', 'InitiateCheckout', {
+                                                        content_name: 'Método CMS: Sua Retomada',
+                                                        currency: 'BRL',
+                                                        value: 497.00
+                                                    });
+                                                }
+                                            }}
                                             className="group relative block w-full py-7 bg-blue-600 text-white rounded-full font-black uppercase tracking-[0.2em] text-center shadow-xl hover:bg-white hover:text-slate-900 transition-all duration-500 text-xs active:scale-95 overflow-hidden"
                                         >
                                             <span className="relative z-10 group-hover:hidden">Iniciar Meu Resgate</span>

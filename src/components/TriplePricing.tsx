@@ -138,9 +138,18 @@ export const TriplePricing: React.FC = () => {
                             </div>
 
                             <a
-                                href={product.id === 'mentorship' ? 'https://pay.kiwify.com.br/7zPIO6z' : product.id === 'course' ? 'https://pay.kiwify.com.br/cUO2x97' : 'https://pay.kiwify.com.br/valorde47'}
+                                href={product.id === 'mentorship' ? 'https://pay.kiwify.com.br/7zPIO6z' : product.id === 'course' ? 'https://pay.kiwify.com.br/cUO2x97' : 'https://pay.kiwify.com.br/729630026852622'}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={() => {
+                                    if (typeof window !== 'undefined' && (window as any).fbq) {
+                                        (window as any).fbq('track', 'InitiateCheckout', {
+                                            content_name: product.name,
+                                            currency: 'BRL',
+                                            value: parseFloat(product.price.replace('.', '').replace(',', '.'))
+                                        });
+                                    }
+                                }}
                                 className={`w-full py-5 rounded-full font-bold flex items-center justify-center gap-6 transition-all group/btn ${product.primary
                                     ? 'bg-white text-slate-900 hover:bg-blue-50'
                                     : 'bg-blue-600 text-white hover:bg-blue-700 shadow-xl'
