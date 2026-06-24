@@ -9,45 +9,45 @@ gsap.registerPlugin(ScrollTrigger);
 const methodSteps = [
   {
     step: "01",
-    title: "Módulo 1: O Desligar do Alarme",
-    text: "Entenda por que o seu cérebro 'sequestrou' sua calma. Vou te mostrar como 40 anos de prática provam que você não é louca, seu sistema apenas esqueceu como descansar.",
+    shortTitle: "Reconhecendo o Ruído Mental",
+    title: "Jornada 1: Reconhecendo o Ruído Mental",
+    text: "Você vai descobrir por que sua mente parece nunca desligar e entender que o problema não é falta de força, mas uma sobrecarga emocional silenciosa.",
     image: "/wp-content/uploads/2025/11/card0.jpg"
   },
   {
     step: "02",
-    title: "Módulo 2: O Silêncio Interno",
-    text: "Técnicas psíquicas e corporais para baixar o ruído do medo. O CMS te ensina a ser a dona do interruptor que desliga os pensamentos catastróficos.",
+    shortTitle: "Organizando o Caos Interior",
+    title: "Jornada 2: Organizando o Caos Interior",
+    text: "Aprenda a diferenciar pensamentos, emoções, preocupações, cobranças e responsabilidades para recuperar a clareza emocional.",
     image: "/wp-content/uploads/2025/11/card2.jpg"
   },
   {
     step: "03",
-    title: "Módulo 3: O Resgate da Identidade",
-    text: "Quem era você antes do pânico? Vamos resgatar aquela mulher forte, independente e alegre que está trancada pela ansiedade há tempo demais.",
+    shortTitle: "Construindo Organização Emocional",
+    title: "Jornada 3: Construindo Organização Emocional",
+    text: "Comece a organizar seu mundo interno de forma prática, separando o que precisa de ação daquilo que precisa de acolhimento.",
     image: "/wp-content/uploads/2025/11/card3.jpg"
   },
   {
     step: "04",
-    title: "Módulo 4: Reativação Vital",
-    text: "Protocolo para voltar a frequentar lugares, dirigir e viajar sem o monitoramento constante do 'e se eu passar mal?'. A segurança vem da ferramenta, não da sorte.",
+    shortTitle: "Saindo do Modo Sobrevivência",
+    title: "Jornada 4: Saindo do Modo Sobrevivência",
+    text: "Entenda por que sua mente permanece em estado de alerta e aprenda a substituir a reação automática por escolhas conscientes.",
     image: "/wp-content/uploads/2025/11/card4.jpg"
   },
   {
     step: "05",
-    title: "Módulo 5: Regulação Neural",
-    text: "A base neurocientífica para manter sua paz no longo prazo. Aprenda a blindar seu cérebro contra novos ciclos de estresse e pânico.",
+    shortTitle: "Mente Emocionalmente Organizada",
+    title: "Jornada 5: Construindo uma Mente Emocionalmente Organizada",
+    text: "Desenvolva uma mente emocionalmente organizada, com mais silêncio interno, presença, limites saudáveis e estabilidade emocional.",
     image: "/wp-content/uploads/2025/11/card1.jpg"
   },
   {
     step: "06",
-    title: "Módulo 6: Alquimia da Liberdade",
-    text: "Onde o silêncio se torna sua nova natureza. Ferramentas avançadas para masterizar sua biologia e nunca mais temer a própria mente.",
+    shortTitle: "Vivendo o Método CMS",
+    title: "Jornada 6: Vivendo o Método CMS",
+    text: "Consolide tudo o que aprendeu, prepare-se para lidar com recaídas e construa um plano pessoal para manter sua organização emocional ao longo da vida.",
     image: "/wp-content/uploads/2025/11/card0.jpg"
-  },
-  {
-    step: "07",
-    title: "Módulo 7: Conexão Vital e Propósito",
-    text: "Recupere o prazer de estar no mundo. Como usar sua nova paz para reconstruir relações e projetos que a ansiedade havia pausado.",
-    image: "/wp-content/uploads/2025/11/card2.jpg"
   }
 ];
 
@@ -117,7 +117,7 @@ export const VerticalScroll: React.FC = () => {
                   <div key={idx} className="flex items-center gap-4 group cursor-help">
                     <span className="text-[10px] font-bold text-slate-300 group-hover:text-blue-600 transition-colors uppercase tracking-widest">{s.step}</span>
                     <div className="h-[1px] flex-1 bg-slate-100 group-hover:bg-blue-100 transition-colors"></div>
-                    <span className="text-[9px] uppercase tracking-widest font-black text-slate-400 group-hover:text-slate-900 transition-colors">{s.title.split(': ')[1]}</span>
+                    <span className="text-[9px] uppercase tracking-widest font-black text-slate-400 group-hover:text-slate-900 transition-colors">{s.shortTitle}</span>
                   </div>
                 ))}
               </div>
@@ -137,7 +137,7 @@ export const VerticalScroll: React.FC = () => {
                     <div className="absolute top-6 left-6 text-6xl font-serif text-white/40 italic select-none">{step.step}</div>
                   </div>
                   <div className="flex-1 space-y-6">
-                    <span className="text-blue-600 font-bold uppercase tracking-[0.3em] text-[10px] block">Módulo Estratégico</span>
+                    <span className="text-blue-600 font-bold uppercase tracking-[0.3em] text-[10px] block">Jornada Estratégica</span>
                     <h3 className="text-3xl md:text-4xl font-serif text-slate-900 leading-tight">{step.title}</h3>
                     <p className="text-slate-600 text-lg font-light leading-relaxed italic border-l-2 border-blue-100 pl-6">
                       {step.text}
