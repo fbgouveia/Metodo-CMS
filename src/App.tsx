@@ -30,7 +30,7 @@ if (typeof window !== 'undefined') {
 
 function App() {
   return (
-    <div className="min-h-screen w-full relative font-sans text-[#1d1d1f] overflow-x-hidden">
+    <div className="min-h-screen w-full relative font-sans text-[#1d1d1f]">
       <NeuralCursor />
 
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#f0f4f8]">

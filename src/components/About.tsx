@@ -9,19 +9,7 @@ export const About: React.FC = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Reveal da imagem ao entrar
-      gsap.from('.about-image', {
-        scale: 0.92,
-        autoAlpha: 0,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-        },
-      });
-
-      // Reveal escalonado dos blocos de texto
+      // Reveal escalonado dos blocos de texto (apenas texto, imagem usa CSS)
       gsap.from('.about-content', {
         y: 40,
         autoAlpha: 0,
@@ -49,7 +37,7 @@ export const About: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-16 items-start">
 
           {/* ── COLUNA ESQUERDA: IMAGEM STICKY ── */}
-          <div className="lg:w-[42%] lg:sticky lg:top-24 self-start about-image">
+          <div className="lg:w-[42%] lg:sticky lg:top-24 self-start about-image transition-opacity duration-700">
             <div className="relative w-full max-w-lg mx-auto lg:mx-0">
               {/* Decoração de fundo */}
               <div className="absolute inset-0 bg-blue-200/20 rounded-[3rem] rotate-3 scale-105 opacity-50 blur-sm pointer-events-none" />
