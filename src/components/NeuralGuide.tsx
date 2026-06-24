@@ -58,7 +58,7 @@ export const NeuralGuide: React.FC = () => {
           top: "400vh",
           left: "50%",
           scale: 2,
-          backgroundColor: "#1E40AF", // Deep Blue
+          backgroundColor: "#2563EB", // Brand Blue-600 (matches site palette)
           opacity: 0.3,
           duration: 4,
         })
