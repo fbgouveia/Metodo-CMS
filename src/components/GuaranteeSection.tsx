@@ -15,9 +15,9 @@ export const GuaranteeSection: React.FC = () => {
                         <div className="w-56 h-56 md:w-72 md:h-72 rounded-full border border-blue-100 bg-white shadow-xl flex items-center justify-center relative z-10 transition-transform duration-700 group-hover:scale-105">
                             <div className="absolute inset-2 rounded-full border-2 border-dashed border-blue-200 animate-spin-slow opacity-50"></div>
 
-                            <div className="text-center flex flex-col items-center justify-center h-full pt-4">
-                                <span className="text-9xl font-serif text-slate-900 leading-none block -translate-y-6">7</span>
-                                <div className="-mt-8 space-y-1">
+                            <div className="text-center flex flex-col items-center justify-center">
+                                <span className="text-8xl md:text-9xl font-serif text-slate-900 leading-none block mb-1 md:mb-2">7</span>
+                                <div className="space-y-1">
                                     <span className="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em] block">Dias de</span>
                                     <span className="text-2xl font-serif italic text-slate-400 block">Teste Total</span>
                                 </div>
