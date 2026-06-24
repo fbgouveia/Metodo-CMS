@@ -69,7 +69,7 @@ export const Navbar: React.FC = () => {
             className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
           <div className="flex flex-col items-start leading-none">
-            <span className="font-serif font-bold text-blue-600 text-lg tracking-tight group-hover:text-blue-700 transition-colors">Cérebro em Modo Silencioso</span>
+            <span className="font-serif font-bold text-lg tracking-tight transition-colors" style={{color: '#5DA9CD'}}>Cérebro em Modo Silencioso</span>
             <span className="text-[10px] text-slate-500 font-medium tracking-widest uppercase mt-0.5">Método CMS</span>
           </div>
         </button>

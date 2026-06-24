@@ -30,7 +30,7 @@ export const NeuralGuide: React.FC = () => {
         top: "15vh",
         left: "50%",
         scale: 1,
-        backgroundColor: "#60A5FA",
+        backgroundColor: "#5DA9CD",
         opacity: 0.4,
         duration: 1,
       })
@@ -39,8 +39,8 @@ export const NeuralGuide: React.FC = () => {
           top: "85vh",
           left: "10%",
           scale: 0.8,
-          backgroundColor: "#3B82F6",
-          boxShadow: "0 0 100px 40px rgba(59, 130, 246, 0.3)",
+          backgroundColor: "#5DA9CD",
+          boxShadow: "0 0 100px 40px rgba(93, 169, 205, 0.3)",
           opacity: 0.6,
           duration: 2,
         })
@@ -49,7 +49,7 @@ export const NeuralGuide: React.FC = () => {
           top: "200vh",
           left: "90%",
           scale: 1.2,
-          backgroundColor: "#0EA5E9", // Cyan 500 (No purple)
+          backgroundColor: "#5DA9CD",
           opacity: 0.5,
           duration: 3,
         })
@@ -58,7 +58,7 @@ export const NeuralGuide: React.FC = () => {
           top: "400vh",
           left: "50%",
           scale: 2,
-          backgroundColor: "#2563EB", // Brand Blue-600 (matches site palette)
+          backgroundColor: "#5DA9CD", // Brand Blue CMS
           opacity: 0.3,
           duration: 4,
         })
@@ -93,7 +93,7 @@ export const NeuralGuide: React.FC = () => {
       <div
         ref={orbRef}
         className="absolute w-48 h-48 rounded-full blur-[60px] will-change-transform"
-        style={{ backgroundColor: '#3B82F6' }}
+        style={{ backgroundColor: '#5DA9CD' }}
       ></div>
     </div>
   );
