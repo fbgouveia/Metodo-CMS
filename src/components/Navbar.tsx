@@ -64,7 +64,7 @@ export const Navbar: React.FC = () => {
           aria-label="Ir para o topo"
         >
           <img
-            src="https://metodocms.com/wp-content/uploads/2025/08/logo.png"
+            src="/wp-content/uploads/2025/08/logo.png"
             alt="Método CMS"
             className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />

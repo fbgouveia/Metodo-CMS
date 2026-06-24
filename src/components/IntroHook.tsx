@@ -29,7 +29,7 @@ export const IntroHook: React.FC = () => {
         <div ref={bgRef} className="absolute inset-0">
           <div className="absolute inset-0 bg-black/50 z-10"></div> {/* Escurece a foto para ler o texto */}
           <img
-            src="https://metodocms.com/wp-content/uploads/2025/11/hero-picture2.jpg"
+            src="/wp-content/uploads/2025/11/hero-picture2.jpg"
             alt="Background Neural"
             className="w-full h-full object-cover object-center"
             onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1515023115689-589c33041d3c?q=80&w=2400" }}

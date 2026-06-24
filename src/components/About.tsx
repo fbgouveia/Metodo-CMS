@@ -49,7 +49,7 @@ export const About: React.FC = () => {
             {/* Moldura com fundo transparente/vidro */}
             <div className="relative rounded-[3rem] overflow-hidden border-4 border-white/50 shadow-2xl aspect-[4/5] bg-white/5 backdrop-blur-sm">
               <img
-                src="https://metodocms.com/wp-content/uploads/2025/07/hero-bottom.webp"
+                src="/wp-content/uploads/2025/07/hero-bottom.webp"
                 alt="Dra. Quitéria Gouveia"
                 className="w-full h-full object-contain relative z-10"
               />
@@ -96,7 +96,7 @@ export const About: React.FC = () => {
             {/* Assinatura movida para cá (entre o texto e os selos) */}
             <div className="about-content pt-2 pb-4">
               <img
-                src="https://metodocms.com/wp-content/uploads/2025/11/quiteria_signature.png"
+                src="/wp-content/uploads/2025/11/quiteria_signature.png"
                 alt="Assinatura Dra. Quitéria Gouveia"
                 className="h-16 md:h-20 w-auto opacity-80 transform -rotate-2"
               />

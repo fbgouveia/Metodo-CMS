@@ -11,43 +11,43 @@ const methodSteps = [
     step: "01",
     title: "Módulo 1: O Desligar do Alarme",
     text: "Entenda por que o seu cérebro 'sequestrou' sua calma. Vou te mostrar como 40 anos de prática provam que você não é louca, seu sistema apenas esqueceu como descansar.",
-    image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card0.jpg"
+    image: "/wp-content/uploads/2025/11/card0.jpg"
   },
   {
     step: "02",
     title: "Módulo 2: O Silêncio Interno",
     text: "Técnicas psíquicas e corporais para baixar o ruído do medo. O CMS te ensina a ser a dona do interruptor que desliga os pensamentos catastróficos.",
-    image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card2.jpg"
+    image: "/wp-content/uploads/2025/11/card2.jpg"
   },
   {
     step: "03",
     title: "Módulo 3: O Resgate da Identidade",
     text: "Quem era você antes do pânico? Vamos resgatar aquela mulher forte, independente e alegre que está trancada pela ansiedade há tempo demais.",
-    image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card3.jpg"
+    image: "/wp-content/uploads/2025/11/card3.jpg"
   },
   {
     step: "04",
     title: "Módulo 4: Reativação Vital",
     text: "Protocolo para voltar a frequentar lugares, dirigir e viajar sem o monitoramento constante do 'e se eu passar mal?'. A segurança vem da ferramenta, não da sorte.",
-    image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card4.jpg"
+    image: "/wp-content/uploads/2025/11/card4.jpg"
   },
   {
     step: "05",
     title: "Módulo 5: Regulação Neural",
     text: "A base neurocientífica para manter sua paz no longo prazo. Aprenda a blindar seu cérebro contra novos ciclos de estresse e pânico.",
-    image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card1.jpg"
+    image: "/wp-content/uploads/2025/11/card1.jpg"
   },
   {
     step: "06",
     title: "Módulo 6: Alquimia da Liberdade",
     text: "Onde o silêncio se torna sua nova natureza. Ferramentas avançadas para masterizar sua biologia e nunca mais temer a própria mente.",
-    image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card0.jpg"
+    image: "/wp-content/uploads/2025/11/card0.jpg"
   },
   {
     step: "07",
     title: "Módulo 7: Conexão Vital e Propósito",
     text: "Recupere o prazer de estar no mundo. Como usar sua nova paz para reconstruir relações e projetos que a ansiedade havia pausado.",
-    image: "https://quiteriagouveia.com/wp-content/uploads/2025/11/card2.jpg"
+    image: "/wp-content/uploads/2025/11/card2.jpg"
   }
 ];
 

@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
             <div className="flex flex-col items-start gap-4">
               <div className="flex items-center gap-3">
                 <img
-                  src="https://metodocms.com/wp-content/uploads/2025/08/logo.png"
+                  src="/wp-content/uploads/2025/08/logo.png"
                   alt="Método CMS"
                   className="h-10 w-auto object-contain brightness-0 invert"
                 />

@@ -28,7 +28,7 @@ export const CourseSaleCard: React.FC = () => {
                         <div className="w-full relative group">
                             <div className="relative aspect-video rounded-[3rem] overflow-hidden shadow-[0_32px_100px_-20px_rgba(0,0,0,0.15)] border border-blue-50 bg-slate-100">
                                 <img
-                                    src="https://quiteriagouveia.com/wp-content/uploads/2026/02/banner-do-curso-1280x720-1.png"
+                                    src="/wp-content/uploads/2026/02/banner-do-curso-1280x720-1.png"
                                     alt="Método CMS: Sua Retomada"
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[6s] ease-out object-center md:object-top"
                                 />

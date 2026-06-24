@@ -31,7 +31,7 @@ export const ManualShowcase: React.FC = () => {
                         <div className="absolute -inset-10 bg-blue-400/10 rounded-full blur-[100px] opacity-50"></div>
                         <div className="relative group">
                             <img
-                                src="https://quiteriagouveia.com/wp-content/uploads/2026/01/mockup-promp6final_ok.png"
+                                src="/wp-content/uploads/2026/01/mockup-promp6final_ok.png"
                                 alt="Manual de Gestão da Ansiedade"
                                 className="w-full h-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)] transition-transform duration-[2s] group-hover:scale-[1.02]"
                             />
