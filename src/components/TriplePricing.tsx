@@ -196,7 +196,7 @@ export const TriplePricing: React.FC = () => {
                                 className={`w-full py-4 md:py-5 rounded-full font-bold flex items-center justify-center transition-all ${
                                     product.primary
                                         ? 'bg-gradient-to-r from-brand-sereno to-[#0ea5e9] text-white shadow-lg hover:shadow-brand-sereno/25 hover:scale-[1.02] active:scale-[0.98]'
-                                        : 'bg-brand-areia/50 hover:bg-brand-areia text-brand-noite border border-brand-bruma/50 hover:border-brand-bruma active:scale-[0.98]'
+                                        : 'bg-brand-ceu hover:bg-brand-sereno/30 text-brand-noite border border-brand-sereno/30 hover:border-brand-sereno/50 active:scale-[0.98]'
                                 }`}
                             >
                                 <span className="uppercase tracking-widest text-xs">{product.cta}</span>

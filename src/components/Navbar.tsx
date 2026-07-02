@@ -56,11 +56,11 @@ export const Navbar: React.FC = () => {
           <img
             src="/wp-content/uploads/2025/08/logo.png"
             alt="Método CMS"
-            className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
           <div className="flex flex-col items-start leading-none">
-            <span className="font-serif font-bold text-lg tracking-tight text-brand-noite transition-colors">Cérebro em Modo Silencioso</span>
-            <span className="text-[10px] text-brand-pedra font-mono tracking-widest uppercase mt-0.5">Método CMS</span>
+            <span className="font-serif font-bold text-xl tracking-tight text-brand-sereno transition-colors">Cérebro em Modo Silencioso</span>
+            <span className="text-[11px] text-brand-pedra font-mono tracking-widest uppercase mt-1">Método CMS</span>
           </div>
         </button>
 
