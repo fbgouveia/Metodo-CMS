@@ -12,6 +12,14 @@ const thoughtBlocks = [
   "Você tenta relaxar... mas sua cabeça continua funcionando."
 ];
 
+// Versão curta dos pensamentos para a ilustração "caos -> organização"
+const mentalChips = [
+  "A cabeça não desliga",
+  "Uma preocupação puxa outra",
+  "Culpa ao descansar",
+  "Cansaço sem motivo claro"
+];
+
 export const TransformationJourney: React.FC = () => {
   const thoughtsRef = useRef<HTMLDivElement>(null);
   const questionRef = useRef<HTMLDivElement>(null);
@@ -44,6 +52,26 @@ export const TransformationJourney: React.FC = () => {
           toggleActions: "play none none reverse"
         }
       });
+
+      // Chips: entram espalhados/tortos e se organizam (caos -> clareza)
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduceMotion) {
+        gsap.from(".thought-chip", {
+          opacity: 0,
+          scale: 0.85,
+          x: () => gsap.utils.random(-50, 50),
+          y: () => gsap.utils.random(-24, 24),
+          rotation: () => gsap.utils.random(-10, 10),
+          duration: 0.9,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: questionRef.current,
+            start: "top 70%",
+            toggleActions: "play none none reverse"
+          }
+        });
+      }
     });
 
     return () => ctx.revert();
@@ -86,16 +114,24 @@ export const TransformationJourney: React.FC = () => {
               Foi dessa observação que nasceu o <strong>Método CMS</strong>.
             </p>
           </div>
-          <div className="the-question order-1 md:order-2 relative w-full aspect-square md:aspect-auto md:h-[500px] bg-white rounded-3xl shadow-xl flex items-center justify-center border border-slate-100 p-8">
-             {/* Ilustração Representativa: Congestionamento vs Respiração */}
-             <div className="relative w-full h-full flex items-center justify-center">
-                {/* Circulos caóticos representando o congestionamento (Mesa Mental bagunçada) */}
-                <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-slate-200/50 rounded-full blur-xl animate-pulse"></div>
-                <div className="absolute bottom-1/3 right-1/4 w-40 h-40 bg-blue-100/50 rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s'}}></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center z-10">
-                  <span className="text-sm font-bold tracking-widest uppercase text-slate-400 mb-2 block">Visualmente Congestionado</span>
-                  <span className="text-2xl font-serif text-blue-600 italic">Mas Organizado.</span>
-                </div>
+          <div className="the-question order-1 md:order-2 relative w-full aspect-square md:aspect-auto md:h-[500px] bg-white rounded-3xl shadow-xl flex flex-col border border-brand-ceu/60 p-8 overflow-hidden">
+             {/* Halo suave da marca */}
+             <div aria-hidden className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-brand-ceu/40 blur-3xl" />
+             {/* Ilustração: pensamentos dispersos que se organizam em clareza */}
+             <span className="relative text-[11px] font-bold tracking-[0.25em] uppercase text-brand-pedra mb-5">
+               Seus pensamentos, organizados
+             </span>
+             <div className="relative flex-1 flex flex-col justify-center gap-3">
+                {mentalChips.map((chip, i) => (
+                  <div key={i} className="thought-chip flex items-center gap-3 px-4 py-3 bg-brand-bruma rounded-xl border border-brand-ceu/70">
+                    <span className="h-2 w-2 rounded-full bg-brand-sereno shrink-0" aria-hidden />
+                    <span className="text-sm md:text-base text-brand-noite font-medium">{chip}</span>
+                  </div>
+                ))}
+             </div>
+             <div className="relative mt-6 pt-5 border-t border-brand-ceu/70 flex items-baseline justify-between">
+                <span className="text-[11px] font-bold tracking-widest uppercase text-brand-pedra">Do caos</span>
+                <span className="text-2xl font-serif italic text-brand-aguada">à clareza.</span>
              </div>
           </div>
         </div>

@@ -6,7 +6,7 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const jornadas = [
+const jornadas: { number: string; title: string; description: string; image: string; portrait?: boolean }[] = [
   {
     number: "1",
     title: "Reconhecendo o Ruído Mental",
@@ -41,7 +41,8 @@ const jornadas = [
     number: "6",
     title: "Vivendo o Método CMS",
     description: "Consolide tudo o que aprendeu, prepare-se para lidar com recaídas e construa um plano pessoal para manter sua organização emocional ao longo da vida.",
-    image: "/wp-content/uploads/2025/11/card1.jpg"
+    image: "/wp-content/uploads/2025/07/hero-bottom.webp",
+    portrait: true
   }
 ];
 
@@ -94,13 +95,23 @@ export const ProgramDetails: React.FC = () => {
           {jornadas.map((jornada, i) => (
             <div key={i} className={`jornada-card flex flex-col md:flex-row items-center gap-12 md:gap-24 ${i % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
               
-              {/* Imagem branded da Jornada (retrato 4:5) */}
-              <div className="w-full md:w-1/2 max-w-md mx-auto aspect-[4/5] rounded-2xl overflow-hidden shadow-lg ring-1 ring-brand-ceu/60 relative">
+              {/* Imagem da Jornada — foto branded (cover) ou retrato em vidro fosco (contain) */}
+              <div className={`w-full md:w-1/2 max-w-md mx-auto aspect-[4/5] rounded-2xl overflow-hidden relative ${
+                jornada.portrait
+                  ? 'bg-white/30 backdrop-blur-2xl border border-white/60 ring-1 ring-white/40 shadow-[0_8px_40px_-8px_rgba(31,42,56,0.28)]'
+                  : 'shadow-lg ring-1 ring-brand-ceu/60'
+              }`}>
+                 {jornada.portrait && (
+                   <>
+                     <div aria-hidden className="pointer-events-none absolute -top-10 -right-8 h-40 w-40 rounded-full bg-brand-sereno/30 blur-3xl" />
+                     <div aria-hidden className="pointer-events-none absolute -bottom-12 -left-8 h-44 w-44 rounded-full bg-brand-ceu/60 blur-3xl" />
+                   </>
+                 )}
                  <img
                     src={jornada.image}
                     alt={jornada.title}
                     loading="lazy"
-                    className="w-full h-full object-cover object-center transform transition-transform duration-1000 hover:scale-105"
+                    className={`relative z-10 w-full h-full transform transition-transform duration-1000 hover:scale-105 ${jornada.portrait ? 'object-contain object-bottom' : 'object-cover object-center'}`}
                  />
               </div>
 
