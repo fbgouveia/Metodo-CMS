@@ -1,52 +1,97 @@
 import React from 'react';
-// Lucide icons removed to follow "Non-Obvious Persuasive Design" protocol
 import { motion } from 'framer-motion';
+
+const CheckIcon = ({ className = "" }: { className?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={`w-5 h-5 ${className}`}>
+        <polyline points="20 6 9 17 4 12" />
+    </svg>
+);
+
+const ShieldCheckIcon = ({ className = "" }: { className?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`w-6 h-6 ${className}`}>
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="m9 12 2 2 4-4" />
+    </svg>
+);
+
+const SparkleIcon = ({ className = "" }: { className?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`w-3 h-3 ${className}`}>
+        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+    </svg>
+);
+
+const IconEssencial = ({ className = "" }: { className?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`w-5 h-5 ${className}`}>
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+    </svg>
+);
+
+const IconLiberdade = ({ className = "" }: { className?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`w-5 h-5 ${className}`}>
+        <path d="M12 20h9" />
+        <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 Z" />
+    </svg>
+);
+
+const IconExclusivo = ({ className = "" }: { className?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`w-5 h-5 ${className}`}>
+        <path d="M2 16V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v11" />
+        <path d="M22 16c0 3-4 5-10 5S2 19 2 16" />
+        <path d="M12 21v-5" />
+    </svg>
+);
+
 
 export const TriplePricing: React.FC = () => {
     const products = [
         {
             id: 'book',
-            name: "Manual Gestão da Ansiedade",
-            subtitle: "Sua Rota de Fuga Imediata: Técnicas práticas para silenciar crises em minutos.",
-            price: "47,00",
+            name: "Manual Ansiedade",
+            subtitle: "Sua rota de fuga imediata. Prático para silenciar crises em minutos.",
+            price: "47",
             originalPrice: "97,00",
-            badge: "Início",
-            type: "ESSENCIAL",
+            badge: "",
+            type: "Essencial",
+            icon: <IconEssencial />,
             features: [
-                "Guia Digital (PDF)",
+                "Guia Digital Completo (PDF)",
                 "O Alívio da Respiração Neural",
                 "Protocolo SOS Crise de Pânico",
                 "Acesso Imediato no E-mail"
             ],
             cta: "Começar Minha Fuga",
-            primary: false
+            primary: false,
+            link: "https://pay.kiwify.com.br/OZD5KB0"
         },
         {
             id: 'course',
-            name: "Método CMS Completo",
-            subtitle: "A Retomada de Identidade: O passo a passo clínico para viver sem medo.",
-            price: "497,00",
+            name: "Método CMS",
+            subtitle: "A retomada de identidade. O passo a passo clínico para viver sem medo.",
+            price: "497",
             originalPrice: "997,00",
-            badge: "+2.500 Alunas",
-            type: "LIBERDADE",
+            badge: "Mais Escolhido",
+            type: "Liberdade",
+            icon: <IconLiberdade />,
             features: [
                 "Acesso ao Mapeamento Neural",
                 "7 Módulos de Cura Profunda",
-                "Comunidade Mães que Silenciam",
+                "Comunidade Exclusiva de Alunos",
                 "Acesso Vitalício (Para Sempre)",
                 "Bônus: Mentorias Gravadas"
             ],
             cta: "Garantir Minha Liberdade",
-            primary: true
+            primary: true,
+            link: "https://pay.kiwify.com.br/cUO2x97"
         },
         {
             id: 'mentorship',
-            name: "Mentoria VIP Individual",
-            subtitle: "O Resgate Profundo: Dra. Quitéria pegando na sua mão pessoalmente.",
-            price: "1.480,00",
+            name: "Mentoria VIP",
+            subtitle: "O resgate profundo. Quiteria pegando na sua mão pessoalmente.",
+            price: "1.480",
             originalPrice: "2.500,00",
-            badge: "Restrito",
-            type: "EXCLUSIVO",
+            badge: "",
+            type: "Exclusivo",
+            icon: <IconExclusivo />,
             features: [
                 "Tudo do Método CMS Completo",
                 "6 Encontros Individuais (Zoom)",
@@ -55,37 +100,36 @@ export const TriplePricing: React.FC = () => {
                 "Prioridade em Novos Cursos"
             ],
             cta: "Agendar Meu Resgate",
-            primary: false
+            primary: false,
+            link: "https://pay.kiwify.com.br/7zPIO6z"
         }
     ];
 
     return (
-        <section id="pricing" className="py-24 relative overflow-hidden bg-transparent">
-            {/* Background elements */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-blue-100/20 rounded-full blur-[120px] pointer-events-none"></div>
-
+        <section id="pricing" className="py-24 relative overflow-hidden bg-brand-papel">
             <div className="container mx-auto px-6 relative z-10">
-                <div className="text-center mb-20">
+                
+                <div className="text-center mb-16">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 shadow-sm mb-10"
+                        className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white border border-brand-bruma/50 shadow-sm mb-8"
                     >
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></div>
-                        <span className="text-[10px] font-black text-blue-700 tracking-[0.2em] uppercase">Escolha o seu caminho</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-brand-sereno animate-pulse"></div>
+                        <span className="text-[10px] font-bold text-brand-noite tracking-[0.2em] uppercase">Escolha o seu caminho</span>
                     </motion.div>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-5xl md:text-7xl font-serif text-slate-900 mb-6 tracking-tight"
+                        className="text-4xl md:text-6xl font-serif text-brand-noite tracking-tight max-w-2xl mx-auto leading-tight"
                     >
-                        A Paz Mental <br /> <span className="text-blue-600 italic">não tem preço.</span>
+                        A Paz Mental <span className="text-brand-pedra italic font-light">não tem preço.</span>
                     </motion.h2>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch max-w-7xl mx-auto mt-12">
                     {products.map((product, idx) => (
                         <motion.div
                             key={product.id}
@@ -93,52 +137,51 @@ export const TriplePricing: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className={`relative flex flex-col p-10 rounded-[3rem] transition-all duration-500 overflow-hidden border ${product.primary
-                                ? 'bg-blue-600 shadow-[0_40px_100px_rgba(8,_112,_184,_0.15)] border-blue-100 scale-105 z-20'
-                                : 'bg-white/40 backdrop-blur-xl border-white/60 shadow-xl hover:shadow-2xl z-10 scale-100'
-                                }`}
+                            className={`relative flex flex-col p-8 md:p-10 rounded-[2rem] transition-all duration-300 border ${
+                                product.primary
+                                    ? 'bg-brand-noite border-brand-sereno shadow-2xl z-20 md:-translate-y-4'
+                                    : 'bg-white border-brand-bruma/40 shadow-sm hover:shadow-md z-10'
+                            }`}
                         >
-                            <div className="flex-1">
-                                <div className="flex items-center justify-between mb-8">
-                                    <div className={`${product.primary ? 'text-blue-400' : 'text-blue-600'} font-black text-[10px] tracking-[0.3em] uppercase`}>
-                                        {product.type}
+                            {/* Header: Icon & Type & Badge */}
+                            <div className="flex justify-between items-center mb-8">
+                                <div className={`flex items-center gap-2.5 font-bold text-sm tracking-wide ${product.primary ? 'text-brand-papel' : 'text-brand-noite'}`}>
+                                    <div className={`${product.primary ? 'text-brand-sereno' : 'text-brand-pedra'}`}>
+                                        {product.icon}
                                     </div>
-                                    {product.badge && (
-                                        <span className={`px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${product.primary ? 'bg-blue-600 text-white' : 'bg-blue-50 text-blue-600'}`}>
-                                            {product.badge}
-                                        </span>
-                                    )}
+                                    {product.type}
                                 </div>
-
-                                <h3 className={`text-3xl font-serif mb-3 leading-tight ${product.primary ? 'text-white' : 'text-slate-900'} transition-colors`}>
-                                    {product.name}
-                                </h3>
-                                <p className={`text-sm mb-10 leading-relaxed ${product.primary ? 'text-white/80' : 'text-slate-500'}`}>
-                                    {product.subtitle}
-                                </p>
-
-                                <div className="mb-12">
-                                    <span className={`line-through block text-sm font-bold uppercase tracking-widest mb-1 ${product.primary ? 'text-blue-200' : 'text-slate-400'}`}>R$ {product.originalPrice}</span>
-                                    <div className="flex items-baseline gap-2">
-                                        <span className={`text-sm font-bold ${product.primary ? 'text-white' : 'text-slate-900'}`}>R$</span>
-                                        <span className={`text-6xl font-black ${product.primary ? 'text-white' : 'text-slate-900'} tracking-tighter`}>{product.price}</span>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-4 mb-12">
-                                    {product.features.map((feature, i) => (
-                                        <div key={i} className="flex items-center gap-4 group/item">
-                                            <div className={`w-1 h-1 rounded-full transition-all group-hover/item:scale-150 ${product.primary ? 'bg-blue-400' : 'bg-blue-600'}`}></div>
-                                            <span className={`text-sm tracking-wide ${product.primary ? 'text-white/90' : 'text-slate-600'}`}>
-                                                {feature}
-                                            </span>
-                                        </div>
-                                    ))}
-                                </div>
+                                {product.badge && (
+                                    <span className="bg-brand-sereno/20 text-brand-sereno px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase flex items-center gap-1.5">
+                                        <SparkleIcon /> {product.badge}
+                                    </span>
+                                )}
                             </div>
 
+                            {/* Name & Pricing */}
+                            <h3 className={`text-4xl font-serif mb-4 tracking-tight ${product.primary ? 'text-brand-papel' : 'text-brand-noite'}`}>
+                                {product.name}
+                            </h3>
+                            
+                            <div className="mb-4 flex flex-col">
+                                <div className="flex items-baseline gap-1">
+                                    <span className={`text-2xl font-bold ${product.primary ? 'text-brand-papel' : 'text-brand-noite'}`}>R$</span>
+                                    <span className={`text-6xl font-bold tracking-tighter ${product.primary ? 'text-brand-papel' : 'text-brand-noite'}`}>
+                                        {product.price}
+                                    </span>
+                                </div>
+                                <span className={`text-sm mt-1 font-medium line-through ${product.primary ? 'text-brand-pedra' : 'text-brand-bruma'}`}>
+                                    De R$ {product.originalPrice}
+                                </span>
+                            </div>
+
+                            <p className={`text-sm mb-8 min-h-[44px] leading-relaxed ${product.primary ? 'text-brand-pedra' : 'text-brand-noite/70'}`}>
+                                {product.subtitle}
+                            </p>
+
+                            {/* CTA Button placed right after price/subtitle */}
                             <a
-                                href={product.id === 'mentorship' ? 'https://pay.kiwify.com.br/7zPIO6z' : product.id === 'course' ? 'https://pay.kiwify.com.br/cUO2x97' : 'https://pay.kiwify.com.br/OZD5KB0'}
+                                href={product.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={() => {
@@ -150,31 +193,51 @@ export const TriplePricing: React.FC = () => {
                                         });
                                     }
                                 }}
-                                className={`w-full py-5 rounded-full font-bold flex items-center justify-center gap-6 transition-all group/btn ${product.primary
-                                    ? 'bg-white text-slate-900 hover:bg-blue-50'
-                                    : 'bg-blue-600 text-white hover:bg-blue-700 shadow-xl'
-                                    }`}
+                                className={`w-full py-4 md:py-5 rounded-full font-bold flex items-center justify-center transition-all ${
+                                    product.primary
+                                        ? 'bg-gradient-to-r from-brand-sereno to-[#0ea5e9] text-white shadow-lg hover:shadow-brand-sereno/25 hover:scale-[1.02] active:scale-[0.98]'
+                                        : 'bg-brand-areia/50 hover:bg-brand-areia text-brand-noite border border-brand-bruma/50 hover:border-brand-bruma active:scale-[0.98]'
+                                }`}
                             >
                                 <span className="uppercase tracking-widest text-xs">{product.cta}</span>
-                                <div className={`w-8 h-[1px] ${product.primary ? 'bg-slate-900' : 'bg-white'} relative overflow-hidden`}>
-                                    <div className={`absolute inset-0 ${product.primary ? 'bg-blue-600' : 'bg-blue-200'} -translate-x-full group-hover/btn:animate-shimmer`}></div>
-                                </div>
                             </a>
+
+                            <div className="my-8 w-full h-[1px] bg-brand-bruma/20"></div>
+
+                            {/* Features */}
+                            <div className="flex-1 mb-10">
+                                <ul className="space-y-4">
+                                    {product.features.map((feature, i) => (
+                                        <li key={i} className="flex items-start gap-3.5">
+                                            <CheckIcon className={`mt-0.5 shrink-0 ${product.primary ? 'text-brand-sereno' : 'text-brand-pedra'}`} />
+                                            <span className={`text-sm leading-relaxed ${product.primary ? 'text-brand-papel' : 'text-brand-noite'}`}>
+                                                {feature}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            {/* Guarantee Bottom */}
+                            <div className={`pt-6 mt-auto border-t ${product.primary ? 'border-brand-pedra/20' : 'border-brand-bruma/30'}`}>
+                                <div className="flex items-start gap-4">
+                                    <ShieldCheckIcon className={`shrink-0 ${product.primary ? 'text-emerald-400' : 'text-emerald-600'}`} />
+                                    <div>
+                                        <p className={`font-bold text-sm mb-1 ${product.primary ? 'text-brand-papel' : 'text-brand-noite'}`}>
+                                            Garantia de 7 Dias
+                                        </p>
+                                        <p className={`text-[11px] leading-tight ${product.primary ? 'text-brand-pedra' : 'text-brand-noite/60'}`}>
+                                            Acesso seguro. Se não for para você, o reembolso é imediato.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </motion.div>
                     ))}
-                </div>
-
-                <div className="mt-16 text-center">
-                    <div className="inline-flex items-center gap-6 px-10 py-6 bg-white/40 backdrop-blur-md rounded-[2.5rem] border border-white/60 shadow-lg">
-                        <div className="flex items-center gap-3">
-                            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-                            <span className="text-xs font-bold text-slate-700 uppercase tracking-widest">Acesso Seguro & Garantido</span>
-                        </div>
-                        <div className="w-[1px] h-4 bg-slate-200"></div>
-                        <p className="text-xs text-slate-500 font-medium italic">7 dias de garantia incondicional em qualquer escolha.</p>
-                    </div>
                 </div>
             </div>
         </section>
     );
 };
+

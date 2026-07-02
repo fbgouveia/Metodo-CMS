@@ -8,28 +8,18 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      // Usa múltiplas propriedades para garantir que a rolagem seja detectada em qualquer navegador/contexto CSS
+      const scrollPosition = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      setScrolled(scrollPosition > 10);
     };
-    window.addEventListener('scroll', handleScroll);
-
-    // Animação Contínua da Borda do CTA (Fluxo Eterno)
-    const ctx = gsap.context(() => {
-      gsap.to(".nav-cta-border", {
-        backgroundPosition: "200% center",
-        duration: 3,
-        ease: "linear",
-        repeat: -1,
-        onUpdate: () => {
-          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            gsap.set(".nav-cta-border", { backgroundPosition: "0% center" });
-          }
-        }
-      });
-    });
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Adiciona listener também no document para contextos onde o body é o scroll container
+    document.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      ctx.revert();
+      document.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -53,7 +43,7 @@ export const Navbar: React.FC = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-        ? 'bg-white/95 backdrop-blur-xl border-b border-slate-100 py-4 shadow-sm'
+        ? 'bg-white/95 backdrop-blur-md border-b border-brand-bruma py-4 shadow-sm'
         : 'bg-transparent border-transparent py-6'
         }`}
     >
@@ -69,17 +59,17 @@ export const Navbar: React.FC = () => {
             className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
           <div className="flex flex-col items-start leading-none">
-            <span className="font-serif font-bold text-lg tracking-tight transition-colors" style={{color: '#5DA9CD'}}>Cérebro em Modo Silencioso</span>
-            <span className="text-[10px] text-slate-500 font-medium tracking-widest uppercase mt-0.5">Método CMS</span>
+            <span className="font-serif font-bold text-lg tracking-tight text-brand-noite transition-colors">Cérebro em Modo Silencioso</span>
+            <span className="text-[10px] text-brand-pedra font-mono tracking-widest uppercase mt-0.5">Método CMS</span>
           </div>
         </button>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
-          <a href="#method" onClick={(e) => scrollToSection(e, '#method')} className="text-[11px] font-black uppercase tracking-widest text-slate-600 hover:text-blue-600 transition-colors">O Método</a>
-          <a href="#features" onClick={(e) => scrollToSection(e, '#features')} className="text-[11px] font-black uppercase tracking-widest text-slate-600 hover:text-blue-600 transition-colors">Benefícios</a>
-          <a href="#pricing" onClick={(e) => scrollToSection(e, '#pricing')} className="text-[11px] font-black uppercase tracking-widest text-slate-600 hover:text-blue-600 transition-colors">Jornada</a>
-          <a href="#faq" onClick={(e) => scrollToSection(e, '#faq')} className="text-[11px] font-black uppercase tracking-widest text-slate-600 hover:text-blue-600 transition-colors">Dúvidas</a>
+          <a href="#how-it-works" onClick={(e) => scrollToSection(e, '#how-it-works')} className="text-[11px] font-bold uppercase tracking-widest text-brand-pedra hover:text-brand-sereno transition-colors">O Método</a>
+          <a href="#features" onClick={(e) => scrollToSection(e, '#features')} className="text-[11px] font-bold uppercase tracking-widest text-brand-pedra hover:text-brand-sereno transition-colors">Benefícios</a>
+          <a href="#pricing" onClick={(e) => scrollToSection(e, '#pricing')} className="text-[11px] font-bold uppercase tracking-widest text-brand-pedra hover:text-brand-sereno transition-colors">Jornada</a>
+          <a href="#faq" onClick={(e) => scrollToSection(e, '#faq')} className="text-[11px] font-bold uppercase tracking-widest text-brand-pedra hover:text-brand-sereno transition-colors">Dúvidas</a>
 
           {/* WhatsApp Action Link - Typographic Version */}
           <a
@@ -96,11 +86,9 @@ export const Navbar: React.FC = () => {
           <a
             href="#pricing"
             onClick={(e) => scrollToSection(e, '#pricing')}
-            className="relative group px-8 py-3 rounded-full overflow-hidden shadow-lg transition-all duration-300 active:scale-95"
+            className="group px-8 py-3 rounded-full bg-brand-noite hover:bg-brand-carvao text-brand-papel transition-colors duration-300 shadow-sm active:scale-95"
           >
-            <div className="nav-cta-border absolute -inset-[3px] bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 bg-[length:200%_auto]"></div>
-            <div className="absolute inset-[2px] bg-slate-900 rounded-full transition-colors group-hover:bg-slate-800"></div>
-            <span className="relative z-10 text-white text-[11px] font-black uppercase tracking-[0.2em]">
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em]">
               Quero Minha Liberdade
             </span>
           </a>
@@ -108,7 +96,7 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Toggle - Typographic Version */}
         <button
-          className="md:hidden text-slate-900 text-[10px] font-black uppercase tracking-widest p-2 border border-slate-200 rounded-lg bg-white/50 backdrop-blur-sm"
+          className="md:hidden text-brand-noite text-[10px] font-bold uppercase tracking-widest p-2 border border-brand-bruma rounded-lg bg-brand-papel"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? 'Fechar' : 'Menu'}
@@ -117,7 +105,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu Overlay (Fixed Full Screen) */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[60] bg-white/95 backdrop-blur-3xl flex flex-col items-center justify-center gap-10 p-8 animate-in fade-in zoom-in-95 duration-300 md:hidden">
+        <div className="fixed inset-0 z-[60] bg-brand-papel flex flex-col items-center justify-center gap-10 p-8 animate-in fade-in zoom-in-95 duration-300 md:hidden">
 
           {/* Close Button */}
           <button
@@ -130,10 +118,10 @@ export const Navbar: React.FC = () => {
             </svg>
           </button>
 
-          <a href="#method" className="text-4xl font-serif text-slate-900 active:scale-95 transition-transform" onClick={(e) => scrollToSection(e, '#method')}>O Método</a>
-          <a href="#features" className="text-4xl font-serif text-slate-900 active:scale-95 transition-transform" onClick={(e) => scrollToSection(e, '#features')}>Benefícios</a>
-          <a href="#pricing" className="text-4xl font-serif text-slate-900 active:scale-95 transition-transform" onClick={(e) => scrollToSection(e, '#pricing')}>Jornada</a>
-          <a href="#faq" className="text-4xl font-serif text-slate-900 active:scale-95 transition-transform" onClick={(e) => scrollToSection(e, '#faq')}>Dúvidas</a>
+          <a href="#how-it-works" className="text-4xl font-serif text-brand-noite active:scale-95 transition-transform" onClick={(e) => scrollToSection(e, '#how-it-works')}>O Método</a>
+          <a href="#features" className="text-4xl font-serif text-brand-noite active:scale-95 transition-transform" onClick={(e) => scrollToSection(e, '#features')}>Benefícios</a>
+          <a href="#pricing" className="text-4xl font-serif text-brand-noite active:scale-95 transition-transform" onClick={(e) => scrollToSection(e, '#pricing')}>Jornada</a>
+          <a href="#faq" className="text-4xl font-serif text-brand-noite active:scale-95 transition-transform" onClick={(e) => scrollToSection(e, '#faq')}>Dúvidas</a>
 
           <a
             href="https://api.whatsapp.com/send?phone=5511956185501"
@@ -142,18 +130,16 @@ export const Navbar: React.FC = () => {
             className="w-full max-w-xs flex items-center justify-between p-6 bg-green-50 rounded-[2rem] border border-green-100 mt-4 group active:scale-95 transition-transform shadow-lg shadow-green-100/50"
             onClick={() => setMobileMenuOpen(false)}
           >
-            <span className="text-green-700 font-bold text-lg">Fale com a Dra.</span>
+            <span className="text-green-700 font-bold text-lg">Fale comigo</span>
             <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
           </a>
 
           <a
             href="#pricing"
-            className="w-full max-w-xs relative group py-6 rounded-[2rem] overflow-hidden shadow-2xl text-center active:scale-95 transition-transform"
+            className="w-full max-w-xs py-5 rounded-[2rem] bg-brand-noite hover:bg-brand-carvao text-brand-papel text-center active:scale-95 transition-all shadow-md"
             onClick={(e) => scrollToSection(e, '#pricing')}
           >
-            <div className="nav-cta-border absolute -inset-[3px] bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 bg-[length:200%_auto]"></div>
-            <div className="absolute inset-[2px] bg-slate-900 rounded-[1.8rem]"></div>
-            <span className="relative z-10 text-white font-black uppercase tracking-[0.2em] text-sm">Garantir Minha Vaga</span>
+            <span className="font-bold uppercase tracking-[0.2em] text-sm">Garantir Minha Vaga</span>
           </a>
         </div>
       )}

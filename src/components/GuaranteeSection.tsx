@@ -16,10 +16,10 @@ export const GuaranteeSection: React.FC = () => {
                             <div className="absolute inset-2 rounded-full border-2 border-dashed border-blue-200 animate-spin-slow opacity-50"></div>
 
                             <div className="text-center flex flex-col items-center justify-center">
-                                <span className="text-8xl md:text-9xl font-serif text-slate-900 leading-none block mb-1 md:mb-2">7</span>
+                                <span className="text-8xl md:text-9xl font-serif text-slate-900 leading-none block mb-1 md:mb-2">15</span>
                                 <div className="space-y-1">
                                     <span className="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em] block">Dias de</span>
-                                    <span className="text-2xl font-serif italic text-slate-400 block">Teste Total</span>
+                                    <span className="text-2xl font-serif italic text-slate-400 block">Garantia</span>
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@ export const GuaranteeSection: React.FC = () => {
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                             </svg>
-                            Garantia Blindada
+                            Garantia Dupla
                         </div>
                     </div>
 
@@ -39,20 +39,20 @@ export const GuaranteeSection: React.FC = () => {
                             <svg className="w-3 h-3 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                             </svg>
-                            <span className="text-[10px] font-black uppercase tracking-widest">Risco Zero para Você</span>
+                            <span className="text-[10px] font-black uppercase tracking-widest">Risco Zero</span>
                         </div>
 
                         <h2 className="text-4xl md:text-5xl font-serif text-slate-900 mb-8 leading-tight">
-                            "Se em 7 dias você não dormir melhor, <br />
-                            <span className="text-blue-600 italic">eu devolvo cada centavo."</span>
+                            Como a Garantia Dupla <br />
+                            <span className="text-blue-600 italic">blinda seu investimento?</span>
                         </h2>
 
                         <div className="space-y-6 text-slate-600 text-lg font-light leading-relaxed italic border-l-4 border-blue-200 pl-8 bg-white/50 p-6 rounded-r-3xl mb-10">
                             <p>
-                                Eu confio tanto no Método CMS que assumo todo o risco por você.
+                                Se, por qualquer motivo, você não quiser seguir em frente, todo o valor investido será devolvido.
                             </p>
                             <p>
-                                Entre, assista às aulas, use o Protocolo SOS. Se em <strong>7 dias</strong> você não sentir que seu peito está mais leve, que é possível estar presente para seus filhos sem aquele medo constante — eu devolvo 100% do seu dinheiro. Sem letras miúdas. Basta um e-mail.
+                                Sem taxas, sem letras miúdas, sem formulários cansativos. Com um clique a Hotmart estorna o valor integral da sua compra.
                             </p>
                         </div>
 
@@ -63,7 +63,7 @@ export const GuaranteeSection: React.FC = () => {
                             </div>
                             <div className="flex items-center gap-3 bg-white px-4 py-2 rounded-lg shadow-sm border border-slate-100">
                                 <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Proteção Kiwify</span>
+                                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Proteção Hotmart</span>
                             </div>
                         </div>
                     </div>

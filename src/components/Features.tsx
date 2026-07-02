@@ -48,7 +48,7 @@ const features = [
 
 export const Features: React.FC = () => {
   return (
-    <section id="features" className="py-32 relative bg-transparent overflow-hidden">
+    <section id="features" className="py-24 md:py-28 relative bg-transparent overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mb-24">
           <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 shadow-sm mb-10">

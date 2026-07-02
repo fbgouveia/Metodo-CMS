@@ -105,7 +105,7 @@ export const NeuralQuiz: React.FC = () => {
             options: [
                 "a) Morreria de saudade de apenas... respirar em paz.",
                 "b) Iria até a esquina sem olhar para trás.",
-                "c) Abraçaria meus filhos sem estar agitada.",
+                "c) Viveria o momento presente sem estar agitada.",
                 "d) Choraria de alívio por me sentir eu mesma de novo.",
                 "e) Dirigiria o meu carro para qualquer lugar."
             ],
@@ -133,7 +133,7 @@ export const NeuralQuiz: React.FC = () => {
                 "b) Tenho medo, mas preciso de ajuda.",
                 "c) Quero ser a mulher forte que eu era antes.",
                 "d) Quero meu silêncio de volta a qualquer custo.",
-                "e) Estou pronta para seguir o método da Dra. Quitéria."
+                "e) Estou pronta para seguir o método da Quiteria."
             ],
             number: "10",
             cluster: "LIFE"
@@ -187,44 +187,40 @@ export const NeuralQuiz: React.FC = () => {
     }, [step, answers, questions.length]);
 
     const handleWhatsApp = () => {
-        const baseMsg = "Olá Dra. Quitéria! Acabei de fazer o Mapeamento no site e quero meu silêncio de volta.";
+        const baseMsg = "Olá Quiteria! Acabei de fazer o Mapeamento no site e quero meu silêncio de volta.";
         const aiContext = dossier ? `\n\nMEU DOSSIÊ NEURAL:\n${dossier}` : "";
         const encodedMsg = encodeURIComponent(baseMsg + aiContext);
         window.open(`https://api.whatsapp.com/send?phone=5511956185501&text=${encodedMsg}`, '_blank');
     };
 
     return (
-        <section className="py-24 px-4 bg-slate-900 relative overflow-hidden">
-            <div className="absolute inset-0 opacity-10 pointer-events-none">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent"></div>
-            </div>
-
+        <section className="py-24 px-4 bg-brand-noite relative overflow-hidden">
             <div className="max-w-3xl mx-auto relative z-10">
                 <div className="text-center mb-16 space-y-6">
-                    <span className="text-blue-500 font-black tracking-[0.4em] text-[10px] uppercase block">Resgate sua Identidade</span>
-                    <h2 className="text-4xl md:text-6xl font-serif text-white leading-[1.1] max-w-3xl mx-auto">
-                        Descubra o nível de <span className="text-blue-500 italic text-nowrap">aprisionamento da sua&nbsp;mente.</span>
+                    <span className="text-brand-pedra font-bold tracking-[0.4em] text-[10px] uppercase block">Resgate sua Identidade</span>
+                    <h2 className="text-4xl md:text-6xl font-serif text-brand-papel leading-[1.1] max-w-3xl mx-auto">
+                        Descubra o nível de <span className="text-brand-pedra italic text-nowrap">aprisionamento da sua&nbsp;mente.</span>
                     </h2>
-                    <p className="text-slate-400 text-sm md:text-base font-light italic max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-brand-bruma text-sm md:text-base font-light italic max-w-2xl mx-auto leading-relaxed">
                         Este não é um teste comum. É o primeiro passo do seu mapeamento de autonomia para identificar os gatilhos que travam sua vida e silenciar o&nbsp;medo.
                     </p>
-                    <div className="w-12 h-[1px] bg-blue-500/30 mx-auto"></div>
+                    <div className="w-12 h-[1px] bg-brand-carvao mx-auto"></div>
                 </div>
 
                 {step < questions.length ? (
-                    <div className="bg-white/5 backdrop-blur-2xl p-8 md:p-14 rounded-[3rem] shadow-2xl border border-white/10 animate-fade-in transition-all duration-500">
-                        <div className="w-full h-1 bg-white/5 rounded-full mb-12 overflow-hidden">
+                    <div className="bg-brand-carvao p-8 md:p-14 rounded-[3rem] shadow-lg border border-brand-pedra/20 animate-fade-in transition-all duration-500">
+                        <div className="w-full h-1 bg-brand-noite rounded-full mb-12 overflow-hidden">
                             <div
-                                className="h-full bg-gradient-to-r from-blue-600 to-cyan-400 transition-all duration-700 ease-out"
+                                className="h-full bg-gradient-to-r from-brand-sereno to-brand-aguada transition-all duration-700 ease-out"
                                 style={{ width: `${progress}%` }}
                             ></div>
                         </div>
 
                         <div className="mb-10 flex flex-col items-center text-center">
-                            <span className="text-6xl font-serif text-white/10 select-none mb-4 leading-none">{questions[step].number}</span>
+                            <span className="text-6xl font-serif text-brand-papel/10 select-none mb-4 leading-none">{questions[step].number}</span>
                             <div>
-                                <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em] mb-3 italic">Diálogo Interior • Etapa {step + 1} de 10</p>
-                                <h3 className="text-2xl md:text-3xl font-serif text-white leading-tight">
+                                <p className="text-[10px] font-bold text-brand-pedra uppercase tracking-[0.3em] mb-3 italic">Diálogo Interior • Etapa {step + 1} de 10</p>
+                                <h3 className="text-2xl md:text-3xl font-serif text-brand-papel leading-tight">
                                     {questions[step].text}
                                 </h3>
                             </div>
@@ -235,29 +231,29 @@ export const NeuralQuiz: React.FC = () => {
                                 <button
                                     key={i}
                                     onClick={() => handleOption(opt)}
-                                    className="group relative w-full flex items-center justify-between p-5 md:p-6 rounded-2xl border border-white/10 bg-white/5 active:bg-blue-600/20 active:border-blue-500/50 hover:border-blue-500/30 transition-all text-left touch-manipulation min-h-[72px] active:scale-[0.98] duration-200"
+                                    className="group relative w-full flex items-center justify-between p-5 md:p-6 rounded-2xl border border-brand-pedra/20 bg-brand-noite active:bg-brand-areia/10 active:border-brand-sereno hover:border-brand-sereno/50 transition-all text-left touch-manipulation min-h-[72px] active:scale-[0.98] duration-200"
                                 >
-                                    <span className="text-slate-200 group-active:text-white transition-colors text-base md:text-lg font-light leading-snug w-[90%]">
+                                    <span className="text-brand-papel transition-colors text-base md:text-lg font-light leading-snug w-[90%]">
                                         {opt.split(') ')[1]}
                                     </span>
-                                    <div className="w-4 h-4 rounded-full border border-slate-600 group-active:bg-blue-500 group-active:border-blue-400 transition-all flex-shrink-0" />
+                                    <div className="w-4 h-4 rounded-full border border-brand-pedra group-active:bg-brand-sereno group-active:border-brand-sereno transition-all flex-shrink-0" />
                                 </button>
                             ))}
                         </div>
                     </div>
                 ) : (
-                    <div className="bg-white p-6 md:p-16 rounded-[2.5rem] md:rounded-[4rem] shadow-2xl text-center animate-fade-in-up border-4 border-blue-500/5 max-w-[95vw] mx-auto">
+                    <div className="bg-brand-papel p-6 md:p-16 rounded-[2.5rem] md:rounded-[4rem] shadow-2xl text-center animate-fade-in-up border border-brand-bruma/30 max-w-[95vw] mx-auto">
                         <div className="mb-8 md:mb-10">
-                            <span className="text-[10px] md:text-[11px] font-black text-blue-600 uppercase tracking-[0.3em] block mb-2 font-sans">Mapeamento Concluído</span>
-                            <div className="w-12 h-[1px] bg-blue-100 mx-auto"></div>
+                            <span className="text-[10px] md:text-[11px] font-bold text-brand-sereno uppercase tracking-[0.3em] block mb-2 font-sans">Mapeamento Concluído</span>
+                            <div className="w-12 h-[1px] bg-brand-bruma mx-auto"></div>
                         </div>
 
-                        <h3 className="text-3xl md:text-5xl font-serif text-slate-900 mb-6 md:mb-8 tracking-tight text-center leading-tight">
-                            Querida, o seu <br /><span className="text-blue-600 italic">silêncio</span> começou agora.
+                        <h3 className="text-3xl md:text-5xl font-serif text-brand-noite mb-6 md:mb-8 tracking-tight text-center leading-tight">
+                            Querida, o seu <br /><span className="text-brand-sereno italic">silêncio</span> começou agora.
                         </h3>
 
-                        <p className="text-slate-500 text-base md:text-lg mb-8 md:mb-12 font-light leading-relaxed italic border-l-2 border-blue-100 pl-6 md:pl-8 text-left max-w-2xl mx-auto">
-                            Eu li cada uma das suas <span className="text-blue-600 font-bold">10 escolhas</span>. Eu senti a sua dor através delas, e agora entendo onde o medo se esconde.
+                        <p className="text-brand-pedra text-base md:text-lg mb-8 md:mb-12 font-light leading-relaxed italic border-l-2 border-brand-bruma pl-6 md:pl-8 text-left max-w-2xl mx-auto">
+                            Eu li cada uma das suas <span className="text-brand-sereno font-bold">10 escolhas</span>. Eu senti a sua dor através delas, e agora entendo onde o medo se esconde.
                         </p>
 
                         <div className="max-w-2xl mx-auto space-y-8 md:space-y-12 text-left mb-10 md:mb-16">
@@ -265,11 +261,11 @@ export const NeuralQuiz: React.FC = () => {
                             {/* Card 1 */}
                             <div className="relative group p-4 md:p-0">
                                 <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6">
-                                    <span className="text-4xl md:text-5xl font-serif text-blue-100 leading-none">01</span>
+                                    <span className="text-4xl md:text-5xl font-serif text-brand-pedra/30 leading-none">01</span>
                                     <div className="space-y-2 md:space-y-4">
-                                        <h4 className="font-serif text-xl md:text-2xl text-slate-900 italic">Seu corpo pede socorro</h4>
-                                        <p className="text-slate-600 text-sm md:text-base leading-relaxed font-light bg-slate-50 md:bg-transparent p-4 md:p-0 rounded-2xl">
-                                            Sintomas como <span className="text-blue-600 font-bold">"{answers[0]}"</span> não são defeitos. São pedidos de ajuda do seu sistema nervoso exausto.
+                                        <h4 className="font-serif text-xl md:text-2xl text-brand-noite italic">Seu corpo pede socorro</h4>
+                                        <p className="text-brand-pedra text-sm md:text-base leading-relaxed font-light bg-brand-areia md:bg-transparent p-4 md:p-0 rounded-2xl">
+                                            Sintomas como <span className="text-brand-sereno font-bold">"{answers[0]}"</span> não são defeitos. São pedidos de ajuda do seu sistema nervoso exausto.
                                         </p>
                                     </div>
                                 </div>
@@ -278,47 +274,46 @@ export const NeuralQuiz: React.FC = () => {
                             {/* Card 2 */}
                             <div className="relative group p-4 md:p-0">
                                 <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6">
-                                    <span className="text-4xl md:text-5xl font-serif text-cyan-100 leading-none">02</span>
+                                    <span className="text-4xl md:text-5xl font-serif text-brand-pedra/30 leading-none">02</span>
                                     <div className="space-y-2 md:space-y-4">
-                                        <h4 className="font-serif text-xl md:text-2xl text-slate-900 italic">O roubo da liberdade</h4>
-                                        <p className="text-slate-600 text-sm md:text-base leading-relaxed font-light bg-slate-50 md:bg-transparent p-4 md:p-0 rounded-2xl">
-                                            Quando <span className="text-cyan-600 font-bold">"{answers[1]?.substring(0, 40)}..."</span> acontece, sua autonomia é sequestrada. É hora de pagar o resgate.
+                                        <h4 className="font-serif text-xl md:text-2xl text-brand-noite italic">O roubo da liberdade</h4>
+                                        <p className="text-brand-pedra text-sm md:text-base leading-relaxed font-light bg-brand-areia md:bg-transparent p-4 md:p-0 rounded-2xl">
+                                            Quando <span className="text-brand-sereno font-bold">"{answers[1]?.substring(0, 40)}..."</span> acontece, sua autonomia é sequestrada. É hora de pagar o resgate.
                                         </p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] bg-slate-900 text-white shadow-2xl relative overflow-hidden mx-[-10px] md:mx-0">
+                            <div className="p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] bg-brand-noite text-brand-papel shadow-xl border border-brand-carvao relative overflow-hidden mx-[-10px] md:mx-0">
                                 <div className="relative z-10 space-y-4 md:space-y-6">
                                     <h4 className="font-serif text-2xl md:text-3xl italic">Sua Nova Rota</h4>
-                                    <p className="text-slate-300 text-sm md:text-base leading-relaxed font-light italic">
-                                        Você disse que deseja <span className="text-blue-300 font-bold">"{answers[7]}"</span>. A Dra. Quitéria já tem o mapa para isso.
+                                    <p className="text-brand-bruma text-sm md:text-base leading-relaxed font-light italic">
+                                        Você disse que deseja <span className="text-brand-sereno font-bold">"{answers[7]}"</span>. A Quiteria já tem o mapa para isso.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="flex flex-col gap-4 md:gap-6 px-2 md:px-0">
+                        <div className="flex flex-col gap-4 md:gap-6 px-2 md:px-0 mt-8">
                             <button
                                 onClick={handleWhatsApp}
-                                className="group relative w-full flex items-center justify-center gap-4 px-6 py-5 md:py-8 bg-green-600 text-white rounded-full transition-all shadow-xl active:scale-[0.98] overflow-hidden"
+                                className="group relative w-full flex items-center justify-center gap-4 px-6 py-4 md:py-5 bg-brand-noite text-brand-papel rounded-full transition-all shadow-sm hover:bg-brand-carvao active:scale-[0.98] overflow-hidden border border-brand-noite"
                             >
-                                <span className="relative z-10 uppercase tracking-[0.2em] text-xs md:text-sm font-sans font-black">Falar com a Dra. Quitéria no WhatsApp</span>
+                                <span className="relative z-10 uppercase tracking-[0.2em] text-[10px] md:text-xs font-sans font-bold">Falar com a Quiteria no WhatsApp</span>
                             </button>
                             
                             <a
                                 href="https://pay.kiwify.com.br/cUO2x97"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative w-full flex items-center justify-center gap-4 px-6 py-5 md:py-8 bg-blue-600 text-white rounded-full transition-all shadow-xl active:scale-[0.98] overflow-hidden border-b-4 border-blue-800"
+                                className="group relative w-full flex items-center justify-center gap-4 px-6 py-4 md:py-5 bg-transparent text-brand-noite rounded-full transition-all hover:bg-brand-bruma active:scale-[0.98] overflow-hidden border border-brand-pedra/40"
                             >
-                                <span className="relative z-10 uppercase tracking-[0.2em] text-xs md:text-sm font-sans font-black">Garantir Meu Acesso ao Método Completo</span>
-                                <div className="absolute inset-0 bg-white/10 translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                                <span className="relative z-10 uppercase tracking-[0.2em] text-[10px] md:text-xs font-sans font-bold">Garantir Meu Acesso ao Método</span>
                             </a>
 
                             <a
                                 href="#pricing"
-                                className="text-slate-400 hover:text-blue-600 transition-colors text-[10px] md:text-xs uppercase tracking-widest text-center font-bold py-4 block"
+                                className="text-brand-pedra hover:text-brand-noite transition-colors text-[9px] md:text-[10px] uppercase tracking-widest text-center font-bold py-2 block mt-2"
                             >
                                 Ver outras opções de tratamento
                             </a>
@@ -327,7 +322,7 @@ export const NeuralQuiz: React.FC = () => {
                 )}
 
                 <div className="mt-12 text-center">
-                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.4em] italic">
+                    <p className="text-[10px] text-brand-pedra font-bold uppercase tracking-[0.4em] italic">
                         {step < questions.length ? "Mapeando sua rota de fuga..." : "Sua Rota de Liberdade está pronta."}
                     </p>
                 </div>

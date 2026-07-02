@@ -27,10 +27,8 @@ export const MentorshipFunnel: React.FC = () => {
     };
 
     return (
-        <section id="pricing" className="py-16 md:py-32 relative overflow-hidden bg-transparent">
-            {/* Background elements */}
-            <div className="absolute top-20 right-[-10%] w-[40%] h-[40%] bg-blue-200/20 rounded-full blur-[120px] pointer-events-none"></div>
-            <div className="absolute bottom-10 left-[-5%] w-[30%] h-[30%] bg-rose-200/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <section id="mentoria" className="py-16 md:py-28 relative overflow-hidden bg-brand-papel">
+            {/* Background elements removed for a cleaner look */}
 
             <div className="container mx-auto px-6 relative z-10">
                 <motion.div
@@ -42,19 +40,19 @@ export const MentorshipFunnel: React.FC = () => {
                 >
                     {/* Header Section */}
                     <div className="text-center mb-20">
-                        <motion.div variants={itemVariants} className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-rose-50 border border-rose-100 mb-8 shadow-sm">
-                            <div className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></div>
-                            <span className="text-xs font-bold text-rose-600 tracking-wider uppercase">Apenas 3 Vagas Disponíveis Este Mês</span>
+                        <motion.div variants={itemVariants} className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-brand-bruma border border-brand-ceu mb-8 shadow-sm">
+                            <div className="w-1.5 h-1.5 rounded-full bg-brand-aguada animate-pulse"></div>
+                            <span className="text-xs font-bold text-brand-pedra tracking-wider uppercase">Apenas 3 Vagas Disponíveis Este Mês</span>
                         </motion.div>
 
-                        <motion.h2 variants={itemVariants} className="text-5xl md:text-7xl font-serif text-slate-900 mb-8 tracking-tight leading-tight">
+                        <motion.h2 variants={itemVariants} className="text-5xl md:text-7xl font-serif text-brand-noite mb-8 tracking-tight leading-tight">
                             Mentoria VIP: <br />
-                            <span className="text-blue-600 italic">A Dra. Quitéria pegando na sua mão.</span>
+                            <span className="text-brand-pedra italic">A Quiteria pegando na sua mão.</span>
                         </motion.h2>
 
-                        <motion.p variants={itemVariants} className="max-w-3xl mx-auto text-slate-600 text-xl font-light leading-relaxed">
-                            Algumas mães precisam de mais do que um método. Elas precisam de
-                            <strong className="text-slate-900 font-bold italic"> alguém que conheça o nome delas</strong>, que saiba a história dos filhos e que esteja lá quando o ataque vier na terça-feira à noite.
+                        <motion.p variants={itemVariants} className="max-w-3xl mx-auto text-brand-pedra text-xl font-light leading-relaxed">
+                            Algumas pessoas precisam de mais do que um método. Elas precisam de
+                            <strong className="text-brand-noite font-bold italic"> alguém que conheça o nome delas</strong>, que saiba a sua história e que esteja lá quando o ataque vier na terça-feira à noite.
                         </motion.p>
                     </div>
 
@@ -71,14 +69,14 @@ export const MentorshipFunnel: React.FC = () => {
                                     type: "INDIVIDUAL"
                                 },
                                 {
-                                    title: "WhatsApp Pessoal da Dra. Quitéria",
+                                    title: "WhatsApp Pessoal da Quiteria",
                                     desc: "Acesso direto a mim durante 2 meses. Quando o medo vier, você não estará sozinha. Eu estarei no seu bolso.",
                                     tag: "VIP Acesso Total",
                                     type: "HUMANO"
                                 },
                                 {
-                                    title: "BÔNUS: Guia 'Como Falar com Seus Filhos'",
-                                    desc: "Um guia exclusivo para você explicar a sua ansiedade para seus filhos de forma segura, sem assustá-los e sem se sentir culpada.",
+                                    title: "BÔNUS: E-book 'Manual de Gestão da Ansiedade'",
+                                    desc: "Um material exclusivo com hábitos e práticas para você organizar sua rotina matinal e reduzir o ruído mental logo ao acordar.",
                                     tag: "Exclusivo Mentes",
                                     type: "PRESENTE",
                                     highlight: true
@@ -88,21 +86,21 @@ export const MentorshipFunnel: React.FC = () => {
                                     key={idx}
                                     variants={itemVariants}
                                     whileHover={{ y: -5 }}
-                                    className={`p-6 md:p-10 rounded-[2rem] md:rounded-[2.5rem] border transition-all duration-300 ${feature.highlight
-                                        ? 'bg-rose-50 border-rose-100 shadow-xl shadow-rose-900/5'
-                                        : 'bg-white/40 backdrop-blur-xl border-white hover:border-blue-100 hover:shadow-xl'
+                                    className={`p-6 md:p-10 rounded-2xl border transition-all duration-300 ${feature.highlight
+                                        ? 'bg-brand-bruma border-brand-ceu shadow-sm'
+                                        : 'bg-white border-brand-bruma hover:border-brand-ceu shadow-sm'
                                         }`}
                                 >
                                     <div className="flex justify-between items-center mb-4 md:mb-6">
-                                        <span className={`text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] ${feature.highlight ? 'text-rose-600' : 'text-blue-600'}`}>
+                                        <span className={`text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] ${feature.highlight ? 'text-brand-aguada' : 'text-brand-pedra'}`}>
                                             {feature.type}
                                         </span>
-                                        <span className={`text-[9px] md:text-[10px] font-bold uppercase tracking-widest ${feature.highlight ? 'text-rose-400' : 'text-slate-400'}`}>
+                                        <span className={`text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-brand-pedra`}>
                                             {feature.tag}
                                         </span>
                                     </div>
-                                    <h4 className="text-xl md:text-2xl font-serif text-slate-900 mb-2 md:mb-4 text-balance leading-tight">{feature.title}</h4>
-                                    <p className="text-slate-600 text-base md:text-lg leading-relaxed font-light italic text-pretty">{feature.desc}</p>
+                                    <h4 className="text-xl md:text-2xl font-serif text-brand-noite mb-2 md:mb-4 text-balance leading-tight">{feature.title}</h4>
+                                    <p className="text-brand-pedra text-base md:text-lg leading-relaxed font-light italic text-pretty">{feature.desc}</p>
                                 </motion.div>
                             ))}
                         </div>
@@ -111,26 +109,24 @@ export const MentorshipFunnel: React.FC = () => {
                         <div className="w-full lg:w-[420px] lg:sticky lg:top-24">
                             <motion.div
                                 variants={itemVariants}
-                                className="bg-slate-900 text-white p-8 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] shadow-2xl relative overflow-hidden border border-white/10"
+                                className="bg-brand-noite text-brand-papel p-8 md:p-12 rounded-2xl shadow-lg relative overflow-hidden"
                             >
-                                <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-600/20 rounded-full blur-[80px] pointer-events-none"></div>
-
                                 <div className="relative z-10 text-center md:text-left">
-                                    <div className="inline-flex items-center gap-2 mb-8 md:mb-10 bg-white/5 px-4 py-2 rounded-full border border-white/10">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></div>
-                                        <span className="text-[9px] font-black uppercase tracking-[0.2em] text-rose-300">Apenas 3 Vagas/Mês</span>
+                                    <div className="inline-flex items-center gap-2 mb-8 md:mb-10 bg-brand-carvao px-4 py-2 rounded-full border border-brand-pedra/30">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-brand-areia animate-pulse"></div>
+                                        <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-areia">Apenas 3 Vagas/Mês</span>
                                     </div>
 
                                     <div className="mb-10 md:mb-12">
-                                        <div className="flex items-baseline justify-center md:justify-start gap-2 opacity-50 mb-2 font-serif italic text-sm text-gray-400">
+                                        <div className="flex items-baseline justify-center md:justify-start gap-2 opacity-70 mb-2 font-serif italic text-sm text-brand-bruma">
                                             <span>Valor real: R$ 5.000</span>
                                         </div>
                                         <div className="flex items-baseline justify-center md:justify-start gap-2 mb-2">
                                             <span className="text-5xl md:text-6xl font-bold tracking-tighter text-white">R$ 1.480</span>
                                         </div>
-                                        <p className="text-sm text-blue-300 font-bold italic mt-4 border-t border-white/10 pt-4">
+                                        <p className="text-sm text-brand-sereno font-bold mt-4 border-t border-brand-carvao pt-4">
                                             ou 12x de R$ 148,00 <br />
-                                            <span className="text-slate-400 font-normal not-italic text-[10px] uppercase tracking-wider block mt-1">(Menos que uma sessão de terapia)</span>
+                                            <span className="text-brand-pedra font-normal text-[10px] uppercase tracking-wider block mt-1">(Menos que uma sessão de terapia)</span>
                                         </p>
                                     </div>
 
@@ -147,19 +143,16 @@ export const MentorshipFunnel: React.FC = () => {
                                                     });
                                                 }
                                             }}
-                                            className="group w-full flex items-center justify-center py-6 md:py-8 bg-white text-slate-900 rounded-full font-black uppercase tracking-widest text-xs hover:bg-blue-50 transition-all shadow-xl relative overflow-hidden active:scale-95"
+                                            className="group w-full flex items-center justify-center py-5 md:py-6 bg-brand-sereno hover:bg-brand-aguada text-white rounded-full font-bold uppercase tracking-widest text-xs transition-colors shadow-md relative overflow-hidden active:scale-95"
                                         >
                                             <span className="relative z-10 text-center">Garantir Minha Vaga VIP Agora</span>
-                                            <div className="absolute inset-0 bg-blue-100/50 -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
                                         </a>
 
-                                    <div className="mt-8 md:mt-10 pt-6 border-t border-white/10 space-y-3 flex flex-col items-center md:items-start opacity-70">
-                                        <div className="flex items-center gap-3 text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-widest">
-                                            <div className="w-1 h-1 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+                                    <div className="mt-8 md:mt-10 pt-6 border-t border-brand-carvao space-y-3 flex flex-col items-center md:items-start opacity-70">
+                                        <div className="flex items-center gap-3 text-[9px] md:text-[10px] text-brand-bruma font-bold uppercase tracking-widest">
                                             Acompanhamento de 60 Dias
                                         </div>
-                                        <div className="flex items-center gap-3 text-[9px] md:text-[10px] text-slate-400 font-bold uppercase tracking-widest">
-                                            <div className="w-1 h-1 rounded-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]"></div>
+                                        <div className="flex items-center gap-3 text-[9px] md:text-[10px] text-brand-bruma font-bold uppercase tracking-widest">
                                             Garantia Blindada de 7 Dias
                                         </div>
                                     </div>
@@ -168,9 +161,9 @@ export const MentorshipFunnel: React.FC = () => {
 
                             <motion.div
                                 variants={itemVariants}
-                                className="mt-8 flex items-center justify-center gap-3 text-slate-500 font-bold uppercase tracking-widest text-[9px]"
+                                className="mt-6 flex items-center justify-center gap-3 text-brand-pedra font-bold uppercase tracking-widest text-[9px]"
                             >
-                                <span className="w-1.5 h-1.5 bg-rose-500 rounded-full animate-pulse"></span>
+                                <span className="w-1.5 h-1.5 bg-brand-areia rounded-full"></span>
                                 Inscrições encerram em breve
                             </motion.div>
                         </div>

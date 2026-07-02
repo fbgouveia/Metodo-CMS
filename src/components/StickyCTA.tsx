@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from 'react';
 
 export const StickyCTA: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [atPricing, setAtPricing] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       // Aparece após 400px de scroll
-      setIsVisible(window.scrollY > 400);
+      setScrolled(window.scrollY > 400);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!isVisible) return null;
+  // Some quando a tabela de preços está à vista: evita cobrir os cards e o CTA redundante
+  useEffect(() => {
+    const pricing = document.getElementById('pricing');
+    if (!pricing) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setAtPricing(entry.isIntersecting),
+      { threshold: 0.15 }
+    );
+    observer.observe(pricing);
+    return () => observer.disconnect();
+  }, []);
+
+  if (!scrolled || atPricing) return null;
 
   return (
     <div className="fixed bottom-4 left-4 right-4 md:bottom-8 md:left-1/2 md:-translate-x-1/2 md:w-auto z-[100] animate-in slide-in-from-bottom-20 zoom-in-95 duration-700 pointer-events-none">

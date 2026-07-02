@@ -71,15 +71,15 @@ export const VerticalScroll: React.FC = () => {
       // Reveal animations for each step card
       gsap.utils.toArray<HTMLElement>(".reveal-card").forEach((card) => {
         gsap.fromTo(card,
-          { opacity: 0, y: 50, scale: 0.95 },
+          { opacity: 0, y: 30 },
           {
-            opacity: 1, y: 0, scale: 1,
-            duration: 0.8,
+            opacity: 1, y: 0,
+            duration: 0.5,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: card,
-              start: "top 95%", // Dispara assim que aponta na tela
-              end: "bottom 20%",
-              toggleActions: "play none none reverse"
+              start: "top 100%", // Dispara assim que a ponta do card encosta na tela
+              toggleActions: "play none none none" // Toca apenas uma vez para não sumir ao subir
             }
           }
         );

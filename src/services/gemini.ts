@@ -3,7 +3,7 @@
  * 
  * Este serviço integra os resultados do Quiz com a Inteligência Artificial do Google.
  * Ele transforma as 10 respostas brutas em um "Dossier CMS" que será enviado
- * para o WhatsApp, permitindo que a Dra. Quitéria saiba tudo sobre a usuária.
+ * para o WhatsApp, permitindo que a Quiteria saiba tudo sobre a usuária.
  * 
  * ATUALIZAÇÃO DE SEGURANÇA: As chamadas agora são roteadas
  * através de uma Vercel Serverless Function (/api/gemini)
@@ -21,7 +21,7 @@ export interface QuizResult {
 
 export const generateCMSDossier = async (quizData: QuizResult) => {
     const prompt = `
-    VOCÊ É A ESTRATEGISTA NEURAL DA DRA. QUITÉRIA GOUVEIA.
+    VOCÊ É A ESTRATEGISTA NEURAL DA QUITERIA GOUVEIA.
     
     CONTEXTO: Acabamos de receber um Mapeamento de Autonomia. Sua tarefa é analisar as respostas brutas e gerar um DOSSIÊ ESTRATÉGICO para o WhatsApp.
     
@@ -38,7 +38,7 @@ export const generateCMSDossier = async (quizData: QuizResult) => {
     ESTRUTURA DO RESULTADO (MÁXIMO 3 PARÁGRAFOS):
     - Parágrafo 1: Diagnóstico Emocional (Validação da dor).
     - Parágrafo 2: Impacto na Vida (O custo de não agir agora - Aversão à perda).
-    - Parágrafo 3: Gancho de Venda (Por onde a Dra. Quitéria deve começar o resgate dela).
+    - Parágrafo 3: Gancho de Venda (Por onde a Quiteria deve começar o resgate dela).
     
     IMPORTANTE: Responda em português. Seja direta, profunda e persuasiva. Esse dossiê será a primeira coisa que a usuária lerá ao falar com você no WhatsApp.
   `;

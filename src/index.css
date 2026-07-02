@@ -4,9 +4,9 @@
 
 @layer base {
   :root {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f5f5f7;
-    color: #1d1d1f;
+    font-family: 'Manrope', sans-serif;
+    background-color: #FAFBFC;
+    color: #1F2A38;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -15,12 +15,10 @@
   html {
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    height: -webkit-fill-available;
   }
 
   body {
     min-height: 100vh;
-    min-height: -webkit-fill-available;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -44,4 +42,16 @@
 .no-scrollbar {
   -ms-overflow-style: none; /* IE e Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+/* Entrada suave do conteúdo (a classe já era usada nos componentes, mas não existia) */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(1.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up { animation: none; }
 }

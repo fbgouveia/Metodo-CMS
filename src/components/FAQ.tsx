@@ -31,8 +31,8 @@ const faqs = [
     answer: "Se você sente que precisa de segurança, sim. Na mentoria, eu praticamente seguro sua mão. Analiso seu caso, tiro suas dúvidas ao vivo e te dou o suporte emocional que falta pra você não desistir. É um investimento na certeza do resultado."
   },
   {
-    question: "Meu marido/família não me entende.",
-    answer: "Temos um módulo inteiro sobre isso. Você vai aprender a explicar o que sente e, mais importante, vai parar de depender da validação deles. Quando você melhora, a casa inteira melhora."
+    question: "As pessoas ao meu redor não me entendem.",
+    answer: "A dor do ruído mental é silenciosa e invisível. É comum se sentir incompreendido. Na nossa comunidade e com o Método, você encontrará ferramentas para se estruturar internamente antes de tentar explicar isso aos outros."
   },
   {
     question: "Sou muito velha (ou nova) para isso?",

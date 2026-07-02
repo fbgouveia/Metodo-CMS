@@ -71,7 +71,7 @@ export const Pricing: React.FC<PricingProps> = ({
                         <div>
                             <div className="text-amber-500 font-serif text-sm tracking-widest mb-3">5.0 / 5.0</div>
                             <p className="text-slate-700 italic text-xl leading-relaxed mb-4">
-                                "Eu achava que meu caso não tinha solução. Em 3 dias aplicando o que a Dra. Quitéria ensina no Módulo 3, eu parei de sentir que ia infartar a qualquer momento."
+                                "Eu achava que meu caso não tinha solução. Em 3 dias aplicando o que a Quiteria ensina no Módulo 3, eu parei de sentir que ia infartar a qualquer momento."
                             </p>
                             <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">— Juliana Costa, Aluna CMS</p>
                         </div>

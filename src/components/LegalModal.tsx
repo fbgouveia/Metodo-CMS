@@ -53,7 +53,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
             <div className="space-y-6 text-slate-500 text-sm leading-relaxed font-light pl-8 border-l border-slate-100">
               <p><strong>1. Natureza Educacional:</strong> O Método CMS é um programa educacional de desenvolvimento pessoal e regulação emocional. Embora baseado em princípios da neurociência e psicologia, ele <strong>não substitui</strong> tratamento médico, psiquiátrico ou terapia clínica individualizada.</p>
               <p><strong>2. Resultados:</strong> Os resultados apresentados no site são reais, mas variam de pessoa para pessoa. O sucesso depende da aplicação consistente das técnicas ensinadas.</p>
-              <p><strong>3. Propriedade Intelectual:</strong> Todo o material (vídeos, textos, manuais) é propriedade exclusiva da Dra. Quitéria Gouveia. O compartilhamento de acesso ou pirataria levará ao bloqueio imediato da conta sem reembolso e medidas judiciais cabíveis.</p>
+              <p><strong>3. Propriedade Intelectual:</strong> Todo o material (vídeos, textos, manuais) é propriedade exclusiva da Quiteria Gouveia. O compartilhamento de acesso ou pirataria levará ao bloqueio imediato da conta sem reembolso e medidas judiciais cabíveis.</p>
               <p><strong>4. Reembolso:</strong> Oferecemos garantia incondicional de 7 dias conforme o Art. 49 do Código de Defesa do Consumidor.</p>
             </div>
           </>

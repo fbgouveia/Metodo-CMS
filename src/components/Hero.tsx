@@ -29,13 +29,9 @@ export const Hero: React.FC = () => {
   const videoSrc = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1${shouldPlay ? '&autoplay=1&mute=1' : ''}`;
 
   return (
-    <div ref={containerRef} className="w-full relative group cursor-pointer">
-
-      {/* Moldura Decorativa (Glow de Confiança) */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-blue-400 to-cyan-500 rounded-2xl md:rounded-[2rem] opacity-20 group-hover:opacity-60 blur-xl transition-[opacity] duration-700"></div>
-
-      {/* Container do Vídeo (16:9) */}
-      <div className="relative w-full aspect-video bg-slate-900 rounded-xl md:rounded-[1.8rem] overflow-hidden shadow-2xl ring-1 ring-white/10">
+    <div ref={containerRef} className="w-full relative cursor-pointer">
+      {/* Container do Vídeo (16:9) Limpo */}
+      <div className="relative w-full aspect-video bg-brand-carvao rounded-xl md:rounded-2xl overflow-hidden shadow-lg border border-brand-bruma/50">
 
         <iframe
           className="absolute top-0 left-0 w-full h-full"
